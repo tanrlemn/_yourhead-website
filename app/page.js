@@ -1,95 +1,98 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Image from "next/image";
+import styles from "./page.module.css";
+import textStyles from "./text.module.css";
+import { BsArrowRight } from "react-icons/bs";
+import donut from "../public/donut.jpg";
+import bliss from "../public/bliss.jpg";
+import noThyself from "../public/no-thyself.jpg";
+import owner from "../public/owner.jpg";
+import whalerider from "../public/whalerider.jpg";
+import textBurst from "../public/textBurst.svg";
 
 export default function Home() {
+  const squareImage = {
+    maxWidth: "30em",
+    maxHeight: "30em",
+    minWidth: "20em",
+    minHeight: "100%",
+    borderRadius: "10px",
+    margin: "5px",
+    objectFit: "cover",
+  };
+
+  const burst = {
+    backgroundImage: textBurst,
+  };
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      <div className={styles.heroWrapper}>
+        <div className={styles.heroContent}>
+          <h1 className={textStyles.headingXl}>
+            Request a{" "}
+            <span className={textStyles.textBurst} style={burst}>
+              painting
+            </span>
+            today
+          </h1>
+          <p className={textStyles.paragraphMain}>
+            A full package with multiple possibilities that will fit you
+            perfectly. Start your Webflow website right now!
+          </p>
+          <div className={styles.heroButtonsWrap}>
+            <a href="/" className={styles.linkBlockChartreuse}>
+              <div className={styles.buttonLabel}>Get started</div>
+              <BsArrowRight />
+            </a>
+            <a href="/" className={styles.linkBlockWhite}>
+              <div className={styles.buttonLabel}>Read more</div>
+              <BsArrowRight />
+            </a>
+          </div>
+        </div>
+        <div className={styles.heroImageGrid}>
+          <div className={styles.heroRail}>
+            <div className={styles.imageFrameSquare}>
+              <Image
+                src={donut}
+                height={300}
+                width={300}
+                style={squareImage}
+                alt="Donut painting"
+              />
+            </div>
+            <div className={styles.imageFrameSquare}>
+              <Image
+                src={bliss}
+                height={300}
+                width={300}
+                style={squareImage}
+                alt="Donut painting"
+              />
+            </div>
+          </div>
+          <div className={styles.heroRail}>
+            <div className={styles.imageFrameSquare}>
+              <Image
+                src={owner}
+                height={300}
+                width={300}
+                style={squareImage}
+                alt="Donut painting"
+              />
+            </div>
+            <div className={styles.imageFrameSquare}>
+              <Image
+                src={whalerider}
+                height={300}
+                width={300}
+                style={squareImage}
+                alt="Donut painting"
+              />
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
-  )
+  );
 }
