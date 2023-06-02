@@ -30,7 +30,7 @@ export default function Commissions() {
       <div className={styles.heroWrapper}>
         <div className={styles.heroContent}>
           <div className={styles.flexTag}>
-            <div className={styles.bulletTag}></div>
+            <div className={textStyles.bulletTag}></div>
             <div className={textStyles.titleTag}>
               About Commission Paintings
             </div>
@@ -131,17 +131,15 @@ export default function Commissions() {
             options are available.
           </p>
           <div className={spacingStyles.topMarginLg}>
-            <a className={textStyles.linkBlockBlack}>
-              <div
-                className={textStyles.buttonLabel}
-                data-tf-slider='diYCs0i7'
-                data-tf-position='right'
-                data-tf-opacity='100'
-                data-tf-iframe-props='title=YOURHEAD Commission Request'
-                data-tf-transitive-search-params
-                data-tf-medium='snippet'>
-                Start a commission
-              </div>
+            <a
+              className={textStyles.linkBlockBlack}
+              data-tf-slider='diYCs0i7'
+              data-tf-position='right'
+              data-tf-opacity='100'
+              data-tf-iframe-props='title=YOURHEAD Commission Request'
+              data-tf-transitive-search-params
+              data-tf-medium='snippet'>
+              <div className={textStyles.buttonLabel}>Start a commission</div>
 
               <BsArrowRight />
             </a>

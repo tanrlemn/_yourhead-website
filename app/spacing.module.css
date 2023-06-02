@@ -1,3 +1,6 @@
+.bottomMarginXl {
+  margin-bottom: 4em;
+}
 .bottomMarginLg {
   margin-bottom: 2em;
 }
@@ -18,8 +21,17 @@
   margin-top: 2em;
 }
 
+.topMarginMd {
+  margin-top: 1.2em;
+}
+
 .topMarginXl {
   margin-top: 5em;
+}
+
+.bottomTopMarginXl {
+  margin-top: 5em;
+  margin-bottom: 5em;
 }
 
 .bottomTopMarginLg {
@@ -30,6 +42,11 @@
 .bottomTopMarginMd {
   margin-top: 1.2em;
   margin-bottom: 1.2em;
+}
+
+.bottomTopMarginSm {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .allPaddingLg {

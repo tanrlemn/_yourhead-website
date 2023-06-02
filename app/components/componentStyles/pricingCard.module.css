@@ -1,0 +1,43 @@
+.pricingCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3em 2em;
+  border-radius: 10px;
+  background-color: #fff;
+  border: 1px solid #2c2c2c21;
+  max-width: 45%;
+  margin-right: 2em;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+.pricingCard:last-child {
+  margin-right: 0;
+}
+
+.checkItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.checkIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 24px;
+  max-height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  border-radius: 100px;
+  margin-right: 10px;
+  background-color: rgba(180, 255, 40, 0.55);
+}
+
+.checkIcon {
+  object-fit: contain;
+}

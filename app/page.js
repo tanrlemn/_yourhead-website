@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import Link from 'next/link';
+
 import styles from './page.module.css';
 import textStyles from './text.module.css';
 import spacingStyles from './spacing.module.css';
@@ -46,8 +48,8 @@ export default function Home() {
             </p>
           </div>
           <div className={styles.heroButtonsWrap}>
-            <a
-              className={styles.linkBlockChartreuse}
+            <button
+              className={textStyles.linkBlockChartreuse}
               data-tf-slider='diYCs0i7'
               data-tf-position='right'
               data-tf-opacity='100'
@@ -56,7 +58,7 @@ export default function Home() {
               data-tf-medium='snippet'>
               <div className={styles.buttonLabel}>Get started</div>
               <BsArrowRight />
-            </a>
+            </button>
             <a href='/commissions' className={styles.linkBlockWhite}>
               <div className={styles.buttonLabel}>Read more</div>
               <BsArrowRight />

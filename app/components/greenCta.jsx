@@ -66,20 +66,18 @@ export default function GreenCta({ waitingPeriod }) {
           </div>
         </div>
         <div className={styles.heroButtonsWrap}>
-          <a className={textStyles.linkBlockChartreuse}>
-            <div
-              className={textStyles.buttonLabel}
-              data-tf-slider='diYCs0i7'
-              data-tf-position='right'
-              data-tf-opacity='100'
-              data-tf-iframe-props='title=YOURHEAD Commission Request'
-              data-tf-transitive-search-params
-              data-tf-medium='snippet'>
-              Get started
-            </div>
+          <button
+            className={textStyles.linkBlockChartreuse}
+            data-tf-slider='diYCs0i7'
+            data-tf-position='right'
+            data-tf-opacity='100'
+            data-tf-iframe-props='title=YOURHEAD Commission Request'
+            data-tf-transitive-search-params
+            data-tf-medium='snippet'>
+            <div className={textStyles.buttonLabel}>Get started</div>
 
             <BsArrowRight />
-          </a>
+          </button>
         </div>
       </div>
     </div>

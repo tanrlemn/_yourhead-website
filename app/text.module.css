@@ -106,6 +106,7 @@
 }
 
 .linkBlockChartreuse {
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -117,6 +118,8 @@
 }
 
 .linkBlockWhite {
+  cursor: pointer;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -133,6 +136,7 @@
 }
 
 .linkBlockBlack {
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -151,6 +155,7 @@
 }
 
 .linkBlockGreen {
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -161,6 +166,70 @@
   max-width: fit-content;
 }
 
+.linkBlockGray {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 32px;
+  border: 1px solid #1a393a;
+  background: #9fbdbe;
+  border-radius: 100px;
+  color: #1a393a;
+  max-width: fit-content;
+  transition: all 0.2s ease-in-out;
+}
+
+.linkBlockGray:hover {
+  background: #1a393a;
+  color: #fff;
+}
+
+.linkBlockOrangeOutline {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 32px;
+  border: 1px solid #eb3c3c;
+  background: transparent;
+  border-radius: 100px;
+  color: rgb(190, 19, 19);
+  max-width: fit-content;
+  transition: all 0.2s ease-in-out;
+}
+.linkBlockOrangeOutline:hover {
+  background: rgb(190, 19, 19);
+  color: #fff;
+}
+
 .buttonLabel {
   margin-right: 5px;
+}
+
+.footerTitle {
+  font-size: 1.7em;
+  font-weight: 600;
+  color: #161616;
+  opacity: 0.72;
+}
+
+.footerHeading {
+  font-size: 1.1em;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.footerLowerText {
+  font-size: 0.7em;
+  line-height: 1.2;
+  color: #161616c1;
+  opacity: 0.72;
+}
+
+.bulletTag {
+  width: 12px;
+  height: 12px;
+  background: #2c5c5d;
+  border-radius: 20px;
 }
