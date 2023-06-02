@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
                 </a>
               </div>
               <div className={navStyles.navButton}>
-                <script src="//embed.typeform.com/next/embed.js"></script>
+                <script src="//embed.typeform.com/next/embed.js" async></script>
                 <a className={navStyles.navLinkBlock}>
                   <div
                     className={navStyles.buttonLabel}
