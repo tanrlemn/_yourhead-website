@@ -1,4 +1,4 @@
-import marqueeStyles from "./componentStyles/marquee.module.css";
+import marqueeStyles from './componentStyles/marquee.module.css';
 
 export default function Marquee({ delay = 0 }) {
   const delayStyle = {

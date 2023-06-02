@@ -1,17 +1,17 @@
-import Image from "next/image";
-import styles from "./componentStyles/checkboxCard.module.css";
-import textStyles from "../text.module.css";
-import checkIcon from "../../public/checkIcon.svg";
-import spacingStyles from "../spacing.module.css";
+import Image from 'next/image';
+import styles from './componentStyles/checkboxCard.module.css';
+import textStyles from '../text.module.css';
+import checkIcon from '../../public/checkIcon.svg';
+import spacingStyles from '../spacing.module.css';
 
 export default function CheckboxCard({
   title,
   description,
   subtitle = false,
-  subtitleText = "",
+  subtitleText = '',
   checks = [],
   unchecks = [],
-  backgroundColor = "white",
+  backgroundColor = 'white',
 }) {
   const background = {
     backgroundColor: backgroundColor,

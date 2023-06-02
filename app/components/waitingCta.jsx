@@ -1,7 +1,7 @@
-import { BsArrowRight } from "react-icons/bs";
-import styles from "./componentStyles/cta.module.css";
-import textStyles from "../text.module.css";
-import spacingStyles from "../spacing.module.css";
+import { BsArrowRight } from 'react-icons/bs';
+import styles from './componentStyles/cta.module.css';
+import textStyles from '../text.module.css';
+import spacingStyles from '../spacing.module.css';
 
 export default function WaitingCta({ waitingPeriod }) {
   return (
@@ -28,12 +28,12 @@ export default function WaitingCta({ waitingPeriod }) {
 
             <form className={styles.form}>
               <input
-                type="email"
-                placeholder="Enter your email"
+                type='email'
+                placeholder='Enter your email'
                 className={styles.input}
-                autoComplete="email"
+                autoComplete='email'
               />
-              <button type="submit" className={styles.arrowButton}>
+              <button type='submit' className={styles.arrowButton}>
                 <BsArrowRight />
               </button>
             </form>

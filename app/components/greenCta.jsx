@@ -1,14 +1,14 @@
-import Image from "next/image";
-import { BsArrowRight } from "react-icons/bs";
-import styles from "./componentStyles/cta.module.css";
-import checkIcon from "../../public/checkIcon.svg";
-import textStyles from "../text.module.css";
-import spacingStyles from "../spacing.module.css";
+import Image from 'next/image';
+import { BsArrowRight } from 'react-icons/bs';
+import styles from './componentStyles/cta.module.css';
+import checkIcon from '../../public/checkIcon.svg';
+import textStyles from '../text.module.css';
+import spacingStyles from '../spacing.module.css';
 
 export default function GreenCta({ waitingPeriod }) {
   const lightText = {
-    color: "#d8eecd",
-    opacity: "1",
+    color: '#d8eecd',
+    opacity: '1',
   };
   return (
     <div className={styles.greenCtaWrap}>
@@ -66,12 +66,12 @@ export default function GreenCta({ waitingPeriod }) {
           <a className={textStyles.linkBlockChartreuse}>
             <div
               className={textStyles.buttonLabel}
-              data-tf-slider="diYCs0i7"
-              data-tf-position="right"
-              data-tf-opacity="100"
-              data-tf-iframe-props="title=YOURHEAD Commission Request"
+              data-tf-slider='diYCs0i7'
+              data-tf-position='right'
+              data-tf-opacity='100'
+              data-tf-iframe-props='title=YOURHEAD Commission Request'
               data-tf-transitive-search-params
-              data-tf-medium="snippet">
+              data-tf-medium='snippet'>
               Get started
             </div>
 

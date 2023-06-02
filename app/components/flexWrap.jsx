@@ -1,7 +1,7 @@
-import Image from "next/image";
-import styles from "./componentStyles/flex.module.css";
-import textStyles from "../text.module.css";
-import spacingStyles from "../spacing.module.css";
+import Image from 'next/image';
+import styles from './componentStyles/flex.module.css';
+import textStyles from '../text.module.css';
+import spacingStyles from '../spacing.module.css';
 
 export default function FlexCard({
   title,
@@ -9,7 +9,7 @@ export default function FlexCard({
   image,
   reverse = false,
   subtitle = false,
-  subtitleText = "",
+  subtitleText = '',
 }) {
   return (
     <div className={styles.flexWrap}>

@@ -1,31 +1,31 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import textStyles from "./text.module.css";
-import spacingStyles from "./spacing.module.css";
-import { BsArrowRight } from "react-icons/bs";
-import donut from "../public/donut.jpg";
-import bliss from "../public/bliss.jpg";
-import owner from "../public/owner.jpg";
-import whalerider from "../public/whalerider.jpg";
-import textBurst from "../public/textBurst.svg";
+import Image from 'next/image';
+import styles from './page.module.css';
+import textStyles from './text.module.css';
+import spacingStyles from './spacing.module.css';
+import { BsArrowRight } from 'react-icons/bs';
+import donut from '../public/donut.jpg';
+import bliss from '../public/bliss.jpg';
+import owner from '../public/owner.jpg';
+import whalerider from '../public/whalerider.jpg';
+import textBurst from '../public/textBurst.svg';
 
 export default function Home() {
   const squareImage = {
-    maxWidth: "35em",
-    maxHeight: "35em",
-    minWidth: "25em",
-    minHeight: "100%",
-    borderRadius: "10px",
-    margin: "5px",
-    objectFit: "cover",
-    objectPosition: "50% 20%",
+    maxWidth: '35em',
+    maxHeight: '35em',
+    minWidth: '25em',
+    minHeight: '100%',
+    borderRadius: '10px',
+    margin: '5px',
+    objectFit: 'cover',
+    objectPosition: '50% 20%',
   };
 
   const burst = {
     backgroundImage: `url(${textBurst.src})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "bottom right",
-    padding: "0 0.3em 0.3em 0",
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'bottom right',
+    padding: '0 0.3em 0.3em 0',
   };
 
   return (
@@ -33,10 +33,10 @@ export default function Home() {
       <div className={styles.heroWrapper}>
         <div className={styles.heroContent}>
           <h1 className={textStyles.headingXl}>
-            Request a{" "}
+            Request a{' '}
             <span className={textStyles.textBurst} style={burst}>
               painting
-            </span>{" "}
+            </span>{' '}
             today
           </h1>
           <div className={spacingStyles.bottomTopMarginLg}>
@@ -48,16 +48,16 @@ export default function Home() {
           <div className={styles.heroButtonsWrap}>
             <a
               className={styles.linkBlockChartreuse}
-              data-tf-slider="diYCs0i7"
-              data-tf-position="right"
-              data-tf-opacity="100"
-              data-tf-iframe-props="title=YOURHEAD Commission Request"
+              data-tf-slider='diYCs0i7'
+              data-tf-position='right'
+              data-tf-opacity='100'
+              data-tf-iframe-props='title=YOURHEAD Commission Request'
               data-tf-transitive-search-params
-              data-tf-medium="snippet">
+              data-tf-medium='snippet'>
               <div className={styles.buttonLabel}>Get started</div>
               <BsArrowRight />
             </a>
-            <a href="/commissions" className={styles.linkBlockWhite}>
+            <a href='/commissions' className={styles.linkBlockWhite}>
               <div className={styles.buttonLabel}>Read more</div>
               <BsArrowRight />
             </a>
@@ -71,7 +71,7 @@ export default function Home() {
                 height={300}
                 width={300}
                 style={squareImage}
-                alt="Donut painting"
+                alt='Donut painting'
               />
             </div>
             <div className={styles.imageFrameSquare}>
@@ -80,7 +80,7 @@ export default function Home() {
                 height={300}
                 width={300}
                 style={squareImage}
-                alt="Donut painting"
+                alt='Donut painting'
               />
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function Home() {
                 height={300}
                 width={300}
                 style={squareImage}
-                alt="Donut painting"
+                alt='Donut painting'
               />
             </div>
             <div className={styles.imageFrameSquare}>
@@ -100,7 +100,7 @@ export default function Home() {
                 height={300}
                 width={300}
                 style={squareImage}
-                alt="Donut painting"
+                alt='Donut painting'
               />
             </div>
           </div>
