@@ -38,8 +38,16 @@ export default function RootLayout({ children }) {
                 </a>
               </div>
               <div className={navStyles.navButton}>
-                <a href="/" className={navStyles.navLinkBlock}>
-                  <div className={navStyles.buttonLabel}>
+                <script src="//embed.typeform.com/next/embed.js"></script>
+                <a className={navStyles.navLinkBlock}>
+                  <div
+                    className={navStyles.buttonLabel}
+                    data-tf-slider="diYCs0i7"
+                    data-tf-position="right"
+                    data-tf-opacity="100"
+                    data-tf-iframe-props="title=YOURHEAD Commission Request"
+                    data-tf-transitive-search-params
+                    data-tf-medium="snippet">
                     Request a painting
                   </div>
                   <BsArrowRight />

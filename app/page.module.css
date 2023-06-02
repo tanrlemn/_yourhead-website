@@ -6,6 +6,7 @@
   min-height: 100vh;
   background: #204f58;
   padding-top: 90px;
+  color: #fff;
 }
 
 .heroWrapper {
@@ -18,7 +19,12 @@
 
 .heroContent {
   padding-right: 4em;
+  min-width: 45%;
+  max-width: 50%;
   min-height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
 }
 .heroButtonsWrap {
   display: flex;
@@ -58,6 +64,7 @@
   padding: 20px;
   min-height: 100%;
   border-radius: 10px;
+  margin-right: -10em;
 }
 
 .heroRail {
@@ -66,8 +73,8 @@
 }
 
 .imageFrameSquare {
-  max-width: 30em;
-  max-height: 30em;
+  max-width: 35em;
+  max-height: 35em;
   object-fit: cover;
   overflow: hidden;
 }

@@ -1,0 +1,31 @@
+.yourMarquee {
+  animation: marquee 45s linear infinite;
+  min-width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  /* animation-delay: -20s; */
+}
+
+.marqueeSpan {
+  margin-right: 3em;
+  position: relative;
+  left: 0px;
+  color: #a3c9c9;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+@keyframes marquee {
+  0% {
+    -moz-transform: translateX(50%);
+    -webkit-transform: translateX(50%);
+    transform: translateX(50%);
+  }
+  100% {
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}

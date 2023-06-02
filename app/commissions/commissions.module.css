@@ -1,0 +1,82 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  background: #fff;
+  padding-top: 90px;
+  color: #2c2c2c;
+}
+
+.heroWrapper {
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  min-height: 100%;
+}
+
+.heroContent {
+  min-width: 50%;
+  max-width: 65%;
+  min-height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  text-align: center;
+  padding-top: 6em;
+  padding-bottom: 2em;
+}
+
+.flexTag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.bulletTag {
+  width: 12px;
+  height: 12px;
+  background: #2c5c5d;
+  border-radius: 20px;
+}
+
+.heroButtonsWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.buttonLabel {
+  margin-right: 5px;
+}
+
+.flexCardWrap {
+  /* background: #e7f1f1; */
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 50px 75px 50px;
+}
+
+.flexTitle {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 0 3em 3em 0;
+  max-width: 40%;
+}
+
+.timelineWrap {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 3em 2em 5em 2em;
+}
+
+.checkboxCardWrap {
+  display: flex;
+}

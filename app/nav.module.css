@@ -15,14 +15,11 @@
   align-items: center;
 }
 
-.brandBlock {
-}
-
 .brandTitle {
   padding: 0px 10px;
-  font-weight: 700;
-  font-size: 27px;
-  letter-spacing: 0.1em;
+  font-weight: 600;
+  font-size: 25px;
+  color: #fff;
 }
 
 .navMenu {
