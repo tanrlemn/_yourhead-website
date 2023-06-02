@@ -11,6 +11,7 @@ export default function FlexCard({ title, description, image }) {
         width={330}
         height={200}
         className={styles.flexCardImage}
+        alt={`image for ${title}`}
       />
       <div className={styles.flexCardText}>
         <div className={spacingStyles.bottomMarginSm}>

@@ -125,10 +125,10 @@ export default function Commissions() {
             </ol>
           </div>
           <p className={textStyles.paragraphSm}>
-            The average time to completion for a standard 24" x 36" portrait
-            painting is 3-4 months. This time estimate is likely to change based
-            on the details of your commission request. Expedited options are
-            available.
+            The average time to completion for a standard 24&quot; x 36&quot;
+            portrait painting is 3-4 months. This time estimate is likely to
+            change based on the details of your commission request. Expedited
+            options are available.
           </p>
           <div className={spacingStyles.topMarginLg}>
             <a className={textStyles.linkBlockBlack}>
@@ -202,7 +202,7 @@ export default function Commissions() {
       <FlexWrap
         title={'Post-Purchase Support'}
         description={
-          "  The relationship with clients extends beyond the transaction. We are always available for any questions or assistance post-purchase. Whether it's advice on art care, placement, or framing, We are here to provide continuous support to help you maintain the beauty and integrity of your artwork."
+          "The relationship with clients extends beyond the transaction. We are always available for any questions or assistance post-purchase. Whether it's advice on art care, placement, or framing, We are here to provide continuous support to help you maintain the beauty and integrity of your artwork."
         }
         image={livingRoom}
         reverse={true}

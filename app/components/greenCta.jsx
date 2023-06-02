@@ -29,6 +29,7 @@ export default function GreenCta({ waitingPeriod }) {
                 width={9}
                 height={9}
                 className={styles.checkIcon}
+                alt='check icon'
               />
             </div>
             <p className={textStyles.paragraphXs} style={lightText}>
@@ -42,6 +43,7 @@ export default function GreenCta({ waitingPeriod }) {
                 width={9}
                 height={9}
                 className={styles.checkIcon}
+                alt='check icon'
               />
             </div>
             <p className={textStyles.paragraphXs} style={lightText}>
@@ -55,6 +57,7 @@ export default function GreenCta({ waitingPeriod }) {
                 width={9}
                 height={9}
                 className={styles.checkIcon}
+                alt='check icon'
               />
             </div>
             <p className={textStyles.paragraphXs} style={lightText}>

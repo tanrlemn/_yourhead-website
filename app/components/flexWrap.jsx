@@ -19,6 +19,7 @@ export default function FlexCard({
           width={415}
           height={300}
           className={styles.flexImage}
+          alt={`image for ${title}`}
         />
       )}
       <div className={styles.flexText}>
@@ -38,6 +39,7 @@ export default function FlexCard({
           width={415}
           height={300}
           className={styles.flexImage}
+          alt={`image for ${title}`}
         />
       )}
     </div>

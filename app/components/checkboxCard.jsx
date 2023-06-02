@@ -34,14 +34,15 @@ export default function CheckboxCard({
         <p className={textStyles.paragraphXxs}>{description}</p>
       </div>
       {checks.length > 0 &&
-        checks.map((check) => (
-          <div className={styles.checkItem}>
+        checks.map((check, i) => (
+          <div className={styles.checkItem} key={i}>
             <div className={styles.checkIconWrap}>
               <Image
                 src={checkIcon}
                 width={9}
                 height={9}
                 className={styles.checkIcon}
+                alt='check icon'
               />
             </div>
             <p className={textStyles.paragraphXs}>{check}</p>
