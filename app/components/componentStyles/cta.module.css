@@ -1,5 +1,5 @@
 .ctaWrap {
-  background: #f1c4be;
+  background: var(--orange-light);
   padding: 0px 20px;
   min-width: 100%;
 }
@@ -13,7 +13,7 @@
 }
 
 .tag {
-  background: #ffedeb;
+  background: var(--orange-lightest);
   padding: 7px 20px;
   margin-left: -9px;
   max-width: fit-content;
@@ -47,11 +47,11 @@
 }
 
 .input:autofill {
-  color: #2c2c2c !important;
+  color: var(--dark-gray) !important;
 }
 
 .arrowButton {
-  background: #ff715b;
+  background: var(--orange-mid);
   color: #fff;
   border-radius: 100px;
   outline: none;
@@ -65,7 +65,7 @@
 
 /* // */
 .greenCtaWrap {
-  background: #204f58;
+  background: var(--green-teal-mid-dark);
   padding: 0px 20px;
   min-width: 100%;
   color: #fff;
@@ -85,7 +85,7 @@
 }
 
 .greenTag {
-  background: #51aa7615;
+  background: var(--green-mid-15);
   padding: 7px 20px;
   max-width: fit-content;
   border-radius: 100px;
@@ -120,7 +120,7 @@
   min-height: 24px;
   border-radius: 100px;
   margin-right: 15px;
-  background-color: rgba(180, 255, 40);
+  background-color: var(--chartreuse);
 }
 
 .checkIcon {

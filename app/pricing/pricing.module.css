@@ -17,7 +17,7 @@
 }
 
 .greenTag {
-  background: #338673;
+  background: var(--green-mid);
   padding: 7px 20px;
   max-width: fit-content;
   border-radius: 100px;

@@ -32,14 +32,13 @@ export default function Pricing() {
                 'First dibs on exclusive art and listen to unreleased music. No strings attached. (Except for the ones that hold your email address to this list.)'
               }
               checks={[
-                'Finalize pricing',
-                'Payment structure',
-                'Rights & confidentiality',
-                'Artwork details',
-                'Milestones & deadlines',
-                'Additional suggestions',
+                'Unreleased music',
+                'Advanced notice of new art',
+                'Secrets & stories',
+                'Exclusive discounts',
               ]}
-              backgroundColor='#f5fcf2'
+              unchecks={['Custom artwork', 'Commissioned paintings']}
+              backgroundColor='--green-lightest'
             />
             <PricingCard
               mainTitle={'Commission Painting'}
@@ -57,7 +56,7 @@ export default function Pricing() {
                 'Milestones & deadlines',
                 'Additional suggestions',
               ]}
-              backgroundColor='#0085d850'
+              backgroundColor='--blue-light'
               type='commission'
             />
             <PricingCard
@@ -76,7 +75,7 @@ export default function Pricing() {
                 'Milestones & deadlines',
                 'Additional suggestions',
               ]}
-              backgroundColor='#f1c4be50'
+              backgroundColor='--orange-light-50'
               type='shop'
             />
           </div>

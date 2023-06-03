@@ -33,16 +33,16 @@
   font-weight: 500;
   text-transform: uppercase;
   line-height: 1;
-  color: #2c2c2c90;
+  color: var(--dark-gray-50);
 }
 
 .textBurst {
-  color: #b0ebb9;
+  color: var(--green-light);
 }
 
 .outlineText {
   font-weight: 700;
-  border: 2px solid #fd8775;
+  border: var(--orange-border);
   border-radius: 100px;
   padding: 3px 15px;
   display: block;
@@ -53,7 +53,7 @@
 
 .outlineTextGrey {
   font-weight: 700;
-  border: 1px solid #2c2c2c21;
+  border: var(--dark-gray-border-20);
   border-radius: 100px;
   padding: 10px 30px;
   display: block;
@@ -68,27 +68,27 @@
 .paragraphSm {
   font-size: 1.08em;
   line-height: 1.6;
-  color: #161616;
+  color: var(--darkest-gray);
   opacity: 0.72;
 }
 
 .paragraphXs {
   font-size: 1em;
   line-height: 1.6;
-  color: #161616;
+  color: var(--darkest-gray);
   opacity: 0.72;
 }
 
 .paragraphXxs {
   font-size: 0.86em;
   line-height: 1.3;
-  color: #161616;
+  color: var(--darkest-gray);
   opacity: 0.72;
 }
 
 .titleTag {
   margin-left: 10px;
-  color: #2c5c5d;
+  color: var(--green-mid-dark);
   font-size: 1.1em;
   font-weight: 500;
 }
@@ -97,7 +97,7 @@
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
-  color: #161616;
+  color: var(--darkest-gray);
   opacity: 0.72;
 }
 
@@ -111,9 +111,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 32px;
-  background: #b4ff28;
+  background: var(--chartreuse);
   border-radius: 100px;
-  color: #1a393a;
+  color: var(--green-dark);
   max-width: fit-content;
 }
 
@@ -127,12 +127,12 @@
   margin-left: 20px;
   color: #fff;
   max-width: fit-content;
-  box-shadow: inset 0px -3px rgba(255, 255, 255, 0.1);
+  box-shadow: var(--dark-gray-border-20);
   transition: box-shadow 0.2s ease-in-out;
 }
 
 .linkBlockWhite:hover {
-  box-shadow: inset 0px -3px #b0eab9;
+  box-shadow: var(--light-hover-shadow);
 }
 
 .linkBlockBlack {
@@ -141,17 +141,17 @@
   justify-content: space-between;
   align-items: center;
   padding: 9px 3px 9px 0;
-  color: #161616;
+  color: var(--darkest-gray);
   font-weight: 600;
   opacity: 0.72;
   max-width: fit-content;
-  box-shadow: inset 0px -3px #7b7d7b5e;
+  box-shadow: var(--gray-hover-shadow);
   transition: box-shadow 0.2s ease-in-out;
 }
 
 .linkBlockBlack:hover {
-  box-shadow: inset 0px -3px #b0eab9;
-  color: #186123;
+  box-shadow: var(--light-hover-shadow);
+  color: var(--green-green-mid-dark);
 }
 
 .linkBlockGreen {
@@ -160,7 +160,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 32px;
-  background: #2c5c5d;
+  background: var(--green-mid-dark);
   border-radius: 100px;
   color: #fff;
   max-width: fit-content;
@@ -172,16 +172,16 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 32px;
-  border: 1px solid #1a393a;
-  background: #9fbdbe;
+  border: var(--green-dark-border);
+  background: var(--light-blue-gray);
   border-radius: 100px;
-  color: #1a393a;
+  color: var(--green-dark);
   max-width: fit-content;
   transition: all 0.2s ease-in-out;
 }
 
 .linkBlockGray:hover {
-  background: #1a393a;
+  background: var(--green-dark);
   color: #fff;
 }
 
@@ -191,15 +191,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 32px;
-  border: 1px solid #eb3c3c;
+  border: var(--red-border);
   background: transparent;
   border-radius: 100px;
-  color: rgb(190, 19, 19);
+  color: var(--red-mid);
   max-width: fit-content;
   transition: all 0.2s ease-in-out;
 }
 .linkBlockOrangeOutline:hover {
-  background: rgb(190, 19, 19);
+  background: var(--red-mid);
   color: #fff;
 }
 
@@ -210,7 +210,7 @@
 .footerTitle {
   font-size: 1.7em;
   font-weight: 600;
-  color: #161616;
+  color: var(--darkest-gray);
   opacity: 0.72;
 }
 
@@ -223,13 +223,13 @@
 .footerLowerText {
   font-size: 0.7em;
   line-height: 1.2;
-  color: #161616c1;
+  color: var(--darkest-gray-70);
   opacity: 0.72;
 }
 
 .bulletTag {
   width: 12px;
   height: 12px;
-  background: #2c5c5d;
+  background: var(--green-mid-dark);
   border-radius: 20px;
 }

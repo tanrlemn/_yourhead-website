@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  background: #204f58;
+  background: var(--green-teal-mid-dark);
   color: #fff;
 }
 
@@ -35,9 +35,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 32px;
-  background: #b4ff28;
+  background: var(--chartreuse);
   border-radius: 100px;
-  color: #1a393a;
+  color: var(--green-dark);
   max-width: fit-content;
 }
 .linkBlockWhite {
@@ -48,18 +48,18 @@
   margin-left: 20px;
   color: #fff;
   max-width: fit-content;
-  box-shadow: inset 0px -3px rgba(255, 255, 255, 0.1);
+  box-shadow: var(--light-gray-link-shadow);
   transition: box-shadow 0.2s ease-in-out;
 }
 .linkBlockWhite:hover {
-  box-shadow: inset 0px -3px #b0eab9;
+  box-shadow: var(--light-hover-shadow);
 }
 .buttonLabel {
   margin-right: 5px;
 }
 
 .heroImageGrid {
-  background-color: #47888a;
+  background-color: var(--green-teal-mid);
   padding: 20px;
   min-height: 100%;
   border-radius: 10px;
