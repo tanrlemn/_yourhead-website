@@ -29,20 +29,20 @@ export default function RootLayout({ children }) {
             </Link>
             <div className={navStyles.navMenu}>
               <div className={navStyles.navLinkWrap}>
-                <Link href='/' className={navStyles.navLink}>
-                  Home
-                </Link>
                 <Link href='/commissions' className={navStyles.navLink}>
                   Commissions
                 </Link>
-                <Link href='/about' className={navStyles.navLink}>
-                  About
+                <Link href='/shop' className={navStyles.navLink}>
+                  Shop
                 </Link>
                 <Link href='/recents' className={navStyles.navLink}>
                   Recents
                 </Link>
                 <Link href='/pricing' className={navStyles.navLink}>
                   Pricing
+                </Link>
+                <Link href='/about' className={navStyles.navLink}>
+                  About
                 </Link>
                 <Link href='/contact' className={navStyles.navLink}>
                   Contact

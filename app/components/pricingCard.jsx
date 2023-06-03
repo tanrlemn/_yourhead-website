@@ -17,7 +17,7 @@ export default function PricingCard({
   type = 'signup',
 }) {
   const background = {
-    backgroundColor: backgroundColor,
+    backgroundColor: `var(${backgroundColor})`,
   };
 
   return (

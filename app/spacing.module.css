@@ -54,7 +54,7 @@
 }
 
 .fullDividerGreen {
-  background: #47888a;
+  background: var(--green-teal-mid);
   min-width: 95%;
   max-width: 98%;
   margin: 2em;
@@ -62,7 +62,7 @@
 }
 
 .blockDividerOrange {
-  background: #ffedeb;
+  background: var(--orange-lightest);
   min-width: 40%;
   max-width: 50%;
   margin: 0.75em 2em 1.5em 0;
