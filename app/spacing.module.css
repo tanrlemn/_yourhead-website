@@ -1,3 +1,19 @@
+.topMarginLg {
+  margin-top: 2em;
+}
+
+.topMarginMd {
+  margin-top: 1.2em;
+}
+
+.topMarginXl {
+  margin-top: 5em;
+}
+
+.rightMarginXs {
+  margin-right: 0.5em;
+}
+
 .bottomMarginXl {
   margin-bottom: 4em;
 }
@@ -15,18 +31,6 @@
 
 .bottomMarginXs {
   margin-bottom: 0.25em;
-}
-
-.topMarginLg {
-  margin-top: 2em;
-}
-
-.topMarginMd {
-  margin-top: 1.2em;
-}
-
-.topMarginXl {
-  margin-top: 5em;
 }
 
 .bottomTopMarginXl {
@@ -51,6 +55,10 @@
 
 .allPaddingLg {
   padding: 2em;
+}
+
+.rightPaddingXs {
+  padding-right: 0.5em;
 }
 
 .fullDividerGreen {

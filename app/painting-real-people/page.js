@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styles from './commissions.module.css';
+import styles from './paintingRealPeople.module.css';
 import textStyles from '../text.module.css';
 import spacingStyles from '../spacing.module.css';
 import FlexCard from '../components/flexCard';
@@ -31,24 +31,22 @@ export default function Commissions() {
         <div className={styles.heroContent}>
           <div className={styles.flexTag}>
             <div className={textStyles.bulletTag}></div>
-            <div className={textStyles.titleTag}>
-              About Commission Paintings
-            </div>
+            <div className={textStyles.titleTag}>Painting Real People</div>
           </div>
           <div className={spacingStyles.bottomMarginLg}>
             <h1 className={textStyles.headingXl}>
-              Commission a portrait painting of{' '}
+              A world of humans, longing to be{' '}
               <span className={textStyles.textBurst} style={orangeBurst}>
-                anyone
+                seen
               </span>
             </h1>
           </div>
           <div className={spacingStyles.bottomMarginMd}>
             <p className={textStyles.paragraphMain}>
               YOURHEAD specializes in unique portrait representations done with
-              oil paint. Commissioned portraits can be a great way to celebrate
-              a loved one, show someone that you care, or affirm how awesome you
-              are.
+              oil paint. Through a series of in-person painting sessions,
+              YOURHEAD explores what it means to get to know people, and how to
+              capture their essence in a painting.
             </p>
           </div>
           <div className={styles.heroButtonsWrap}>
@@ -61,7 +59,7 @@ export default function Commissions() {
                 data-tf-iframe-props='title=YOURHEAD Commission Request'
                 data-tf-transitive-search-params
                 data-tf-medium='snippet'>
-                Get started
+                Request a painting
               </div>
 
               <BsArrowRight />
@@ -69,7 +67,6 @@ export default function Commissions() {
           </div>
         </div>
       </div>
-      <WaitingCta waitingPeriod={'No current wait'} />
       <div className={spacingStyles.topMarginXl}>
         <h2 className={textStyles.headingLg}>
           Create. Collaborate. Experience Art.

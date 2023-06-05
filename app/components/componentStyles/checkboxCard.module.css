@@ -33,9 +33,10 @@
   min-height: 24px;
   border-radius: 100px;
   margin-right: 10px;
-  background-color: var(--chartreuse-50);
+  background-color: var(--green-light);
 }
 
 .checkIcon {
   object-fit: contain;
+  filter: invert(1) sepia(1) brightness(0.1);
 }

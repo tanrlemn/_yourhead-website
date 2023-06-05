@@ -1,5 +1,11 @@
+'use client';
 import './globals.css';
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+
 import { BsArrowRight } from 'react-icons/bs';
+import { VscClose } from 'react-icons/vsc';
+import { CgMenuRight } from 'react-icons/cg';
 import navStyles from './nav.module.css';
 import textStyles from './text.module.css';
 import spacingStyles from './spacing.module.css';
@@ -7,65 +13,98 @@ import ctaStyles from './components/componentStyles/cta.module.css';
 import Marquee from './components/marquee';
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
+import RainbowLetters from './utils/rainbowLetters';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata = {
-  title: 'YOURHEAD',
-  description: 'Unique portrait paintings by artist, YOURHEAD.',
-};
-
 export default function RootLayout({ children }) {
+  const [openMenu, setOpenMenu] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setOpenMenu(false);
+  }, [pathname]);
+
   const inputStyles = {
     background: '#eee',
   };
   return (
     <html lang='en'>
       <body className={inter.className}>
+        <script src='//embed.typeform.com/next/embed.js' async></script>
         <nav className={navStyles.navWrapper}>
           <div className={navStyles.innerNav}>
             <Link href='/' className={navStyles.brandBlock}>
-              <div className={navStyles.brandTitle}>YOURHEAD</div>
+              <div className={navStyles.brandTitle}>
+                <RainbowLetters string='YOURHEAD' />
+              </div>
             </Link>
-            <div className={navStyles.navMenu}>
-              <div className={navStyles.navLinkWrap}>
-                <Link href='/commissions' className={navStyles.navLink}>
-                  Commissions
-                </Link>
-                <Link href='/shop' className={navStyles.navLink}>
-                  Shop
-                </Link>
-                <Link href='/recents' className={navStyles.navLink}>
-                  Recents
-                </Link>
-                <Link href='/pricing' className={navStyles.navLink}>
-                  Pricing
-                </Link>
-                <Link href='/about' className={navStyles.navLink}>
-                  About
-                </Link>
-                <Link href='/contact' className={navStyles.navLink}>
-                  Contact
-                </Link>
-              </div>
-              <div className={navStyles.navButton}>
-                <script src='//embed.typeform.com/next/embed.js' async></script>
-                <button
-                  className={textStyles.linkBlockChartreuse}
-                  data-tf-slider='diYCs0i7'
-                  data-tf-position='right'
-                  data-tf-opacity='100'
-                  data-tf-iframe-props='title=YOURHEAD Commission Request'
-                  data-tf-transitive-search-params
-                  data-tf-medium='snippet'>
-                  <div className={navStyles.buttonLabel}>
-                    Request a painting
+            {openMenu && (
+              <div className={navStyles.navMenu}>
+                <div className={navStyles.navLinkWrap}>
+                  <Link
+                    href='/painting-real-people'
+                    className={navStyles.navLink}>
+                    Painting Real People
+                  </Link>
+                  <Link href='/shop' className={navStyles.navLink}>
+                    Shop
+                  </Link>
+                  <Link href='/recents' className={navStyles.navLink}>
+                    Recents
+                  </Link>
+                  <Link href='/memberships' className={navStyles.navLink}>
+                    Memberships
+                  </Link>
+                  <Link href='/about' className={navStyles.navLink}>
+                    About
+                  </Link>
+                  <Link href='/support' className={navStyles.navLink}>
+                    Support
+                  </Link>
+                </div>
+                <div className={navStyles.navButtonsWrap}>
+                  <div className={spacingStyles.rightPaddingXs}>
+                    <Link
+                      href='/sign-in'
+                      className={textStyles.linkBlockWhiteOutline}>
+                      Log in
+                    </Link>
                   </div>
-                  <BsArrowRight />
-                </button>
+                  <Link
+                    href='/sign-up'
+                    className={textStyles.linkBlockChartreuse}>
+                    <div className={navStyles.buttonLabel}>Sign up</div>
+                  </Link>
+                </div>
               </div>
-            </div>
+            )}
           </div>
+          <div className={navStyles.mobileMenuWrap}>
+            {!openMenu && (
+              <CgMenuRight
+                className={navStyles.mobileMenuIcon}
+                onClick={() => {
+                  setOpenMenu(!openMenu);
+                }}
+              />
+            )}
+            {openMenu && (
+              <VscClose
+                className={navStyles.mobileMenuIcon}
+                onClick={() => {
+                  setOpenMenu(!openMenu);
+                }}
+              />
+            )}
+          </div>
+          {openMenu && (
+            <div
+              className={navStyles.clickOutWrap}
+              onClick={() => {
+                setOpenMenu(!openMenu);
+              }}></div>
+          )}
         </nav>
         <div className={navStyles.navSpacer}></div>
         {children}
