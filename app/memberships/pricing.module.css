@@ -13,7 +13,7 @@
 
 .cardWrap {
   display: flex;
-  margin-top: 3.5em;
+  flex-wrap: wrap;
 }
 
 .greenTag {

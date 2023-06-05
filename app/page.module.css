@@ -24,6 +24,7 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
+  font-size: 1em;
 }
 .heroButtonsWrap {
   display: flex;
@@ -76,4 +77,56 @@
   max-height: 35em;
   object-fit: cover;
   overflow: hidden;
+}
+
+.greenTag {
+  background: var(--green-mid);
+  padding: 7px 20px;
+  max-width: fit-content;
+  border-radius: 100px;
+  margin-bottom: 2em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 768px) {
+  .heroWrapper {
+    flex-direction: column;
+    padding: 30px 10px;
+  }
+
+  .heroContent {
+    padding-right: 0;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    font-size: 1em;
+    margin-bottom: 50px;
+  }
+  .heroImageGrid {
+    background-color: var(--green-teal-mid);
+    padding: 10px;
+    min-height: 100%;
+    border-radius: 10px;
+    margin-right: 0;
+  }
+  .heroRail {
+    display: flex;
+    align-items: center;
+  }
+  .imageFrameSquare {
+    max-width: 10em;
+    max-height: 10em;
+    object-fit: cover;
+    overflow: hidden;
+  }
+
+  .imageFrameSquare img {
+    max-width: 10em;
+    max-height: 10em;
+    object-fit: cover;
+    overflow: hidden;
+  }
 }

@@ -1,5 +1,7 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRef, useEffect, useState } from 'react';
 
 import styles from './page.module.css';
 import textStyles from './text.module.css';
@@ -12,10 +14,26 @@ import whalerider from '../public/whalerider.jpg';
 import textBurst from '../public/textBurst.svg';
 
 export default function Home() {
+  const windowSize = useRef(
+    typeof window !== 'undefined' ? window.innerWidth : null
+  );
+
+  const [imgMax, setImgMax] = useState(
+    windowSize?.current < 769 ? '10em' : '35em'
+  );
+  const [imgMin, setImgMin] = useState(
+    windowSize?.current < 769 ? '7em' : '25em'
+  );
+
+  useEffect(() => {
+    setImgMax(windowSize.current < 769 ? '10em' : '35em');
+    setImgMin(windowSize.current < 769 ? '7em' : '25em');
+  }, []);
+
   const squareImage = {
-    maxWidth: '35em',
-    maxHeight: '35em',
-    minWidth: '25em',
+    maxWidth: imgMax,
+    maxHeight: imgMax,
+    minWidth: imgMin,
     minHeight: '100%',
     borderRadius: '10px',
     margin: '5px',
@@ -23,11 +41,14 @@ export default function Home() {
     objectPosition: '50% 20%',
   };
 
+  const burstPadding =
+    windowSize.current < 769 ? '0 0.4em 0.4em 0' : '0 0.3em 0.3em 0';
+
   const burst = {
     backgroundImage: `url(${textBurst.src})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'bottom right',
-    padding: '0 0.3em 0.3em 0',
+    padding: burstPadding,
   };
 
   return (
@@ -35,16 +56,16 @@ export default function Home() {
       <div className={styles.heroWrapper}>
         <div className={styles.heroContent}>
           <h1 className={textStyles.headingXl}>
-            Request a{' '}
             <span className={textStyles.textBurst} style={burst}>
-              painting
+              Painting
             </span>{' '}
-            today
+            real people.
           </h1>
           <div className={spacingStyles.bottomTopMarginLg}>
             <p className={textStyles.paragraphMain}>
-              A full package with multiple possibilities that will fit you
-              perfectly. Start your Webflow website right now!
+              We could pretend that we don&apos;t know each other, that we
+              aren&apos;t real. But maybe let&apos;s paint each other just to
+              make sure.
             </p>
           </div>
           <div className={styles.heroButtonsWrap}>
