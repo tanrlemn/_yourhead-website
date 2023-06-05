@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 import styles from './page.module.css';
 import textStyles from './text.module.css';
@@ -14,10 +14,21 @@ import whalerider from '../public/whalerider.jpg';
 import textBurst from '../public/textBurst.svg';
 
 export default function Home() {
-  const windowSize = useRef(window.innerWidth);
+  const windowSize = useRef(
+    typeof window !== 'undefined' ? window.innerWidth : null
+  );
 
-  const imgMax = windowSize.current < 769 ? '10em' : '35em';
-  const imgMin = windowSize.current < 769 ? '7em' : '25em';
+  const [imgMax, setImgMax] = useState(
+    windowSize?.current < 769 ? '10em' : '35em'
+  );
+  const [imgMin, setImgMin] = useState(
+    windowSize?.current < 769 ? '7em' : '25em'
+  );
+
+  useEffect(() => {
+    setImgMax(windowSize.current < 769 ? '10em' : '35em');
+    setImgMin(windowSize.current < 769 ? '7em' : '25em');
+  }, []);
 
   const squareImage = {
     maxWidth: imgMax,
@@ -52,8 +63,9 @@ export default function Home() {
           </h1>
           <div className={spacingStyles.bottomTopMarginLg}>
             <p className={textStyles.paragraphMain}>
-              We could pretend that we don't know each other, that we aren't
-              real. But maybe let's paint each other just to make sure.
+              We could pretend that we don&apos;t know each other, that we
+              aren&apos;t real. But maybe let&apos;s paint each other just to
+              make sure.
             </p>
           </div>
           <div className={styles.heroButtonsWrap}>

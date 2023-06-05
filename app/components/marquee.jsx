@@ -8,7 +8,9 @@ export default function Marquee({ delay = 0 }) {
     const marqueeSpan = [];
     for (let i = 0; i < 9; i++) {
       marqueeSpan.push(
-        <span className={marqueeStyles.marqueeSpan}>YOURHEADISOURHEAD</span>
+        <span className={marqueeStyles.marqueeSpan} key={i}>
+          YOURHEADISOURHEAD
+        </span>
       );
     }
     return marqueeSpan;
