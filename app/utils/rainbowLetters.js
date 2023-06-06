@@ -1,15 +1,17 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function RainbowLetters({ string, initialColor }) {
-  if (initialColor === 'dark') {
-    initialColor = '#161616';
-  } else {
-    initialColor = '#fff';
-  }
-
   const [mouseOver, setMouseOver] = useState(false);
-  const [returnText, setReturnText] = useState(string);
+  const [returnText, setReturnText] = useState('');
+  const color = useRef(() => {
+    if (initialColor === 'dark') {
+      return '#161616';
+    } else {
+      return '#fff';
+    }
+  });
+
   useEffect(() => {
     const letters = string.split('');
     const rainbow = [
@@ -22,11 +24,12 @@ export default function RainbowLetters({ string, initialColor }) {
       'var(--purple-mid)',
       'var(--teal-mid)',
     ];
+
     const rainbowLetters = letters.map((letter, index) => {
       const key = index;
       index > rainbow.length - 1 ? (index = index % rainbow.length) : index;
 
-      const color = rainbow[index];
+      const newColor = rainbow[index];
 
       console.log(letter);
 
@@ -34,14 +37,14 @@ export default function RainbowLetters({ string, initialColor }) {
         <span
           key={key}
           style={{
-            color: mouseOver ? color : initialColor,
+            color: mouseOver ? newColor : color,
           }}>
           {letter}
         </span>
       );
     });
     setReturnText(rainbowLetters);
-  }, [mouseOver]);
+  }, [mouseOver, string]);
 
   return (
     <div

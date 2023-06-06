@@ -17,6 +17,12 @@ import livingRoom from '../../public/livingRoom.webp';
 import truckDelivery from '../../public/truckDelivery.webp';
 import consultation from '../../public/consultation.webp';
 
+export const metadata = {
+  title: 'Painting Real People | YOURHEAD',
+  description:
+    'Painting Real People is a project by YOURHEAD that focuses on getting to know people and capturing their essence in a painting.',
+};
+
 export default function Commissions() {
   const orangeBurst = {
     backgroundImage: `url(${textBurst.src})`,
@@ -44,8 +50,8 @@ export default function Commissions() {
           <div className={spacingStyles.bottomMarginMd}>
             <p className={textStyles.paragraphMain}>
               YOURHEAD specializes in unique portrait representations done with
-              oil paint. Through a series of in-person painting sessions,
-              YOURHEAD explores what it means to get to know people, and how to
+              oil paint. Through a series of in-person painting sessions, the
+              artist explores what it means to get to know people, and how to
               capture their essence in a painting.
             </p>
           </div>
@@ -59,7 +65,7 @@ export default function Commissions() {
                 data-tf-iframe-props='title=YOURHEAD Commission Request'
                 data-tf-transitive-search-params
                 data-tf-medium='snippet'>
-                Request a painting
+                Request to be painted
               </div>
 
               <BsArrowRight />
@@ -68,27 +74,25 @@ export default function Commissions() {
         </div>
       </div>
       <div className={spacingStyles.topMarginXl}>
-        <h2 className={textStyles.headingLg}>
-          Create. Collaborate. Experience Art.
-        </h2>
+        <h2 className={textStyles.headingLg}>People are real.</h2>
       </div>
       <div className={styles.flexCardWrap}>
         <FlexCard
-          title={'Flexible payments that make sense'}
+          title={'All the people deserve to be seen and known'}
           description={
             'Art is both a financial and emotional investment. YOURHEAD offers flexible payment options to make their artwork accessible, whether you prefer to pay upfront or in installments.'
           }
           image={flexiblePayments}
         />
         <FlexCard
-          title={'Visual updates throughout the process'}
+          title={'In-person painting sessions – a unique experience'}
           description={
             "To ensure complete transparency and involvement in the creation process, visual updates are provided at different stages of the artwork's progress."
           }
           image={visualUpdates}
         />
         <FlexCard
-          title={'Masterful techniques – a fusion'}
+          title={'Memberships for exclusive content'}
           description={
             'With years of experience in painting, YOURHEAD has developed a myriad of masterful techniques, fusing traditional and modern styles to create a unique and timeless feeling.'
           }

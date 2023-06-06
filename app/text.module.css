@@ -7,7 +7,7 @@
 .headingLg {
   font-size: 3rem;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1/1;
 }
 
 .headingMd {
@@ -182,6 +182,10 @@
   white-space: nowrap;
   min-width: fit-content;
   max-width: fit-content;
+}
+
+.linkBlockGreen:hover {
+  background: var(--green-teal-mid);
 }
 
 .linkBlockGray {

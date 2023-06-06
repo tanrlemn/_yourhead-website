@@ -1,7 +1,8 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useWindowSize } from './hooks/useWindowSize';
 
 import styles from './page.module.css';
 import textStyles from './text.module.css';
@@ -14,21 +15,14 @@ import whalerider from '../public/whalerider.jpg';
 import textBurst from '../public/textBurst.svg';
 
 export default function Home() {
-  const windowSize = useRef(
-    typeof window !== 'undefined' ? window.innerWidth : null
-  );
-
-  const [imgMax, setImgMax] = useState(
-    windowSize?.current < 769 ? '10em' : '35em'
-  );
-  const [imgMin, setImgMin] = useState(
-    windowSize?.current < 769 ? '7em' : '25em'
-  );
+  const mobile = useWindowSize();
+  const [imgMax, setImgMax] = useState(mobile ? '100%' : '35em');
+  const [imgMin, setImgMin] = useState(mobile ? '100%' : '25em');
 
   useEffect(() => {
-    setImgMax(windowSize.current < 769 ? '10em' : '35em');
-    setImgMin(windowSize.current < 769 ? '7em' : '25em');
-  }, []);
+    setImgMax(mobile ? '100%' : '35em');
+    setImgMin(mobile ? '100%' : '25em');
+  }, [mobile]);
 
   const squareImage = {
     maxWidth: imgMax,
@@ -41,8 +35,7 @@ export default function Home() {
     objectPosition: '50% 20%',
   };
 
-  const burstPadding =
-    windowSize.current < 769 ? '0 0.4em 0.4em 0' : '0 0.3em 0.3em 0';
+  const burstPadding = mobile ? '0 0.4em 0.4em 0' : '0 0.3em 0.3em 0';
 
   const burst = {
     backgroundImage: `url(${textBurst.src})`,
@@ -58,8 +51,10 @@ export default function Home() {
           <h1 className={textStyles.headingXl}>
             <span className={textStyles.textBurst} style={burst}>
               Painting
+              <br />
             </span>{' '}
-            real people.
+            real <br />
+            people.
           </h1>
           <div className={spacingStyles.bottomTopMarginLg}>
             <p className={textStyles.paragraphMain}>
