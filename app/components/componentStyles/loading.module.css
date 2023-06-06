@@ -11,9 +11,18 @@
   left: 0px;
   backdrop-filter: blur(3px);
   z-index: 200;
-  background: var(--green-teal-mid-30);
+  background: var(--green-teal-mid-10);
 }
-
+.loadingDivWrapper {
+  display: flex;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  padding-left: 1em;
+  backdrop-filter: blur(3px);
+  z-index: 2;
+  margin-top: -3em;
+}
 .ldsEllipsis {
   display: inline-block;
   position: relative;
