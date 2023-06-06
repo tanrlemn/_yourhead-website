@@ -65,6 +65,12 @@ export default function Pricing() {
             </div>
 
             <h1 className={textStyles.headingLg}>Gimme the loot.</h1>
+            <div className={spacingStyles.topMarginMd}>
+              <p className={textStyles.paragraphSm}>
+                Access behind-the-scenes content, unreleased files, free monthly
+                prints and more.
+              </p>
+            </div>
           </div>
         </div>
       </div>
