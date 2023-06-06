@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^4.37.4",
     "@typeform/embed-react": "^2.21.0",
     "env": "^0.0.2",
     "eslint": "8.41.0",

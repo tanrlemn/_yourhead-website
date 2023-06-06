@@ -17,12 +17,6 @@ import livingRoom from '../../public/livingRoom.webp';
 import truckDelivery from '../../public/truckDelivery.webp';
 import consultation from '../../public/consultation.webp';
 
-export const metadata = {
-  title: 'Painting Real People | YOURHEAD',
-  description:
-    'Painting Real People is a project by YOURHEAD that focuses on getting to know people and capturing their essence in a painting.',
-};
-
 export default function Commissions() {
   const orangeBurst = {
     backgroundImage: `url(${textBurst.src})`,
@@ -57,14 +51,7 @@ export default function Commissions() {
           </div>
           <div className={styles.heroButtonsWrap}>
             <a className={textStyles.linkBlockGreen}>
-              <div
-                className={textStyles.buttonLabel}
-                data-tf-slider='diYCs0i7'
-                data-tf-position='right'
-                data-tf-opacity='100'
-                data-tf-iframe-props='title=YOURHEAD Commission Request'
-                data-tf-transitive-search-params
-                data-tf-medium='snippet'>
+              <div className={textStyles.buttonLabel}>
                 Request to be painted
               </div>
 

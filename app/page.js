@@ -1,7 +1,6 @@
 'use client';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useWindowSize } from './hooks/useWindowSize';
 
 import styles from './page.module.css';
@@ -13,8 +12,13 @@ import bliss from '../public/bliss.jpg';
 import owner from '../public/owner.jpg';
 import whalerider from '../public/whalerider.jpg';
 import textBurst from '../public/textBurst.svg';
+import LoadingDiv from './components/loadingDiv';
+import { LoadingContext } from './loadingContext';
+import Link from 'next/link';
 
 export default function Home() {
+  const { loading } = useContext(LoadingContext);
+
   const mobile = useWindowSize();
   const [imgMax, setImgMax] = useState(mobile ? '100%' : '35em');
   const [imgMin, setImgMin] = useState(mobile ? '100%' : '25em');
@@ -48,6 +52,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.heroWrapper}>
         <div className={styles.heroContent}>
+          {!loading && <LoadingDiv />}
           <h1 className={textStyles.headingXl}>
             <span className={textStyles.textBurst} style={burst}>
               Painting
@@ -64,21 +69,16 @@ export default function Home() {
             </p>
           </div>
           <div className={styles.heroButtonsWrap}>
-            <button
-              className={textStyles.linkBlockChartreuse}
-              data-tf-slider='diYCs0i7'
-              data-tf-position='right'
-              data-tf-opacity='100'
-              data-tf-iframe-props='title=YOURHEAD Commission Request'
-              data-tf-transitive-search-params
-              data-tf-medium='snippet'>
+            <button className={textStyles.linkBlockChartreuse}>
               <div className={styles.buttonLabel}>Get started</div>
               <BsArrowRight />
             </button>
-            <a href='/commissions' className={styles.linkBlockWhite}>
+            <Link
+              href='/painting-real-people'
+              className={styles.linkBlockWhite}>
               <div className={styles.buttonLabel}>Read more</div>
               <BsArrowRight />
-            </a>
+            </Link>
           </div>
         </div>
         <div className={styles.heroImageGrid}>

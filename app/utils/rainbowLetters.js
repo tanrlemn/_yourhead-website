@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 export default function RainbowLetters({ string, initialColor }) {
   const [mouseOver, setMouseOver] = useState(false);
   const [returnText, setReturnText] = useState('');
-  const color = useRef(() => {
+  const defaultColor = useRef(() => {
     if (initialColor === 'dark') {
       return '#161616';
     } else {
@@ -37,7 +37,7 @@ export default function RainbowLetters({ string, initialColor }) {
         <span
           key={key}
           style={{
-            color: mouseOver ? newColor : color,
+            color: mouseOver ? newColor : defaultColor,
           }}>
           {letter}
         </span>
