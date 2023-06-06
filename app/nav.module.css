@@ -2,6 +2,10 @@
   height: 80px;
 }
 
+.mobileMenuWrap {
+  display: none;
+}
+
 .navWrapper {
   background: #204f58;
   position: fixed;
@@ -76,6 +80,7 @@
   min-width: 100%;
   background: #fff;
   color: #2c2c2c;
+  border-top: var(--orange-light-border);
 }
 
 .footerInner {
@@ -120,7 +125,7 @@
   padding: 0 2em 2em 2em;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1090px) {
   .navWrapper {
     min-width: 100vw;
     max-width: 100vw;
@@ -194,6 +199,7 @@
   .mobileMenuWrap {
     z-index: 100;
     cursor: pointer;
+    display: block;
   }
   .mobileMenuIcon {
     filter: invert(1);
@@ -202,7 +208,9 @@
     margin-right: 10px;
     cursor: pointer;
   }
+}
 
+@media screen and (max-width: 769px) {
   .footerInner {
     flex-flow: column nowrap;
     padding: 6em 2em 1em 2em;

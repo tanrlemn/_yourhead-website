@@ -77,3 +77,7 @@
   height: 1em;
   border-radius: 100px;
 }
+
+.fullWidth {
+  min-width: 100%;
+}

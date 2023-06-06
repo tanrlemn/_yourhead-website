@@ -61,7 +61,6 @@
 
 .heroImageGrid {
   background-color: var(--green-teal-mid);
-  padding: 20px;
   min-height: 100%;
   border-radius: 10px;
   margin-right: -10em;
@@ -70,6 +69,7 @@
 .heroRail {
   display: flex;
   align-items: center;
+  margin: 0.7em 1em;
 }
 
 .imageFrameSquare {
@@ -77,6 +77,10 @@
   max-height: 35em;
   object-fit: cover;
   overflow: hidden;
+}
+
+.imageFrameSquare:first-child {
+  padding-right: 0.7em;
 }
 
 .greenTag {
@@ -88,10 +92,10 @@
   text-transform: uppercase;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 950px) {
   .heroWrapper {
     flex-direction: column;
-    padding: 30px 10px;
+    padding: 5em 10px 30px 10px;
   }
 
   .heroContent {
@@ -107,7 +111,6 @@
   }
   .heroImageGrid {
     background-color: var(--green-teal-mid);
-    padding: 10px;
     min-height: 100%;
     border-radius: 10px;
     margin-right: 0;
@@ -115,18 +118,16 @@
   .heroRail {
     display: flex;
     align-items: center;
+    justify-content: center;
   }
   .imageFrameSquare {
-    max-width: 10em;
-    max-height: 10em;
+    max-width: 50%;
+    max-height: 50%;
+    min-width: 50%;
+    min-height: 50%;
     object-fit: cover;
     overflow: hidden;
-  }
-
-  .imageFrameSquare img {
-    max-width: 10em;
-    max-height: 10em;
-    object-fit: cover;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
   }
 }

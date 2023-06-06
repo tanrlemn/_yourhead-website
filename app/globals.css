@@ -15,6 +15,7 @@
   --green-green-mid-dark: #186123;
 
   --green-teal-mid: #47888a;
+  --green-teal-mid-30: #47888a58;
   --green-mid-dark: #2c5c5d;
   --green-teal-mid-dark: #204f58;
   --green-dark: #1a393a;
@@ -55,6 +56,7 @@
   --light-gray-link-shadow: inset 0px -3px #ffffff1a;
 
   --red-border: 1px solid #eb3c3c;
+  --orange-light-border: 1.5em solid #f4cdc8;
   --orange-border: 2px solid #fd8775;
   --green-mid-border: 1px solid #47888a;
   --green-dark-border: 1px solid #1a393a;

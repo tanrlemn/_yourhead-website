@@ -1,6 +1,12 @@
+'use client';
+
 import marqueeStyles from './componentStyles/marquee.module.css';
+import { useContext } from 'react';
+import { LoadingContext } from '../loadingContext';
 
 export default function Marquee({ delay = 0 }) {
+  const { loading } = useContext(LoadingContext);
+
   const delayStyle = {
     animationDelay: `${delay}s`,
   };
@@ -17,8 +23,12 @@ export default function Marquee({ delay = 0 }) {
   };
 
   return (
-    <div className={marqueeStyles.yourMarquee} style={delayStyle}>
-      {marquee()}
-    </div>
+    <>
+      {!loading && (
+        <div className={marqueeStyles.yourMarquee} style={delayStyle}>
+          {marquee()}
+        </div>
+      )}
+    </>
   );
 }

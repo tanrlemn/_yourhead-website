@@ -5,19 +5,21 @@ import textStyles from '../text.module.css';
 import checkIcon from '../../public/checkIcon.svg';
 import spacingStyles from '../spacing.module.css';
 import { useState, useRef } from 'react';
+import { parseMembership } from '../utils/parseMembership';
 
-export default function PricingCard({ membership }) {
+export default function PricingCard({ membership, benefitsText }) {
   const [viewMore, setViewMore] = useState(false);
   const pricingCardRef = useRef(null);
 
   const {
-    mainTitle,
-    subtitleText,
-    price,
+    title,
+    subtitle,
+    monthlyPrice,
+    yearlyPrice,
+    backgroundColor,
     description,
     checks,
-    backgroundColor,
-  } = membership;
+  } = parseMembership(membership, benefitsText);
 
   const background = {
     backgroundColor: `var(${backgroundColor})`,
@@ -30,14 +32,18 @@ export default function PricingCard({ membership }) {
 
   return (
     <div className={styles.pricingCard} style={background} ref={pricingCardRef}>
-      <h2 className={textStyles.headingLg}>{mainTitle}</h2>
+      <h2 className={textStyles.headingLg}>{title}</h2>
       <div className={spacingStyles.bottomTopMarginMd}>
         <div className={textStyles.outlineTextGrey}>
-          <div className={textStyles.labelTag}>{subtitleText}</div>
+          <div className={textStyles.labelTag}>
+            ––{'  '}
+            {subtitle}
+            {'  '}––
+          </div>
         </div>
       </div>
       <div className={spacingStyles.bottomMarginSm}>
-        <h2 className={textStyles.headingSm}>{price}</h2>
+        <h2 className={textStyles.headingSm}>${monthlyPrice}/month</h2>
       </div>
 
       <div className={spacingStyles.bottomTopMarginMd}>
@@ -46,7 +52,7 @@ export default function PricingCard({ membership }) {
       {checks.length > 0 &&
         checks.map((check, i) => {
           return (
-            <>
+            <div key={i}>
               {i < 4 && (
                 <div className={styles.checkItem} key={i}>
                   <div className={styles.checkIconWrap}>
@@ -75,7 +81,7 @@ export default function PricingCard({ membership }) {
                   <p className={textStyles.paragraphXs}>{check}</p>
                 </div>
               )}
-            </>
+            </div>
           );
         })}
       {checks.length > 4 && !viewMore && (
@@ -99,9 +105,7 @@ export default function PricingCard({ membership }) {
       )}
       <div className={spacingStyles.topMarginMd}>
         <button className={textStyles.linkBlockChartreuse}>
-          <div className={textStyles.buttonLabel}>
-            Get started with {mainTitle}
-          </div>
+          <div className={textStyles.buttonLabel}>Get started with {title}</div>
         </button>
       </div>
     </div>
