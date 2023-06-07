@@ -18,17 +18,16 @@ import Link from 'next/link';
 import RainbowLetters from './utils/rainbowLetters';
 import { LoadingContext } from './loadingContext';
 import Loading from './loading';
-import { AnimationsContext } from './animationsContext';
-import ToggleAnimations from './components/toggleAnimations';
+import { AuthContext } from './auth/AuthContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({ children }) {
+  const [authState, setAuthState] = useState(false);
+  const authStateValue = { authState, setAuthState };
+
   const [loading, setLoading] = useState(true);
   const value = { loading, setLoading };
-
-  const [showAnimations, setShowAnimations] = useState(true);
-  const animationsValue = { showAnimations, setShowAnimations };
 
   const mobile = useWindowSize();
 
@@ -52,7 +51,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang='en'>
-      <AnimationsContext.Provider value={animationsValue}>
+      <AuthContext.Provider value={authStateValue}>
         <LoadingContext.Provider value={value}>
           <body className={inter.className}>
             <nav className={navStyles.navWrapper}>
@@ -89,13 +88,13 @@ export default function RootLayout({ children }) {
                     <div className={navStyles.navButtonsWrap}>
                       <div className={spacingStyles.rightPaddingXs}>
                         <Link
-                          href='/sign-in'
+                          href='/auth/login'
                           className={textStyles.linkBlockWhiteOutline}>
                           Log in
                         </Link>
                       </div>
                       <Link
-                        href='/sign-up'
+                        href='/auth/signup'
                         className={textStyles.linkBlockChartreuse}>
                         <div className={navStyles.buttonLabel}>Sign up</div>
                       </Link>
@@ -211,7 +210,7 @@ export default function RootLayout({ children }) {
             )}
           </body>
         </LoadingContext.Provider>
-      </AnimationsContext.Provider>
+      </AuthContext.Provider>
     </html>
   );
 }

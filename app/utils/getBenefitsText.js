@@ -1,5 +1,6 @@
 export const getBenefitsText = async () => {
-  const url = `${process.env.XANO_API_URL}/check_item`;
+  const xanoApiUrl = process.env.XANO_API_URL;
+  const url = `${xanoApiUrl}/check_item`;
 
   try {
     const res = await fetch(url);

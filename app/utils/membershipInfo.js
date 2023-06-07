@@ -1,5 +1,6 @@
 export const memberships = async () => {
-  const url = `${process.env.XANO_API_URL}/membership`;
+  const xanoApiUrl = process.env.XANO_API_URL;
+  const url = `${xanoApiUrl}/membership`;
 
   try {
     const res = await fetch(url);
