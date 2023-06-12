@@ -28,7 +28,6 @@ export default function Shop() {
 
   useEffect(() => {
     const category = searchParams.get('category');
-    console.log(category);
     if (category === null) {
       setCurrentCategoryText('The Official YOURHEAD Shop');
     } else {

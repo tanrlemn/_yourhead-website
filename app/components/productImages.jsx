@@ -1,12 +1,13 @@
 // styles
-import Image from 'next/image';
 import styles from '../styles/(component_styles)/product.module.css';
-import textStyles from '../styles/text.module.css';
-import spacingStyles from '../styles/spacing.module.css';
 
 // hooks
-import { useWindowSize, useIsMobile } from '../api/hooks/useWindowSize';
-import { useState, useEffect, useRef } from 'react';
+import { useWindowSize } from '../api/hooks/useWindowSize';
+import { useIsMobile } from '../api/hooks/useIsMobile';
+import { useState } from 'react';
+
+// components
+import Image from 'next/image';
 
 export default function ProductImages({ product, collection }) {
   const [currentImage, setCurrentImage] = useState(product.main_image);

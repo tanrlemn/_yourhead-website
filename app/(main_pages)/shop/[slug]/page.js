@@ -9,10 +9,12 @@ import { supabaseProduct } from '@/app/api/db/supabaseProduct';
 
 // hooks
 import { useEffect, useState } from 'react';
+import { useIsMobile } from '@/app/api/hooks/useWindowSize';
 
 // components
 import ProductImages from '@/app/components/productImages';
 import ProductInfo from '@/app/components/productInfo';
+import MobileProductInfo from '@/app/components/mobileProductInfo';
 
 export async function generateStaticParams() {
   const products = await supabase('products');
@@ -27,6 +29,7 @@ export default function Product({ params }) {
   const [supabaseCollection, setSupabaseCollection] = useState(null);
 
   const slug = params.slug;
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const getSupabaseProduct = async () => {
@@ -51,14 +54,20 @@ export default function Product({ params }) {
 
   return (
     <div className={styles.productWrap}>
-      {currentProduct !== null && supabaseCollection !== null && (
+      {!isMobile && currentProduct !== null && supabaseCollection !== null && (
         <ProductImages
           product={currentProduct}
           collection={supabaseCollection}
         />
       )}
-      {currentProduct !== null && supabaseCollection !== null && (
+      {!isMobile && currentProduct !== null && supabaseCollection !== null && (
         <ProductInfo
+          product={currentProduct}
+          collection={supabaseCollection}
+        />
+      )}
+      {isMobile && currentProduct !== null && supabaseCollection !== null && (
+        <MobileProductInfo
           product={currentProduct}
           collection={supabaseCollection}
         />

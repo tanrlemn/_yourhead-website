@@ -80,35 +80,45 @@ export default function ProductCard({ product, collection }) {
           alt={`image for ${product.title}`}
         />
       </Link>
+
       <div className={styles.flexCardText}>
-        <div className={spacingStyles.bottomMarginSm}>
-          <h2 className={textStyles.headingXsAlt}>{product.title}</h2>
-        </div>
-        <div className={spacingStyles.bottomMarginSm}>
-          <p className={textStyles.paragraphXs}>
-            <span style={onSale ? saleStyles : null}>
-              ${product.price.toFixed(2)}
-            </span>{' '}
-            <span className={textStyles.onSale}>
-              {onSale ? `$${product.sale_price.toFixed(2)}` : ''}
-            </span>
-          </p>
-        </div>
-        {limitedEdition && (
-          <div className={spacingStyles.bottomMarginMd}>
-            <p className={textStyles.paragraphXxs}>
-              Limited edition – {numEditions} prints{' '}
-              {`(${numAvailable} remaining)`}
+        <Link
+          href={{
+            pathname: `/shop/${slug}`,
+            query: {
+              product: JSON.stringify(product),
+            },
+          }}
+          as={`/shop/${slug}`}>
+          <div className={spacingStyles.bottomMarginSm}>
+            <h2 className={textStyles.headingXsAlt}>{product.title}</h2>
+          </div>
+          <div className={spacingStyles.bottomMarginSm}>
+            <p className={textStyles.paragraphXs}>
+              <span style={onSale ? saleStyles : null}>
+                ${product.price.toFixed(2)}
+              </span>{' '}
+              <span className={textStyles.onSale}>
+                {onSale ? `$${product.sale_price.toFixed(2)}` : ''}
+              </span>
             </p>
           </div>
-        )}
-        {!limitedEdition && (
-          <div className={spacingStyles.bottomMarginMd}>
-            <p className={textStyles.paragraphXxs}>
-              General release – unlimited prints available
-            </p>
-          </div>
-        )}
+          {limitedEdition && (
+            <div className={spacingStyles.bottomMarginMd}>
+              <p className={textStyles.paragraphXxs}>
+                Limited edition – {numEditions} prints{' '}
+                {`(${numAvailable} remaining)`}
+              </p>
+            </div>
+          )}
+          {!limitedEdition && (
+            <div className={spacingStyles.bottomMarginMd}>
+              <p className={textStyles.paragraphXxs}>
+                General release – unlimited prints available
+              </p>
+            </div>
+          )}
+        </Link>
         <Link href={`shop/collections/${collection.toLowerCase()}`}>
           <div
             className={textStyles.productTag}
