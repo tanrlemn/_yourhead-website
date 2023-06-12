@@ -57,6 +57,11 @@ export default function Home() {
     padding: burstPadding,
   };
 
+  const buttonStyle = {
+    minWidth: '50%',
+    maxWidth: '50%',
+  };
+
   return (
     <main className={styles.main}>
       <div className={styles.heroWrapper}>
@@ -80,7 +85,9 @@ export default function Home() {
             </p>
           </div>
           <div className={styles.heroButtonsWrap}>
-            <button className={textStyles.linkBlockChartreuse}>
+            <button
+              className={textStyles.linkBlockChartreuse}
+              style={buttonStyle}>
               <div className={styles.buttonLabel}>Get started</div>
               <BsArrowRight />
             </button>

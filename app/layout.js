@@ -118,6 +118,11 @@ export default function RootLayout({ children }) {
                 <div className={navStyles.navMenu}>
                   <div className={navStyles.navLinkWrap}>
                     <Link
+                      href='/'
+                      className={nav.link}>
+                      Home
+                    </Link>
+                    <Link
                       href='/painting-real-people'
                       className={nav.link}>
                       Painting Real People
@@ -240,27 +245,21 @@ export default function RootLayout({ children }) {
                     <div className={textStyles.footerHeading}>The Artist</div>
                     <ul className={navStyles.footerList}>
                       <li className={navStyles.footerLink}>
-                        <Link href='/'>Home</Link>
-                      </li>
-                      <li className={navStyles.footerLink}>
                         <Link href='/about'>About</Link>
                       </li>
                       <li className={navStyles.footerLink}>
-                        <Link href='/contact'>Contact</Link>
+                        <Link href='/memberships'>Memberships</Link>
                       </li>
                     </ul>
                   </div>
                   <div className={navStyles.footerColumn}>
-                    <div className={textStyles.footerHeading}>Commissions</div>
+                    <div className={textStyles.footerHeading}>Shop</div>
                     <ul className={navStyles.footerList}>
                       <li className={navStyles.footerLink}>
-                        <Link href='/commissions'>How it works</Link>
+                        <Link href='/shop?category=prints'>Prints</Link>
                       </li>
                       <li className={navStyles.footerLink}>
-                        <Link href='/pricing'>Pricing</Link>
-                      </li>
-                      <li className={navStyles.footerLink}>
-                        <Link href='/timeline'>Timeline</Link>
+                        <Link href='/shop?category=originals'>Originals</Link>
                       </li>
                     </ul>
                   </div>
@@ -268,10 +267,21 @@ export default function RootLayout({ children }) {
                     <div className={textStyles.footerHeading}>Works</div>
                     <ul className={navStyles.footerList}>
                       <li className={navStyles.footerLink}>
-                        <Link href='/recents'>Recent commissions</Link>
+                        <Link href='/recents'>Recents</Link>
                       </li>
                       <li className={navStyles.footerLink}>
                         <Link href='/music'>Music</Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className={navStyles.footerColumn}>
+                    <div className={textStyles.footerHeading}>Support</div>
+                    <ul className={navStyles.footerList}>
+                      <li className={navStyles.footerLink}>
+                        <Link href='/support/contact'>Contact</Link>
+                      </li>
+                      <li className={navStyles.footerLink}>
+                        <Link href='/support/faqs'>FAQs</Link>
                       </li>
                     </ul>
                   </div>
