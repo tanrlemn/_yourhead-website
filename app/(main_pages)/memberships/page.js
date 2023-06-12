@@ -2,22 +2,22 @@
 
 // styles
 import styles from './memberships.module.css';
-import textStyles from '../styles/text.module.css';
-import spacingStyles from '../styles/spacing.module.css';
+import textStyles from '@/app/styles/text.module.css';
+import spacingStyles from '@/app/styles/spacing.module.css';
 
 // apis
-import { getBenefitsText } from '../../api/db/getBenefitsText';
-import { memberships } from '../../api/db/getMembershipInfo';
+import { getBenefitsText } from '@/app/api/db/getBenefitsText';
+import { memberships } from '@/app/api/db/getMembershipInfo';
 
 // context
-import { LoadingContext } from '../../context/loadingContext';
+import { LoadingContext } from '@/app/context/loadingContext';
 
 // hooks
 import { useEffect, useState, useContext } from 'react';
 
 // components
-import PricingCard from '../../components/pricingCard';
-import Loading from '../../loading';
+import PricingCard from '@/app/components/pricingCard';
+import Loading from '@/app/loading';
 
 export default function Pricing() {
   const { loading, setLoading } = useContext(LoadingContext);
