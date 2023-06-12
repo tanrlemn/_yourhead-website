@@ -1,25 +1,34 @@
 'use client';
-import Image from 'next/image';
-import { useEffect, useState, useContext } from 'react';
-import { useWindowSize } from './hooks/useWindowSize';
 
-import styles from './page.module.css';
-import textStyles from './text.module.css';
-import spacingStyles from './spacing.module.css';
+// styles
+import styles from './styles/home.module.css';
+import textStyles from './styles/text.module.css';
+import spacingStyles from './styles/spacing.module.css';
+
+// images
 import { BsArrowRight } from 'react-icons/bs';
-import donut from '../public/donut.jpg';
-import bliss from '../public/bliss.jpg';
-import owner from '../public/owner.jpg';
-import whalerider from '../public/whalerider.jpg';
-import textBurst from '../public/textBurst.svg';
+import donut from '@/public/images/donut.jpg';
+import bliss from '@/public/images/bliss.jpg';
+import owner from '@/public/images/owner.jpg';
+import whalerider from '@/public/images/whalerider.jpg';
+import textBurst from '@/public/icons/textBurst.svg';
+
+// context
+import { LoadingContext } from './context/loadingContext';
+
+// hooks
+import { useEffect, useState, useContext } from 'react';
+import { useIsMobile } from './api/hooks/useIsMobile';
+
+// components
+import Image from 'next/image';
 import LoadingDiv from './components/loadingDiv';
-import { LoadingContext } from './loadingContext';
 import Link from 'next/link';
 
 export default function Home() {
   const { loading } = useContext(LoadingContext);
 
-  const mobile = useWindowSize();
+  const mobile = useIsMobile();
   const [imgMax, setImgMax] = useState(mobile ? '100%' : '35em');
   const [imgMin, setImgMin] = useState(mobile ? '100%' : '25em');
 
@@ -54,7 +63,9 @@ export default function Home() {
         <div className={styles.heroContent}>
           {!loading && <LoadingDiv />}
           <h1 className={textStyles.headingXl}>
-            <span className={textStyles.textBurst} style={burst}>
+            <span
+              className={textStyles.textBurst}
+              style={burst}>
               Painting
               <br />
             </span>{' '}

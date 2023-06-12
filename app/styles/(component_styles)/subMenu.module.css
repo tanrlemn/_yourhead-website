@@ -1,0 +1,40 @@
+.subMenuWrap {
+  background: transparent;
+  position: absolute;
+  left: 0;
+  padding: 0px 2em;
+  min-width: 100%;
+}
+
+.subMenu {
+  box-sizing: border-box;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: var(--blue-light-border);
+  border-radius: 0px 0px 9px 9px;
+  gap: 40px;
+}
+
+.navTitle {
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.navLink {
+  padding: 20px;
+  font-size: 0.9em;
+  color: var(--green-dark);
+  white-space: nowrap;
+  transition: all 0.3s ease-in-out;
+}
+
+.navLink:hover {
+  box-shadow: 0px -3px 0px var(--blue-light) inset;
+}

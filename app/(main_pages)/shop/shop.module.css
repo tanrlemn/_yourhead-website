@@ -1,0 +1,31 @@
+.shopBody {
+  padding: 3em 3em;
+}
+
+.shopHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2em;
+  color: var(--medium-gray);
+}
+
+.productCount {
+  margin-left: 1em;
+}
+
+.productsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.productWrap {
+  display: flex;
+  padding: 3em;
+}
+
+@media screen and (max-width: 768px) {
+  .shopBody {
+    padding: 1.5em;
+  }
+}

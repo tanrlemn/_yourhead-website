@@ -1,0 +1,127 @@
+.flexCard {
+  margin-bottom: 3em;
+  margin-right: 2em;
+}
+
+.flexCard:last-child {
+  margin-right: 0;
+}
+
+.flexCardImage {
+  min-width: 100%;
+  object-fit: cover;
+  margin-bottom: 0.8em;
+}
+
+.flexCardText {
+  min-width: 100%;
+}
+
+.cardIcon {
+  margin-right: 0.5em;
+}
+
+.flexWrap {
+  min-width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 3em;
+}
+
+.flexImage {
+  object-fit: cover;
+  border-radius: 9px;
+  margin-right: 1em;
+  margin-top: 2em;
+}
+
+.flexText {
+  max-width: 35%;
+}
+
+.productInfoWrap {
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1em;
+  margin-left: 3em;
+}
+
+.productImagesWrap {
+  display: flex;
+}
+
+.productImage {
+  max-width: 70%;
+  object-fit: cover;
+  margin-right: 1.2em;
+  border-radius: 9px;
+}
+
+.productThumbnail {
+  margin-right: 1.2em;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0.2em;
+  margin-bottom: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.productThumbnailImage {
+  object-fit: cover;
+}
+
+.optionWrapper {
+  position: absolute;
+  padding: 0.3em 0.3em;
+  border-radius: 9px;
+  border: var(--blue-light-border);
+  width: 5em;
+  cursor: pointer;
+  z-index: 11;
+  min-width: fit-content;
+  font-size: 0.9em;
+}
+
+.optionsDropdown {
+  display: none;
+  position: relative;
+  background: #fff;
+  border-radius: 9px;
+  z-index: 1;
+  padding: 0.4em 0px;
+}
+
+.currentOption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4em 0.6em;
+  background: #fff;
+  border-radius: 5px;
+}
+
+.option {
+  padding: 0.4em 0.6em;
+  border-radius: 5px;
+  margin: 0.2em;
+  cursor: pointer;
+}
+
+.option:hover {
+  background: var(--blue-lightest);
+}
+
+.formRadio {
+  min-height: 4em;
+  position: relative;
+  min-width: fit-content;
+}
+
+.formSelect {
+  position: relative;
+  min-height: 2em;
+}

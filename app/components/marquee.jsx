@@ -1,8 +1,13 @@
 'use client';
 
-import marqueeStyles from './componentStyles/marquee.module.css';
+// styles
+import marqueeStyles from '../styles/(component_styles)/marquee.module.css';
+
+// context
+import { LoadingContext } from '../context/loadingContext';
+
+// hooks
 import { useContext } from 'react';
-import { LoadingContext } from '../loadingContext';
 
 export default function Marquee({ delay = 0 }) {
   const { loading } = useContext(LoadingContext);
@@ -14,7 +19,9 @@ export default function Marquee({ delay = 0 }) {
     const marqueeSpan = [];
     for (let i = 0; i < 9; i++) {
       marqueeSpan.push(
-        <span className={marqueeStyles.marqueeSpan} key={i}>
+        <span
+          className={marqueeStyles.marqueeSpan}
+          key={i}>
           YOURHEADISOURHEAD
         </span>
       );
@@ -25,7 +32,9 @@ export default function Marquee({ delay = 0 }) {
   return (
     <>
       {!loading && (
-        <div className={marqueeStyles.yourMarquee} style={delayStyle}>
+        <div
+          className={marqueeStyles.yourMarquee}
+          style={delayStyle}>
           {marquee()}
         </div>
       )}
