@@ -1,11 +1,21 @@
 'use client';
-import Image from 'next/image';
-import styles from './componentStyles/pricingCard.module.css';
-import textStyles from '../text.module.css';
-import checkIcon from '../../public/checkIcon.svg';
-import spacingStyles from '../spacing.module.css';
+
+// styles
+import styles from '../styles/(component_styles)/pricingCard.module.css';
+import textStyles from '../styles/text.module.css';
+import spacingStyles from '../styles/spacing.module.css';
+
+// images
+import checkIcon from '@/public/icons/checkIcon.svg';
+
+// hooks
 import { useState, useRef } from 'react';
-import { parseMembership } from '../utils/parseMembership';
+
+// helpers
+import { parseMembership } from '../api/helpers/parseMembership';
+
+// components
+import Image from 'next/image';
 
 export default function PricingCard({ membership, benefitsText }) {
   const [viewMore, setViewMore] = useState(false);
@@ -31,7 +41,10 @@ export default function PricingCard({ membership, benefitsText }) {
   };
 
   return (
-    <div className={styles.pricingCard} style={background} ref={pricingCardRef}>
+    <div
+      className={styles.pricingCard}
+      style={background}
+      ref={pricingCardRef}>
       <h2 className={textStyles.headingLg}>{title}</h2>
       <div className={spacingStyles.bottomTopMarginMd}>
         <div className={textStyles.outlineTextGrey}>
@@ -54,7 +67,9 @@ export default function PricingCard({ membership, benefitsText }) {
           return (
             <div key={i}>
               {i < 4 && (
-                <div className={styles.checkItem} key={i}>
+                <div
+                  className={styles.checkItem}
+                  key={i}>
                   <div className={styles.checkIconWrap}>
                     <Image
                       src={checkIcon}
@@ -68,7 +83,9 @@ export default function PricingCard({ membership, benefitsText }) {
                 </div>
               )}
               {viewMore && i >= 4 && (
-                <div className={styles.checkItem} key={i}>
+                <div
+                  className={styles.checkItem}
+                  key={i}>
                   <div className={styles.checkIconWrap}>
                     <Image
                       src={checkIcon}

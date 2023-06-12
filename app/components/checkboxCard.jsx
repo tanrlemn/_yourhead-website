@@ -1,8 +1,13 @@
+// styles
+import styles from '../styles/(component_styles)/checkboxCard.module.css';
+import textStyles from '../styles/text.module.css';
+import spacingStyles from '../styles/spacing.module.css';
+
+// images
+import checkIcon from '@/public/icons/checkIcon.svg';
+
+// components
 import Image from 'next/image';
-import styles from './componentStyles/checkboxCard.module.css';
-import textStyles from '../text.module.css';
-import checkIcon from '../../public/checkIcon.svg';
-import spacingStyles from '../spacing.module.css';
 
 export default function CheckboxCard({
   title,
@@ -18,7 +23,9 @@ export default function CheckboxCard({
   };
 
   return (
-    <div className={styles.checkboxCard} style={background}>
+    <div
+      className={styles.checkboxCard}
+      style={background}>
       {subtitle && (
         <div className={spacingStyles.bottomMarginMd}>
           <div className={textStyles.outlineTextGrey}>
@@ -35,7 +42,9 @@ export default function CheckboxCard({
       </div>
       {checks.length > 0 &&
         checks.map((check, i) => (
-          <div className={styles.checkItem} key={i}>
+          <div
+            className={styles.checkItem}
+            key={i}>
             <div className={styles.checkIconWrap}>
               <Image
                 src={checkIcon}

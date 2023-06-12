@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import styles from './componentStyles/flex.module.css';
-import textStyles from '../text.module.css';
-import spacingStyles from '../spacing.module.css';
+import styles from '../styles/(component_styles)/flex.module.css';
+import textStyles from '../styles/text.module.css';
+import spacingStyles from '../styles/spacing.module.css';
 
 export default function FlexCard({ title, description, image }) {
   return (

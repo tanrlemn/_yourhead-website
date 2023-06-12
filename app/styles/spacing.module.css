@@ -1,0 +1,123 @@
+.topMarginLg {
+  margin-top: 2em;
+}
+
+.topMarginMd {
+  margin-top: 1.2em;
+}
+
+.topMarginXl {
+  margin-top: 5em;
+}
+
+.rightMarginXs {
+  margin-right: 0.5em;
+}
+
+.bottomMarginXl {
+  margin-bottom: 4em;
+}
+.bottomMarginLg {
+  margin-bottom: 2em;
+}
+
+.bottomMarginMd {
+  margin-bottom: 1.2em;
+}
+
+.bottomMarginSm {
+  margin-bottom: 0.7em;
+}
+
+.bottomMarginXs {
+  margin-bottom: 0.25em;
+}
+
+.bottomTopMarginXl {
+  margin-top: 5em;
+  margin-bottom: 5em;
+}
+
+.bottomTopMarginLg {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.bottomTopMarginMd {
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
+}
+
+.bottomTopMarginSm {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.bottomBorderBlue {
+  border-bottom: var(--blue-light-border);
+  padding-bottom: 1em;
+}
+
+.allPaddingLg {
+  padding: 2em;
+}
+
+.rightPaddingXs {
+  padding-right: 0.5em;
+}
+
+.fullDividerGreen {
+  background: var(--green-teal-mid);
+  min-width: 95%;
+  max-width: 98%;
+  margin: 2em;
+  height: 1px;
+}
+
+.blockDividerOrange {
+  background: var(--orange-lightest);
+  min-width: 40%;
+  max-width: 50%;
+  margin: 0.75em 2em 1.5em 0;
+  height: 1em;
+  border-radius: 100px;
+}
+
+.fullWidth {
+  min-width: 100%;
+}
+
+.blueUnderscoreSm {
+  border-bottom: var(--blue-light-border-2);
+  min-width: var(--underscore-width);
+  display: inline-block;
+  line-height: inherit;
+}
+
+.blueUnderscoreWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  gap: 5px;
+}
+
+.clickOut {
+  display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  cursor: auto;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.open {
+  display: block;
+}
+
+.closed {
+  display: none;
+}

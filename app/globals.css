@@ -5,8 +5,10 @@
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
+  /* colors */
+  /* green */
   --chartreuse-light: #e4f8c0;
-  --chartreuse: #b4ff28;
+  --chartreuse: #b4ff29;
   --chartreuse-50: #b4ff288c;
   --green-light: #b0eab9;
   --green-lightest: #f5fcf2;
@@ -14,55 +16,86 @@
   --green-mid-15: #51aa7615;
   --green-green-mid-dark: #186123;
 
+  --green-teal-light: #8ac7c9;
   --green-teal-mid: #47888a;
   --green-teal-mid-10: #47888a1b;
   --green-mid-dark: #2c5c5d;
   --green-teal-mid-dark: #204f58;
   --green-dark: #1a393a;
 
+  /* yellow */
   --yellow-light: #f7f1b3;
   --yellow-mid: #ffed28;
 
+  /* orange */
   --orange-lightest: #ffedeb;
   --orange-light: #f4cdc8;
   --orange-light-50: #f1c4be50;
   --orange-mid: #ff8528;
 
+  /* red */
   --red-light: #f7c5c5;
-  --red-mid: #f94c4c;
+  --red-mid: #fa4d4d;
+  --red-dark: #b30606;
 
+  /* pink */
   --pink-light: #f2ceec;
   --pink-mid: #ff50c8;
 
-  --blue-lightest: #a3c9c9;
+  /* blue */
+  --blue-lightest: #d8f0ff;
   --blue-light: #afd8f2;
-  --blue-mid: #3293ff;
+  --blue-mid-light: #85adc5;
+  --blue-mid: #0085d8;
+  --blue-dark: #0a589e;
 
+  /* purple */
   --purple-light: #e2bff1;
   --purple-light-50: #d7a5ec72;
   --purple-mid: #bd5ae7;
 
+  /* teal */
   --teal-light: #9bf0eb;
   --teal-mid: #28fff1;
 
+  /* gray */
+  --light-gray: #cbd2d9;
   --dark-gray: #2c2c2c;
+  --medium-gray: #4b5055;
   --dark-gray-50: #2c2c2c90;
   --darkest-gray: #161616;
   --darkest-gray-70: #161616c1;
   --light-blue-gray: #9fbdbe;
+  --light-blue-gray-20: #9fbdbe2e;
 
-  --light-hover-shadow: inset 0px -3px #b0eab9;
+  /* shadows */
+  --light-hover-shadow: inset 0px -3px var(--green-light);
   --gray-hover-shadow: inset 0px -3px #7b7d7b5e;
   --light-gray-link-shadow: inset 0px -3px #ffffff1a;
 
-  --red-border: 1px solid #eb3c3c;
-  --orange-light-border: 1.5em solid #f4cdc8;
-  --orange-border: 2px solid #fd8775;
-  --green-mid-border: 1px solid #47888a;
-  --green-dark-border: 1px solid #1a393a;
-  --dark-gray-border-20: 1px solid #2c2c2c21;
+  /* borders */
+  --exclusive-border: 4px solid var(--orange-mid);
+  --collection-border: 4px solid var(--pink-light);
+
+  --red-border: 1px solid var(--red-mid);
+
+  --orange-light-border: 1.5em solid var(--orange-light);
+  --orange-border: 2px solid var(--orange-mid);
+
+  --green-mid-border: 1px solid var(--green-mid);
+  --green-teal-mid-border: 1px solid var(--green-teal-mid);
+  --green-dark-border: 1px solid var(--green-dark);
+
+  --dark-gray-border-20: 1px solid var(--dark-gray-50);
   --white-border: 1px solid #fff;
   --white-border-50: 1px solid #ffffff50;
+
+  --blue-light-border: 1px solid var(--blue-light);
+  --blue-light-border-2: 2px solid var(--blue-light);
+  --blue-mid-border-2: 2px solid var(--blue-mid);
+  --blue-mid-light-border: 1px solid var(--blue-mid-light);
+
+  --underscore-width: 12px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -71,8 +104,12 @@
   }
 }
 
-* {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
