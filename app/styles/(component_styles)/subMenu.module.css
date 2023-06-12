@@ -38,3 +38,22 @@
 .navLink:hover {
   box-shadow: 0px -3px 0px var(--blue-light) inset;
 }
+
+@media screen and (max-width: 768px) {
+  .subMenuWrap {
+    padding: 0px;
+    max-width: 100%;
+    top: 3.05em;
+  }
+
+  .subMenu {
+    border-radius: 0px;
+    padding: 0.4em;
+    gap: 1em;
+    justify-content: flex-start;
+  }
+
+  .navTitleWrap {
+    display: none;
+  }
+}

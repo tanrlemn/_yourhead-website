@@ -48,6 +48,10 @@
   margin-left: 3em;
 }
 
+.productInfo {
+  min-width: 100%;
+}
+
 .productImagesWrap {
   display: flex;
 }
@@ -56,7 +60,6 @@
   max-width: 70%;
   object-fit: cover;
   margin-right: 1.2em;
-  border-radius: 9px;
 }
 
 .productThumbnail {
@@ -124,4 +127,25 @@
 .formSelect {
   position: relative;
   min-height: 2em;
+}
+
+@media screen and (max-width: 1090px) {
+  .flexCard {
+    max-width: 45%;
+    margin: 0.5em;
+  }
+
+  .productInfoWrap {
+    min-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1em;
+    margin-left: 0pc;
+  }
+
+  .productImage {
+    max-width: 100%;
+    min-width: 100%;
+    margin-right: 0px;
+  }
 }

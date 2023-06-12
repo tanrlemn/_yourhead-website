@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
     brand: navStyles.brandTitle,
   });
 
-  const mobile = useIsMobile();
+  const [mobile, setIsMobile] = useState(useIsMobile());
 
   const [openMenu, setOpenMenu] = useState(false);
 
@@ -82,7 +82,9 @@ export default function RootLayout({ children }) {
     setTimeout(() => {
       setLoading(false);
     }, randomTime);
-  }, [pathname, searchParams, isShop]);
+
+    setIsMobile(mobile);
+  }, [pathname, searchParams, isShop, mobile]);
 
   // styles
   const inputStyles = {
@@ -91,6 +93,10 @@ export default function RootLayout({ children }) {
 
   const whiteBagStyle = {
     filter: 'invert(1) sepia(1) saturate(1) hue-rotate(180deg)',
+  };
+
+  const iconStyle = {
+    filter: 'invert(0) sepia(0) saturate(0) hue-rotate(0deg)',
   };
 
   // render
@@ -105,6 +111,9 @@ export default function RootLayout({ children }) {
           <nav className={nav.background}>
             <div className={navStyles.innerNav}>
               <Link
+                onClick={() => {
+                  setOpenMenu(false);
+                }}
                 href='/'
                 className={navStyles.brandBlock}>
                 <div className={nav.brand}>
@@ -118,38 +127,59 @@ export default function RootLayout({ children }) {
                 <div className={navStyles.navMenu}>
                   <div className={navStyles.navLinkWrap}>
                     <Link
+                      onClick={() => {
+                        setOpenMenu(false);
+                      }}
                       href='/'
-                      className={nav.link}>
+                      className={mobile ? navStyles.navLink : nav.link}>
                       Home
                     </Link>
                     <Link
+                      onClick={() => {
+                        setOpenMenu(false);
+                      }}
                       href='/painting-real-people'
-                      className={nav.link}>
+                      className={mobile ? navStyles.navLink : nav.link}>
                       Painting Real People
                     </Link>
                     <Link
+                      onClick={() => {
+                        setOpenMenu(false);
+                      }}
                       href='/shop'
-                      className={nav.link}>
+                      className={mobile ? navStyles.navLink : nav.link}>
                       Shop
                     </Link>
                     <Link
+                      onClick={() => {
+                        setOpenMenu(false);
+                      }}
                       href='/recents'
-                      className={nav.link}>
+                      className={mobile ? navStyles.navLink : nav.link}>
                       Recents
                     </Link>
-                    {/* <Link
-                      href='/memberships'
-                      className={navBackground.link}>
-                      Memberships
-                    </Link> */}
                     <Link
+                      onClick={() => {
+                        setOpenMenu(false);
+                      }}
+                      href='/memberships'
+                      className={mobile ? navStyles.navLink : nav.link}>
+                      Memberships
+                    </Link>
+                    <Link
+                      onClick={() => {
+                        setOpenMenu(false);
+                      }}
                       href='/about'
-                      className={nav.link}>
+                      className={mobile ? navStyles.navLink : nav.link}>
                       About
                     </Link>
                     <Link
+                      onClick={() => {
+                        setOpenMenu(false);
+                      }}
                       href='/support'
-                      className={nav.link}>
+                      className={mobile ? navStyles.navLink : nav.link}>
                       Support
                     </Link>
                   </div>
@@ -186,6 +216,7 @@ export default function RootLayout({ children }) {
               {!openMenu && mobile && (
                 <CgMenuRight
                   className={navStyles.mobileMenuIcon}
+                  style={isShop ? iconStyle : null}
                   onClick={() => {
                     setOpenMenu(!openMenu);
                   }}
