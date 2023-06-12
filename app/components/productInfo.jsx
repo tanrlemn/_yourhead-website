@@ -103,11 +103,13 @@ export default function ProductInfo({ product, collection }) {
           <div className={textStyles.headingXxs}>{product.production_year}</div>
         </div>
         <div className={spacingStyles.bottomMarginSm}>
-          <div
-            className={textStyles.productTag}
-            style={tagStyles}>
-            {collectionTagName}
-          </div>
+          <Link href={`shop/collections/${collection.toLowerCase()}`}>
+            <div
+              className={textStyles.productTag}
+              style={tagStyles}>
+              {collectionTagName}
+            </div>
+          </Link>
         </div>
         <Link
           href={`shop/collections/${collection.toLowerCase()}`}

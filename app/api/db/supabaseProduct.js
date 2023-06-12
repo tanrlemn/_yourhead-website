@@ -18,6 +18,6 @@ export const supabaseProduct = async (slug) => {
     return error;
   }
 
-  console.log(data);
+  // console.log(data);
   return data;
 };

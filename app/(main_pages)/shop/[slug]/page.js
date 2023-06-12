@@ -47,7 +47,6 @@ export default function Product({ params }) {
     if (supabaseCollection === null && currentProduct !== null) {
       getCollection();
     }
-    console.log(currentProduct);
   }, [currentProduct, slug, supabaseCollection]);
 
   return (

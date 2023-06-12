@@ -43,7 +43,6 @@ export default function RootLayout({ children }) {
   const loadingValue = { loading, setLoading };
 
   const isShop = pathname.indexOf('/shop') > -1;
-  console.log('isShop', isShop);
 
   const [nav, setNav] = useState({
     background: navStyles.navWrapper,

@@ -109,12 +109,13 @@ export default function ProductCard({ product, collection }) {
             </p>
           </div>
         )}
-
-        <div
-          className={textStyles.productTag}
-          style={tagStyles}>
-          {collectionName}
-        </div>
+        <Link href={`shop/collections/${collection.toLowerCase()}`}>
+          <div
+            className={textStyles.productTag}
+            style={tagStyles}>
+            {collectionName}
+          </div>
+        </Link>
       </div>
     </div>
   );
