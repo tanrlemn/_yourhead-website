@@ -6,12 +6,23 @@ import spacingStyles from '../styles/spacing.module.css';
 
 // hooks
 import { useWindowSize, useIsMobile } from '../api/hooks/useWindowSize';
+import { useState, useRef } from 'react';
 
 // components
 import Link from 'next/link';
 
 export default function ProductCard({ product, collection }) {
+  const imageRef = useRef(null);
   const slug = product.slug;
+  const hasAdditionalImages = product.additional_image_urls !== null;
+
+  const [hovering, setHovering] = useState(false);
+
+  const [additionalImages, setAdditionalImages] = useState(
+    hasAdditionalImages
+      ? [product.main_image, ...product.additional_image_urls]
+      : null
+  );
 
   collection =
     collection.collection.charAt(0).toUpperCase() +
@@ -72,12 +83,19 @@ export default function ProductCard({ product, collection }) {
         }}
         as={`/shop/${slug}`}>
         <Image
-          src={product.main_image}
+          src={hovering ? additionalImages[1] : product.main_image}
           width={imageWidth}
           height={imageHeight}
           className={styles.flexCardImage}
           style={cardStyles}
           alt={`image for ${product.title}`}
+          ref={imageRef}
+          onMouseOver={() => {
+            setHovering(true);
+          }}
+          onMouseOut={() => {
+            setHovering(false);
+          }}
         />
       </Link>
 

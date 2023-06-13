@@ -48,10 +48,6 @@
   margin-left: 3em;
 }
 
-.productInfo {
-  min-width: 100%;
-}
-
 .productImagesWrap {
   display: flex;
 }
@@ -147,5 +143,29 @@
     max-width: 100%;
     min-width: 100%;
     margin-right: 0px;
+    object-fit: cover;
+  }
+
+  .productInfo {
+    min-width: 100%;
+  }
+
+  .rsis-container > div {
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+  }
+
+  .indicators {
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid var(--blue-light);
+    margin: 0.5em;
+    cursor: pointer;
+  }
+  .activeIndicator {
+    background: var(--blue-light);
   }
 }

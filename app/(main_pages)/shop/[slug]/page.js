@@ -9,12 +9,10 @@ import { supabaseProduct } from '@/app/api/db/supabaseProduct';
 
 // hooks
 import { useEffect, useState } from 'react';
-import { useIsMobile } from '@/app/api/hooks/useWindowSize';
+import { useSearchParams } from 'next/navigation';
 
 // components
-import ProductImages from '@/app/components/productImages';
 import ProductInfo from '@/app/components/productInfo';
-import MobileProductInfo from '@/app/components/mobileProductInfo';
 
 export async function generateStaticParams() {
   const products = await supabase('products');
@@ -29,7 +27,7 @@ export default function Product({ params }) {
   const [supabaseCollection, setSupabaseCollection] = useState(null);
 
   const slug = params.slug;
-  const isMobile = useIsMobile();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const getSupabaseProduct = async () => {
@@ -50,24 +48,22 @@ export default function Product({ params }) {
     if (supabaseCollection === null && currentProduct !== null) {
       getCollection();
     }
-  }, [currentProduct, slug, supabaseCollection]);
+
+    if (searchParams.get('success')) {
+      console.log('Order placed! You will receive an email confirmation.');
+    }
+
+    if (searchParams.get('canceled')) {
+      console.log(
+        'Order canceled -- continue to shop around and checkout when you’re ready.'
+      );
+    }
+  }, [currentProduct, slug, supabaseCollection, searchParams]);
 
   return (
     <div className={styles.productWrap}>
-      {!isMobile && currentProduct !== null && supabaseCollection !== null && (
-        <ProductImages
-          product={currentProduct}
-          collection={supabaseCollection}
-        />
-      )}
-      {!isMobile && currentProduct !== null && supabaseCollection !== null && (
+      {currentProduct !== null && supabaseCollection !== null && (
         <ProductInfo
-          product={currentProduct}
-          collection={supabaseCollection}
-        />
-      )}
-      {isMobile && currentProduct !== null && supabaseCollection !== null && (
-        <MobileProductInfo
           product={currentProduct}
           collection={supabaseCollection}
         />
