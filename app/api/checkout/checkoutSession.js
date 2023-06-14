@@ -1,16 +1,20 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-export async function createCheckoutSession(origin) {
+export async function createCheckoutSession({ origin, cart }) {
   try {
+    const line_items = [];
+    cart.items.map((item) => {
+      const product = {
+        price: item.product.on_sale
+          ? item.product.sale_stripe_price_id
+          : item.product.stripe_price_id,
+        quantity: item.qty,
+      };
+      line_items.push(product);
+    });
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-          price: 'price_1NIPZ6JPdRao2mztUcs8Kphc',
-          quantity: 1,
-        },
-      ],
+      line_items: line_items,
       mode: 'payment',
       success_url: `${origin}/?success=true`,
       cancel_url: `${origin}/?canceled=true`,

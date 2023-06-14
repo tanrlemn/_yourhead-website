@@ -1,116 +1,110 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import {
-  PaymentElement,
-  LinkAuthenticationElement,
-  useStripe,
-  useElements,
-} from '@stripe/react-stripe-js';
+// styles
+import styles from '@/app/styles/(component_styles)/checkoutForm.module.css';
+import textStyles from '@/app/styles/text.module.css';
+import spacingStyles from '@/app/styles/spacing.module.css';
+
+// api
+import { createCheckoutSession } from '@/app/api/checkout/checkoutSession';
+
+// context
+import { CartContext } from '@/app/context/cartContext';
+
+// hooks
+import { useState, useEffect, useContext } from 'react';
+import { useRouter } from 'next/navigation';
+import { loadStripe } from '@stripe/stripe-js';
+import { useOrigin } from '@/app/api/hooks/useOrigin';
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
 
 export default function CheckoutForm() {
-  const stripe = useStripe();
-  const elements = useElements();
+  const { cart, numCartItems, cartTotal } = useContext(CartContext);
+  const subtotal = cartTotal.subtotal;
+  const shipping = cartTotal.shipping;
+  const tax = cartTotal.tax;
 
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [checkoutSession, setCheckoutSession] = useState(null);
+
+  const origin = useOrigin();
+  const router = useRouter();
 
   useEffect(() => {
-    if (!stripe) {
-      return;
+    if (checkoutSession) {
+      router.push(checkoutSession);
     }
+  }, [cart, numCartItems, checkoutSession, router, cartTotal]);
 
-    const clientSecret = new URLSearchParams(window.location.search).get(
-      'payment_intent_client_secret'
-    );
-
-    if (!clientSecret) {
-      return;
-    }
-
-    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      switch (paymentIntent.status) {
-        case 'succeeded':
-          setMessage('Payment succeeded!');
-          break;
-        case 'processing':
-          setMessage('Your payment is processing.');
-          break;
-        case 'requires_payment_method':
-          setMessage('Your payment was not successful, please try again.');
-          break;
-        default:
-          setMessage('Something went wrong.');
-          break;
-      }
-    });
-  }, [stripe]);
-
-  const handleSubmit = async (e) => {
+  const handleCheckout = async (e) => {
     e.preventDefault();
+    const getCheckoutSession = async () => {
+      const res = await createCheckoutSession({ origin: origin, cart: cart });
 
-    if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
-      return;
+      setCheckoutSession(res);
+    };
+
+    if (checkoutSession === null) {
+      getCheckoutSession();
     }
-
-    setIsLoading(true);
-
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: 'http://localhost:3000',
-      },
-    });
-
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
-    if (error.type === 'card_error' || error.type === 'validation_error') {
-      setMessage(error.message);
-    } else {
-      setMessage('An unexpected error occurred.');
-    }
-
-    setIsLoading(false);
   };
 
-  const paymentElementOptions = {
-    layout: 'tabs',
+  const alignRight = {
+    textAlign: 'right',
   };
 
   return (
     <form
-      id='payment-form'
-      onSubmit={handleSubmit}>
-      <LinkAuthenticationElement
-        id='link-authentication-element'
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <PaymentElement
-        id='payment-element'
-        options={paymentElementOptions}
-      />
-      <button
-        disabled={isLoading || !stripe || !elements}
-        id='submit'>
-        <span id='button-text'>
-          {isLoading ? (
-            <div
-              className='spinner'
-              id='spinner'></div>
-          ) : (
-            'Pay now'
-          )}
-        </span>
-      </button>
-      {/* Show any error or success messages */}
-      {message && <div id='payment-message'>{message}</div>}
+      onSubmit={(e) => handleCheckout(e)}
+      className={styles.checkoutForm}>
+      <div className={spacingStyles.bottomPaddingSm}>
+        <h1 className={textStyles.headingXs}>Order Summary</h1>
+      </div>
+      <section className={styles.summayWrap}>
+        <div className={styles.priceWrap}>
+          <div className={styles.priceLine}>
+            <p className={textStyles.paragraphXxs}>Subtotal</p>
+            <p
+              className={textStyles.paragraphXxs}
+              style={alignRight}>
+              {`$${subtotal.toFixed(2)}`}
+            </p>
+          </div>
+          <div className={styles.priceLine}>
+            <p className={textStyles.paragraphXxs}>Shipping</p>
+            <p
+              className={textStyles.paragraphXxs}
+              style={alignRight}>
+              {shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}
+            </p>
+          </div>
+          <div className={styles.priceLine}>
+            <p className={textStyles.paragraphXxs}>Estimated Tax</p>
+            <p
+              className={textStyles.paragraphXxs}
+              style={alignRight}>
+              {`$${tax.toFixed(2)}`}
+            </p>
+          </div>
+          <div
+            className={styles.priceLine}
+            style={{ fontWeight: 600, color: 'var(--darkest-gray)' }}>
+            <p className={textStyles.paragraphXxs}>Total</p>
+            <p
+              className={textStyles.paragraphXxs}
+              style={alignRight}>
+              {`$${cartTotal.total.toFixed(2)}`}
+            </p>
+          </div>
+        </div>
+        <button
+          type='submit'
+          className={textStyles.linkBlockGreen}>
+          Proceed to Checkout
+        </button>
+      </section>
     </form>
   );
 }

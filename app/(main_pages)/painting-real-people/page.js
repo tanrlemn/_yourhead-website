@@ -11,7 +11,6 @@ import textBurst from '@/public/icons/textBurst.svg';
 import flexiblePayments from '@/public/images/flexiblePayments.webp';
 import visualUpdates from '@/public/images/visualUpdates.webp';
 import masterfulTechnique from '@/public/images/masterfulTechnique.webp';
-import livingRoom from '@/public/images/livingRoom.webp';
 import truckDelivery from '@/public/images/truckDelivery.webp';
 import consultation from '@/public/images/consultation.webp';
 
@@ -194,14 +193,7 @@ export default function PaintingRealPeople() {
         }
         image={consultation}
       />
-      <FlexWrap
-        title={'Post-Purchase Support'}
-        description={
-          "The relationship with clients extends beyond the transaction. We are always available for any questions or assistance post-purchase. Whether it's advice on art care, placement, or framing, We are here to provide continuous support to help you maintain the beauty and integrity of your artwork."
-        }
-        image={livingRoom}
-        reverse={true}
-      />
+
       <FlexWrap
         title={'Professional Packaging and Delivery'}
         description={

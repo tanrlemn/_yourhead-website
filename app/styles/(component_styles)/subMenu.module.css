@@ -39,7 +39,7 @@
   box-shadow: 0px -3px 0px var(--blue-light) inset;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1090px) {
   .subMenuWrap {
     padding: 0px;
     max-width: 100%;

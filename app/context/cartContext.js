@@ -7,6 +7,8 @@ export const CartContext = createContext({
   setCart: () => {},
   numCartItems: 0,
   setNumCartItems: () => {},
+  cartTotal: { subtotal: 0, shipping: 0, tax: 0, total: 0 },
+  setCartTotal: () => {},
   addToCart: () => {},
   updateCart: () => {},
   removeFromCart: () => {},
@@ -16,6 +18,12 @@ export const CartContext = createContext({
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState({ items: [] });
   const [numCartItems, setNumCartItems] = useState(0);
+  const [cartTotal, setCartTotal] = useState({
+    subtotal: 0,
+    shipping: 0,
+    tax: 0,
+    total: 0,
+  });
 
   useEffect(() => {
     const currentCart = JSON.parse(localStorage.getItem('cart'));
@@ -24,6 +32,24 @@ export const CartProvider = ({ children }) => {
       setNumCartItems(
         currentCart.items.reduce((total, item) => total + item.qty, 0)
       );
+      setCartTotal({
+        subtotal: currentCart.items.reduce(
+          (total, item) =>
+            item.product.on_sale
+              ? total + item.qty * item.product.sale_price
+              : total + item.qty * item.product.price,
+          0
+        ),
+        shipping: 0,
+        tax: 0,
+        total: currentCart.items.reduce(
+          (total, item) =>
+            item.product.on_sale
+              ? total + item.qty * item.product.sale_price
+              : total + item.qty * item.product.price,
+          0
+        ),
+      });
     }
   }, []);
 
@@ -35,6 +61,20 @@ export const CartProvider = ({ children }) => {
         0
       );
       return numItems;
+    }
+  };
+
+  const setTotal = () => {
+    const currentCart = JSON.parse(localStorage.getItem('cart'));
+    if (currentCart && currentCart.items.length > 0) {
+      const newTotal = currentCart.items.reduce(
+        (total, item) =>
+          item.product.on_sale
+            ? total + item.qty * item.product.sale_price
+            : total + item.qty * item.product.price,
+        0
+      );
+      return { subtotal: newTotal, shipping: 0, tax: 0, total: newTotal };
     }
   };
 
@@ -136,6 +176,7 @@ export const CartProvider = ({ children }) => {
       const updatedCart = JSON.parse(window.localStorage.getItem('cart'));
       setCart(updatedCart);
       setNumCartItems(setNumItems);
+      setCartTotal(setTotal);
     }
   };
 
@@ -171,6 +212,7 @@ export const CartProvider = ({ children }) => {
 
       setCart(updatedCart);
       setNumCartItems(setNumItems);
+      setCartTotal(setTotal);
     }
   };
 
@@ -179,10 +221,13 @@ export const CartProvider = ({ children }) => {
       value={{
         cart: cart,
         numCartItems: numCartItems,
+        cartTotal: cartTotal,
         setNumCartItems: setNumCartItems,
         addToCart: addToCart,
         setCart: setCart,
         setNumItems: setNumItems,
+        setTotal: setTotal,
+        setCartTotal: setCartTotal,
         updateCart: updateCart,
         removeFromCart: removeFromCart,
       }}>

@@ -66,6 +66,10 @@
   padding-right: 0.5em;
 }
 
+.bottomPaddingSm {
+  padding-bottom: 1em;
+}
+
 .fullDividerGreen {
   background: var(--green-teal-mid);
   min-width: 95%;
@@ -111,7 +115,7 @@
   cursor: auto;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 5;
 }
 
 .open {
