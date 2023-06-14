@@ -4,18 +4,19 @@
 import styles from '../styles/(component_styles)/product.module.css';
 import textStyles from '../styles/text.module.css';
 import spacingStyles from '../styles/spacing.module.css';
+import 'react-slideshow-image/dist/styles.css';
 
 // images
 import { VscChevronDown } from 'react-icons/vsc';
 
 // hooks
-import { useIsMobile } from '../api/hooks/useIsMobile';
 import { useWindowSize } from '../api/hooks/useWindowSize';
 import { useState, useRef } from 'react';
 
 // components
 import Link from 'next/link';
 import Image from 'next/image';
+import { Slide } from 'react-slideshow-image';
 
 export default function MobileProductInfo({ product, collection }) {
   const optionsRef = useRef(null);
@@ -30,9 +31,22 @@ export default function MobileProductInfo({ product, collection }) {
       ? [product.main_image, ...product.additional_image_urls]
       : null
   );
+
+  const sliderImages = () => {
+    const images = [];
+    if (additionalImages === null) {
+      images.push({ url: product.main_image });
+      return images;
+    }
+    for (let i = 0; i < additionalImages.length; i++) {
+      images.push({ url: additionalImages[i] });
+    }
+    return images;
+  };
+
   const [currentProductConfig, setCurrentProductConfig] = useState({
     qty: 1,
-    size: '8 x 10',
+    size: '8 x 12',
   });
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -65,7 +79,6 @@ export default function MobileProductInfo({ product, collection }) {
   };
 
   const windowSize = useWindowSize();
-  const mobile = useIsMobile();
   const imageWidth = windowSize - 40;
   const imageHeight = imageWidth * 1.5;
 
@@ -116,6 +129,16 @@ export default function MobileProductInfo({ product, collection }) {
     clickOutRef.current.classList.toggle(spacingStyles.open);
   };
 
+  const sliderOptions = {
+    duration: 5000,
+    autoplay: false,
+    transitionDuration: 300,
+    arrows: true,
+    infinite: true,
+    easing: 'ease',
+    showIndicators: false,
+  };
+
   return (
     <div className={styles.productInfoWrap}>
       <div className={styles.productInfo}>
@@ -128,21 +151,26 @@ export default function MobileProductInfo({ product, collection }) {
               {product.production_year}
             </div>
           </div>
-          {currentImage !== null && (
-            <div className={styles.productImage}>
-              <Image
-                src={currentImage}
-                width={imageWidth}
-                height={imageHeight}
-                className={styles.flexCardImage}
-                style={cardStyles}
-                alt={`image for ${product.title}`}
-              />
-            </div>
+          {currentImage !== null && additionalImages !== null && (
+            <Slide {...sliderOptions}>
+              {sliderImages().map((slideImage, index) => (
+                <div
+                  key={index}
+                  className={styles.productImage}>
+                  <Image
+                    src={slideImage.url}
+                    width={imageWidth}
+                    height={imageHeight}
+                    layout='responsive'
+                    alt={`image for ${product.title}`}
+                  />
+                </div>
+              ))}
+            </Slide>
           )}
         </div>
         <div className={spacingStyles.bottomMarginSm}>
-          <Link href={`shop/collections/${collection.toLowerCase()}`}>
+          <Link href={`/shop/collections/${collection.toLowerCase()}`}>
             <div
               className={textStyles.productTag}
               style={tagStyles}>
@@ -151,7 +179,7 @@ export default function MobileProductInfo({ product, collection }) {
           </Link>
         </div>
         <Link
-          href={`shop/collections/${collection.toLowerCase()}`}
+          href={`/shop/collections/${collection.toLowerCase()}`}
           className={textStyles.normalLink}>
           See all of the {collection} Collection
         </Link>

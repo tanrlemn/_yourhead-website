@@ -1,0 +1,17 @@
+.cartWrap {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 3em;
+}
+
+.cartProductsWrap {
+  flex: 1;
+}
+
+.cartProductHeader {
+  border-top: var(--blue-light-border);
+  border-bottom: var(--blue-light-border);
+  padding: 1.5em 0px;
+}

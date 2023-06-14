@@ -2,9 +2,17 @@
 
 // hooks
 import { useWindowSize } from './useWindowSize';
+import { useEffect, useState } from 'react';
+import { useMediaQuery } from '@react-hook/media-query';
 
 export function useIsMobile() {
-  const windowSize = useWindowSize();
+  const [isMobile, setIsMobile] = useState(
+    useMediaQuery('only screen and (max-width: 1090px)')
+  );
 
-  return windowSize < 1090 ? true : false;
+  useEffect(() => {
+    setIsMobile(isMobile);
+  }, [isMobile]);
+
+  return isMobile;
 }
