@@ -10,6 +10,7 @@ import { createCheckoutSession } from '@/app/api/checkout/checkoutSession';
 
 // context
 import { CartContext } from '@/app/context/cartContext';
+import { LoadingContext } from '@/app/context/loadingContext';
 
 // hooks
 import { useState, useEffect, useContext } from 'react';
@@ -22,6 +23,8 @@ const stripePromise = loadStripe(
 );
 
 export default function CheckoutForm() {
+  const { setLoading } = useContext(LoadingContext);
+
   const { cart, numCartItems, cartTotal } = useContext(CartContext);
   const subtotal = cartTotal.subtotal;
   const shipping = cartTotal.shipping;
@@ -39,6 +42,7 @@ export default function CheckoutForm() {
   }, [cart, numCartItems, checkoutSession, router, cartTotal]);
 
   const handleCheckout = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const getCheckoutSession = async () => {
       const res = await createCheckoutSession({ origin: origin, cart: cart });
