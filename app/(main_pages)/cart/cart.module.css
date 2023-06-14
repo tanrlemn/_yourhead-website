@@ -3,7 +3,7 @@
   justify-content: space-between;
 
   width: 100%;
-  padding: 3em;
+  padding: 3em 2em;
 }
 
 .cartProductsWrap {
@@ -14,4 +14,19 @@
   border-top: var(--blue-light-border);
   border-bottom: var(--blue-light-border);
   padding: 1.5em 0px;
+}
+
+@media screen and (max-width: 1090px) {
+  .cartWrap {
+    flex-flow: column nowrap;
+    padding: 3em 1.2em;
+  }
+  .cartProductsWrap {
+    min-width: 100%;
+  }
+  .summaryWrap {
+    margin-top: 2em;
+    max-width: 500px;
+    min-width: 50%;
+  }
 }

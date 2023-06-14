@@ -8,34 +8,26 @@ import spacingStyles from '@/app/styles/spacing.module.css';
 // context
 import { CartContext } from '@/app/context/cartContext';
 
-// api
-import { createCheckoutSession } from '@/app/api/checkout/checkoutSession';
-
 // hooks
 import { useState, useEffect, useContext } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useOrigin } from '@/app/api/hooks/useOrigin';
+import { useIsMobile } from '@/app/api/hooks/useIsMobile';
 
 // components
 import { Grid } from '@mui/material';
 import CartItem from '@/app/components/cartItem';
-
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
+import CheckoutForm from '@/app/components/checkoutForm';
 
 export default function Cart() {
   const { cart, numCartItems, addToCart, setNumCartItems, setNumItems } =
     useContext(CartContext);
 
   const [cartItems, setCartItems] = useState([]);
+  const isMobile = useIsMobile();
 
   const searchParams = useSearchParams();
-  const origin = useOrigin();
   const router = useRouter();
-
-  const [checkoutSession, setCheckoutSession] = useState(null);
 
   useEffect(() => {
     if (searchParams.get('success')) {
@@ -48,10 +40,6 @@ export default function Cart() {
       );
     }
 
-    if (checkoutSession) {
-      router.push(checkoutSession);
-    }
-
     if (cart.items && cart.items.length > 0) {
       setCartItems(cart.items);
     }
@@ -59,28 +47,25 @@ export default function Cart() {
     if (cartItems.length !== numCartItems) {
       setCartItems(cart.items);
     }
-  }, [searchParams, checkoutSession, router, cart, cartItems, numCartItems]);
-
-  const handleCheckout = async (e) => {
-    e.preventDefault();
-    const getCheckoutSession = async () => {
-      const res = await createCheckoutSession(origin);
-
-      setCheckoutSession(res);
-    };
-
-    if (checkoutSession === null) {
-      getCheckoutSession();
-    }
-  };
+  }, [searchParams, router, cart, cartItems, numCartItems]);
 
   const alignRight = {
     textAlign: 'right',
   };
 
+  const mobileBorder = {
+    borderBottom: 'var(--blue-light-border)',
+  };
+
   return (
-    <div className={styles.cartWrap}>
-      <div className={styles.cartProductsWrap}>
+    <Grid
+      container
+      className={styles.cartWrap}>
+      <Grid
+        className={styles.cartProductsWrap}
+        item
+        laptop={9}
+        mobile={12}>
         <Grid
           container
           direction='row'
@@ -88,51 +73,57 @@ export default function Cart() {
           alignItems='flex-start'>
           <Grid
             item
-            xs={12}>
-            <h1 className={textStyles.headingSm}>Shopping Bag</h1>
+            mobile={12}>
+            <div
+              className={spacingStyles.bottomPaddingSm}
+              style={isMobile ? mobileBorder : null}>
+              <h1 className={textStyles.headingSm}>Shopping Bag</h1>
+            </div>
           </Grid>
-          <Grid
-            container
-            direction='row'
-            justifyContent='space-between'
-            alignItems='center'
-            className={styles.cartProductHeader}>
+          {!isMobile && (
             <Grid
-              item
-              xs={3}></Grid>
-            <Grid
-              item
-              xs={3}>
-              <p className={textStyles.paragraphXs}>Item</p>
+              container
+              direction='row'
+              justifyContent='space-between'
+              alignItems='center'
+              className={styles.cartProductHeader}>
+              <Grid
+                item
+                mobile={4}></Grid>
+              <Grid
+                item
+                mobile={3}>
+                <p className={textStyles.paragraphXxs}>Item</p>
+              </Grid>
+              <Grid
+                item
+                mobile={1.5}>
+                <p
+                  className={textStyles.paragraphXxs}
+                  style={alignRight}>
+                  Item Price
+                </p>
+              </Grid>
+              <Grid
+                item
+                mobile={2}>
+                <p
+                  className={textStyles.paragraphXxs}
+                  style={alignRight}>
+                  Quantity
+                </p>
+              </Grid>
+              <Grid
+                item
+                mobile={1.5}>
+                <p
+                  className={textStyles.paragraphXxs}
+                  style={alignRight}>
+                  Total Price
+                </p>
+              </Grid>
             </Grid>
-            <Grid
-              item
-              xs={2}>
-              <p
-                className={textStyles.paragraphXs}
-                style={alignRight}>
-                Item Price
-              </p>
-            </Grid>
-            <Grid
-              item
-              xs={2}>
-              <p
-                className={textStyles.paragraphXs}
-                style={alignRight}>
-                Quantity
-              </p>
-            </Grid>
-            <Grid
-              item
-              xs={2}>
-              <p
-                className={textStyles.paragraphXs}
-                style={alignRight}>
-                Total Price
-              </p>
-            </Grid>
-          </Grid>
+          )}
           {cart &&
             cart.items &&
             cart.items.length > 0 &&
@@ -141,19 +132,20 @@ export default function Cart() {
                 <Grid
                   item
                   key={item.product.id}
-                  xs={12}>
+                  mobile={12}>
                   <CartItem item={item} />
                 </Grid>
               );
             })}
         </Grid>
-      </div>
-
-      <form onSubmit={(e) => handleCheckout(e)}>
-        <section>
-          <button type='submit'>Checkout</button>
-        </section>
-      </form>
-    </div>
+      </Grid>
+      <Grid
+        item
+        laptop={3}
+        mobile={6}
+        className={styles.summaryWrap}>
+        <CheckoutForm />
+      </Grid>
+    </Grid>
   );
 }

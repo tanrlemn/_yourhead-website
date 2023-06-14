@@ -10,6 +10,8 @@ import { CartContext } from '@/app/context/cartContext';
 
 // hooks
 import { useState, useContext, useEffect } from 'react';
+import { useIsMobile } from '@/app/api/hooks/useIsMobile';
+import { useWindowSize } from '@/app/api/hooks/useWindowSize';
 
 // components
 import { Grid } from '@mui/material';
@@ -39,9 +41,18 @@ export default function CartItem({ item }) {
     setTotalPrice(product.price * qty);
   };
 
+  const isMobile = useIsMobile();
+  const windowSize = useWindowSize();
+  const imageWidth = isMobile ? windowSize / 4 : 190;
+  const imageHeight = imageWidth * 1.22;
+
+  const onSale = product.on_sale;
+
   const alignRight = {
     textAlign: 'right',
-    fontWeight: '500',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
   };
 
   const removeItemStyle = {
@@ -51,72 +62,128 @@ export default function CartItem({ item }) {
     fontSize: '0.75em',
     marginBottom: '5px',
   };
+
+  const cartTextStyles = isMobile
+    ? textStyles.paragraphXxs
+    : textStyles.paragraphXs;
+
+  const saleStyles = {
+    textDecoration: 'line-through',
+  };
+
   return (
     <Grid
       container
       className={styles.itemWrap}>
       <Grid
         item
-        xs={3}>
+        laptop={4}
+        mobile={4}>
         <Image
           src={product.main_image}
           alt={product.title}
-          width={190}
-          height={250}
+          width={imageWidth}
+          height={imageHeight}
         />
       </Grid>
       <Grid
         item
-        xs={3}>
+        laptop={3}
+        mobile={5}>
         <div className={spacingStyles.bottomMarginMd}>
-          <p className={textStyles.paragraphXs}>{product.title}</p>
+          <p className={cartTextStyles}>{product.title}</p>
         </div>
-        <p className={textStyles.paragraphXs}>
+        <p className={cartTextStyles}>
           <strong>Collection</strong> {item.collection}
         </p>
-        <p className={textStyles.paragraphXs}>
+        <p className={cartTextStyles}>
           <strong>Color</strong> {item.color}
         </p>
-        <p className={textStyles.paragraphXs}>
+        <p className={cartTextStyles}>
           <strong>Size</strong> {item.size}
         </p>
+        {isMobile && (
+          <div className={spacingStyles.topMarginMd}>
+            <QtySelect
+              qty={currentProductConfig.qty}
+              currentProductConfig={currentProductConfig}
+              setCurrentProductConfig={setCurrentProductConfig}
+              handleUpdateCart={handleUpdateCart}
+            />
+          </div>
+        )}
       </Grid>
+      {!isMobile && (
+        <>
+          <Grid
+            item
+            mobile={1.5}
+            className={styles.saleWrap}>
+            <p
+              className={textStyles.paragraphXxs}
+              style={alignRight}>
+              <span className={textStyles.onSale}>
+                {onSale ? `$${product.sale_price.toFixed(2)}` : ''}
+              </span>
+              <span style={onSale ? saleStyles : null}>
+                ${product.price.toFixed(2)}
+              </span>
+            </p>
+          </Grid>
+          <Grid
+            item
+            mobile={2}
+            className={styles.qtyWrap}>
+            <QtySelect
+              qty={currentProductConfig.qty}
+              currentProductConfig={currentProductConfig}
+              setCurrentProductConfig={setCurrentProductConfig}
+              handleUpdateCart={handleUpdateCart}
+            />
+          </Grid>
+        </>
+      )}
+
       <Grid
         item
-        xs={2}>
-        <p
-          className={textStyles.paragraphXs}
-          style={alignRight}>
-          {`$${product.price.toFixed(2)}`}
-        </p>
-      </Grid>
-      <Grid
-        item
-        xs={2}
-        className={styles.qtyWrap}>
-        <QtySelect
-          qty={currentProductConfig.qty}
-          currentProductConfig={currentProductConfig}
-          setCurrentProductConfig={setCurrentProductConfig}
-          handleUpdateCart={handleUpdateCart}
-        />
-      </Grid>
-      <Grid
-        item
-        xs={2}
+        laptop={1.5}
+        mobile={3}
         className={styles.totalWrap}>
         <p
-          className={textStyles.paragraphXs}
+          className={textStyles.paragraphXxs}
           style={alignRight}>
-          {`$${totalPrice.toFixed(2)}`}
+          <span className={textStyles.onSale}>
+            {onSale
+              ? `$${(product.sale_price * currentProductConfig.qty).toFixed(2)}`
+              : ''}
+          </span>
+          <span style={onSale ? saleStyles : null}>
+            {`$${totalPrice.toFixed(2)}`}
+          </span>
         </p>
-        <p
-          className={textStyles.paragraphXs}
-          style={removeItemStyle}
-          onClick={() => removeFromCart({ productId: product.id })}>
-          Remove
-        </p>
+        {!isMobile && (
+          <p
+            className={textStyles.paragraphXxs}
+            style={removeItemStyle}
+            onClick={() => removeFromCart({ productId: product.id })}>
+            Remove
+          </p>
+        )}
       </Grid>
+      {isMobile && (
+        <Grid
+          item
+          mobile={12}>
+          <div className={spacingStyles.topMarginMd}>
+            <p
+              className={textStyles.paragraphXs}
+              style={removeItemStyle}
+              onClick={() => removeFromCart({ productId: product.id })}>
+              Remove
+            </p>
+          </div>
+        </Grid>
+      )}
     </Grid>
   );
 }

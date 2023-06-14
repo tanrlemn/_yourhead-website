@@ -37,7 +37,8 @@ export default function Nav() {
   const searchParams = useSearchParams();
   const isMobile = useIsMobile();
 
-  const isShop = pathname.indexOf('/shop') > -1;
+  const isShop =
+    pathname.indexOf('/shop') > -1 || pathname.indexOf('/cart') > -1;
 
   // state
 
@@ -189,23 +190,41 @@ export default function Nav() {
                     </Link>
                   </div> */}
 
-              <div className={navStyles.cartWrap}>
-                <Link
-                  href='/cart'
-                  className={navStyles.navLink}>
-                  {numCartItems > 0 && (
-                    <div className={navStyles.cartLabel}>{numCartItems}</div>
-                  )}
-                  <Image
-                    src={bag}
-                    alt='cart'
-                    style={!nav.shop ? whiteBagStyle : null}
-                  />
-                </Link>
-              </div>
+              {!isMobile && (
+                <div className={navStyles.cartWrap}>
+                  <Link
+                    href='/cart'
+                    className={navStyles.navLink}>
+                    {numCartItems > 0 && (
+                      <div className={navStyles.cartLabel}>{numCartItems}</div>
+                    )}
+                    <Image
+                      src={bag}
+                      alt='cart'
+                      style={!nav.shop ? whiteBagStyle : null}
+                    />
+                  </Link>
+                </div>
+              )}
             </div>
           )}
         </div>
+        {isMobile && (
+          <div className={navStyles.cartWrap}>
+            <Link
+              href='/cart'
+              className={navStyles.navLink}>
+              {numCartItems > 0 && (
+                <div className={navStyles.cartLabel}>{numCartItems}</div>
+              )}
+              <Image
+                src={bag}
+                alt='cart'
+                style={!nav.shop ? whiteBagStyle : null}
+              />
+            </Link>
+          </div>
+        )}
         <div className={navStyles.mobileMenuWrap}>
           {!openMenu && isMobile && (
             <CgMenuRight

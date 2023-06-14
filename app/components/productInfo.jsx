@@ -6,14 +6,11 @@ import textStyles from '../styles/text.module.css';
 import spacingStyles from '../styles/spacing.module.css';
 import 'react-slideshow-image/dist/styles.css';
 
-// images
-import { VscChevronDown } from 'react-icons/vsc';
-
 // context
 import { CartContext } from '../context/cartContext';
 
 // hooks
-import { useState, useRef, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useIsMobile } from '../api/hooks/useIsMobile';
 import { useWindowSize } from '../api/hooks/useWindowSize';
 
@@ -27,9 +24,6 @@ export default function ProductInfo({ product, collection }) {
   // context
   const { addToCart, setNumCartItems, setNumItems } = useContext(CartContext);
 
-  const optionsRef = useRef(null);
-  const currentOptionRef = useRef(null);
-  const clickOutRef = useRef(null);
   const isMobile = useIsMobile();
 
   const [currentImage, setCurrentImage] = useState(product.main_image);
@@ -41,8 +35,6 @@ export default function ProductInfo({ product, collection }) {
     color: 'Multi',
     collection: collection,
   });
-
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     if (isMobile) {
@@ -120,11 +112,6 @@ export default function ProductInfo({ product, collection }) {
 
   const saleStyles = {
     textDecoration: 'line-through',
-  };
-
-  const openDropdownStyles = {
-    top: isDropdownOpen ? `-${currentProductConfig.qty * 1.8}em` : '0',
-    background: isDropdownOpen ? 'var(--green-teal-mid-10)' : 'transparent',
   };
 
   const sliderOptions = {
