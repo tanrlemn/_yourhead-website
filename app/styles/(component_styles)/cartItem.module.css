@@ -10,6 +10,6 @@
 
 .totalWrap {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column nowrap !important;
   justify-content: space-between;
 }
