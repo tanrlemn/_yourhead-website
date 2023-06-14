@@ -11,17 +11,16 @@ import { CartContext } from '@/app/context/cartContext';
 // hooks
 import { useState, useEffect, useContext } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { useOrigin } from '@/app/api/hooks/useOrigin';
 import { useIsMobile } from '@/app/api/hooks/useIsMobile';
 
 // components
 import { Grid } from '@mui/material';
 import CartItem from '@/app/components/cartItem';
 import CheckoutForm from '@/app/components/checkoutForm';
+import Link from 'next/link';
 
 export default function Cart() {
-  const { cart, numCartItems, addToCart, setNumCartItems, setNumItems } =
-    useContext(CartContext);
+  const { cart, numCartItems, clearCart } = useContext(CartContext);
 
   const [cartItems, setCartItems] = useState([]);
   const isMobile = useIsMobile();
@@ -31,6 +30,9 @@ export default function Cart() {
 
   useEffect(() => {
     if (searchParams.get('success')) {
+      clearCart();
+      router.push('/cart');
+
       console.log('Order placed! You will receive an email confirmation.');
     }
 
@@ -47,7 +49,7 @@ export default function Cart() {
     if (cartItems.length !== numCartItems) {
       setCartItems(cart.items);
     }
-  }, [searchParams, router, cart, cartItems, numCartItems]);
+  }, [searchParams, router, cart, cartItems, numCartItems, clearCart]);
 
   const alignRight = {
     textAlign: 'right',
@@ -76,76 +78,99 @@ export default function Cart() {
             mobile={12}>
             <div
               className={spacingStyles.bottomPaddingSm}
-              style={isMobile ? mobileBorder : null}>
+              style={
+                isMobile ? mobileBorder : numCartItems > 0 ? null : mobileBorder
+              }>
               <h1 className={textStyles.headingSm}>Shopping Bag</h1>
             </div>
           </Grid>
-          {!isMobile && (
-            <Grid
-              container
-              direction='row'
-              justifyContent='space-between'
-              alignItems='center'
-              className={styles.cartProductHeader}>
-              <Grid
-                item
-                mobile={4}></Grid>
-              <Grid
-                item
-                mobile={3}>
-                <p className={textStyles.paragraphXxs}>Item</p>
-              </Grid>
-              <Grid
-                item
-                mobile={1.5}>
-                <p
-                  className={textStyles.paragraphXxs}
-                  style={alignRight}>
-                  Item Price
-                </p>
-              </Grid>
-              <Grid
-                item
-                mobile={2}>
-                <p
-                  className={textStyles.paragraphXxs}
-                  style={alignRight}>
-                  Quantity
-                </p>
-              </Grid>
-              <Grid
-                item
-                mobile={1.5}>
-                <p
-                  className={textStyles.paragraphXxs}
-                  style={alignRight}>
-                  Total Price
-                </p>
-              </Grid>
-            </Grid>
-          )}
-          {cart &&
-            cart.items &&
-            cart.items.length > 0 &&
-            cartItems.map((item) => {
-              return (
+          {numCartItems > 0 ? (
+            <>
+              {!isMobile && (
                 <Grid
-                  item
-                  key={item.product.id}
-                  mobile={12}>
-                  <CartItem item={item} />
+                  container
+                  direction='row'
+                  justifyContent='space-between'
+                  alignItems='center'
+                  className={styles.cartProductHeader}>
+                  <Grid
+                    item
+                    mobile={4}></Grid>
+                  <Grid
+                    item
+                    mobile={3}>
+                    <p className={textStyles.paragraphXxs}>Item</p>
+                  </Grid>
+                  <Grid
+                    item
+                    mobile={1.5}>
+                    <p
+                      className={textStyles.paragraphXxs}
+                      style={alignRight}>
+                      Item Price
+                    </p>
+                  </Grid>
+                  <Grid
+                    item
+                    mobile={2}>
+                    <p
+                      className={textStyles.paragraphXxs}
+                      style={alignRight}>
+                      Quantity
+                    </p>
+                  </Grid>
+                  <Grid
+                    item
+                    mobile={1.5}>
+                    <p
+                      className={textStyles.paragraphXxs}
+                      style={alignRight}>
+                      Total Price
+                    </p>
+                  </Grid>
                 </Grid>
-              );
-            })}
+              )}
+              {cart &&
+                cart.items &&
+                cart.items.length > 0 &&
+                cartItems.map((item) => {
+                  return (
+                    <Grid
+                      item
+                      key={item.product.id}
+                      mobile={12}>
+                      <CartItem item={item} />
+                    </Grid>
+                  );
+                })}
+            </>
+          ) : (
+            <>
+              <div className={spacingStyles.bottomTopMarginLg}>
+                <p className={textStyles.paragraphXs}>
+                  Your shopping bag is empty!
+                </p>
+                <div className={spacingStyles.topMarginLg}>
+                  <Link
+                    href='/shop'
+                    className={textStyles.linkBlockChartreuse}>
+                    Fill your bag
+                  </Link>
+                </div>
+              </div>
+            </>
+          )}
         </Grid>
       </Grid>
-      <Grid
-        item
-        laptop={3}
-        mobile={6}
-        className={styles.summaryWrap}>
-        <CheckoutForm />
-      </Grid>
+      {numCartItems > 0 && (
+        <Grid
+          item
+          laptop={3}
+          mobile={6}
+          className={styles.summaryWrap}>
+          <CheckoutForm />
+        </Grid>
+      )}
     </Grid>
   );
 }

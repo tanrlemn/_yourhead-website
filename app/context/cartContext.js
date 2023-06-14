@@ -78,6 +78,20 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const clearCart = () => {
+    window.localStorage.setItem(
+      'cart',
+      JSON.stringify({
+        items: [],
+      })
+    );
+
+    const updatedCart = JSON.parse(window.localStorage.getItem('cart'));
+    setCart(updatedCart);
+    setNumCartItems(0);
+    setCartTotal({ subtotal: 0, shipping: 0, tax: 0, total: 0 });
+  };
+
   const addToCart = ({ product, qty, size, color, collection }) => {
     const currentCart = JSON.parse(window.localStorage.getItem('cart'));
     const productName = product.title;
@@ -230,6 +244,7 @@ export const CartProvider = ({ children }) => {
         setCartTotal: setCartTotal,
         updateCart: updateCart,
         removeFromCart: removeFromCart,
+        clearCart: clearCart,
       }}>
       {children}
     </CartContext.Provider>
