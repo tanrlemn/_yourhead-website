@@ -12,9 +12,6 @@ import { VscChevronDown } from 'react-icons/vsc';
 // context
 import { CartContext } from '../context/cartContext';
 
-// api
-// import { addToCart } from '@/app/api/checkout/addToCart';
-
 // hooks
 import { useState, useRef, useContext, useEffect } from 'react';
 import { useIsMobile } from '../api/hooks/useIsMobile';
@@ -24,16 +21,28 @@ import { useWindowSize } from '../api/hooks/useWindowSize';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Slide } from 'react-slideshow-image';
+import QtySelect from './qtySelect';
 
 export default function ProductInfo({ product, collection }) {
+  // context
+  const { addToCart, setNumCartItems, setNumItems } = useContext(CartContext);
+
   const optionsRef = useRef(null);
   const currentOptionRef = useRef(null);
   const clickOutRef = useRef(null);
-  const { cart, setCart } = useContext(CartContext);
   const isMobile = useIsMobile();
 
   const [currentImage, setCurrentImage] = useState(product.main_image);
   const [mobileLayout, setMobileLayout] = useState(false);
+
+  const [currentProductConfig, setCurrentProductConfig] = useState({
+    qty: 1,
+    size: '8 x 12',
+    color: 'Multi',
+    collection: collection,
+  });
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     if (isMobile) {
@@ -60,13 +69,6 @@ export default function ProductInfo({ product, collection }) {
     }
     return images;
   };
-
-  const [currentProductConfig, setCurrentProductConfig] = useState({
-    qty: 1,
-    size: '8 x 12',
-  });
-
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const onSale = product.on_sale;
 
@@ -125,31 +127,6 @@ export default function ProductInfo({ product, collection }) {
     background: isDropdownOpen ? 'var(--green-teal-mid-10)' : 'transparent',
   };
 
-  const getOptions = () => {
-    const options = [];
-    for (let i = 1; i < 11; i++) {
-      options.push(
-        <option
-          className={styles.option}
-          value={i}
-          style={currentProductConfig.qty === i ? selectedOptionStyles : null}
-          onClick={() => {
-            setCurrentProductConfig({ ...currentProductConfig, qty: i });
-          }}>
-          {i}
-        </option>
-      );
-    }
-    return options;
-  };
-
-  const toggleOptions = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-    optionsRef.current.classList.toggle(spacingStyles.open);
-    currentOptionRef.current.classList.toggle(spacingStyles.closed);
-    clickOutRef.current.classList.toggle(spacingStyles.open);
-  };
-
   const sliderOptions = {
     duration: 5000,
     autoplay: false,
@@ -162,12 +139,15 @@ export default function ProductInfo({ product, collection }) {
 
   const handleAddToCart = async (e) => {
     e.preventDefault();
-    // const res = await addToCart({
-    //   product: product,
-    //   qty: currentProductConfig.qty,
-    //   size: currentProductConfig.size,
-    // });
-    // setCart(res);
+    const res = addToCart({
+      product: product,
+      qty: currentProductConfig.qty,
+      size: currentProductConfig.size,
+      color: currentProductConfig.color,
+      collection: collection,
+    });
+    setNumCartItems(setNumItems);
+    return res;
   };
 
   return (
@@ -306,39 +286,13 @@ export default function ProductInfo({ product, collection }) {
                     Qty*
                   </label>
                 </div>
-                <div className={styles.formSelect}>
-                  {currentProductConfig.qty && (
-                    <div
-                      className={styles.optionWrapper}
-                      style={openDropdownStyles}
-                      onClick={() => {
-                        toggleOptions();
-                      }}>
-                      <div
-                        className={styles.currentOption}
-                        ref={currentOptionRef}>
-                        <div value={currentProductConfig.qty}>
-                          {currentProductConfig.qty}
-                        </div>
-                        <VscChevronDown />
-                      </div>
-
-                      <div
-                        className={styles.optionsDropdown}
-                        ref={optionsRef}>
-                        {getOptions().map((option) => {
-                          return option;
-                        })}
-                      </div>
-                    </div>
-                  )}
-                  <div
-                    className={spacingStyles.clickOut}
-                    ref={clickOutRef}
-                    onClick={() => {
-                      toggleOptions();
-                    }}></div>
-                </div>
+                {currentProductConfig.qty && (
+                  <QtySelect
+                    qty={currentProductConfig.qty}
+                    currentProductConfig={currentProductConfig}
+                    setCurrentProductConfig={setCurrentProductConfig}
+                  />
+                )}
                 <div className={spacingStyles.topMarginLg}>
                   <button
                     className={textStyles.linkBlockChartreuse}

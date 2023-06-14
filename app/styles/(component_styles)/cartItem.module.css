@@ -1,0 +1,15 @@
+.itemWrap {
+  padding: 1.5em 0em;
+  border-bottom: var(--blue-light-border);
+}
+
+.qtyWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.totalWrap {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}

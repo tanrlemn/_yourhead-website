@@ -112,6 +112,28 @@
   margin-right: 5px;
 }
 
+.cartWrap {
+  position: relative;
+}
+
+.cartLabel {
+  position: absolute;
+  top: -10px;
+  right: 7px;
+  background: var(--orange-mid);
+  border-radius: 100px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7em;
+  padding: 2px;
+  z-index: 1000;
+}
+
+/* footer */
+
 .footerWrap {
   min-width: 100%;
   background: #fff;

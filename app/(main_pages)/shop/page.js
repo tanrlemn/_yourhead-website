@@ -5,7 +5,7 @@ import styles from './shop.module.css';
 import textStyles from '@/app/styles/text.module.css';
 
 // apis
-import { supabase } from '../../api/db/getSupabase';
+import { supabase } from '@/app/api/db/getSupabase';
 
 // hooks
 import { useEffect, useState } from 'react';

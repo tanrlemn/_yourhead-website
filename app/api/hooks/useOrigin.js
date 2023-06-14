@@ -10,6 +10,5 @@ export function useOrigin() {
       : '';
 
   const url = `${origin}${pathname}`;
-  console.log(url);
   return url;
 }
