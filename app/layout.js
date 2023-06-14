@@ -26,21 +26,21 @@ export default function RootLayout({ children }) {
   // render
   return (
     <html lang='en'>
-      <Suspense fallback={<Loading />}>
-        <LoadingContext.Provider value={loadingValue}>
-          <CartProvider>
-            <body className={inter.className}>
-              <script
-                src='https://accounts.google.com/gsi/client'
-                async
-                defer></script>
+      <LoadingContext.Provider value={loadingValue}>
+        <CartProvider>
+          <body className={inter.className}>
+            <script
+              src='https://accounts.google.com/gsi/client'
+              async
+              defer></script>
+            <Suspense fallback={<Loading />}>
               <Nav />
               {children}
-              <Footer />
-            </body>
-          </CartProvider>
-        </LoadingContext.Provider>
-      </Suspense>
+            </Suspense>
+            <Footer />
+          </body>
+        </CartProvider>
+      </LoadingContext.Provider>
     </html>
   );
 }
