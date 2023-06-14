@@ -141,14 +141,14 @@ export default function Nav() {
                   className={isMobile ? navStyles.navLink : nav.link}>
                   Shop
                 </Link>
-                <Link
+                {/* <Link
                   onClick={() => {
                     setOpenMenu(false);
                   }}
                   href='/recents'
                   className={isMobile ? navStyles.navLink : nav.link}>
                   Recents
-                </Link>
+                </Link> */}
                 {/* <Link
                         onClick={() => {
                           setOpenMenu(false);
@@ -171,7 +171,7 @@ export default function Nav() {
                   }}
                   href='/support'
                   className={isMobile ? navStyles.navLink : nav.link}>
-                  Support
+                  Contact
                 </Link>
               </div>
               {/* <div className={navStyles.navButtonsWrap}>
