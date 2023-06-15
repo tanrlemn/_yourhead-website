@@ -9,7 +9,7 @@ import 'react-slideshow-image/dist/styles.css';
 import { VscChevronDown } from 'react-icons/vsc';
 
 // hooks
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export default function QtySelect({
   qty,
@@ -17,28 +17,52 @@ export default function QtySelect({
   setCurrentProductConfig,
   handleUpdateCart,
 }) {
+  const optionsWrapperRef = useRef(null);
   const optionsRef = useRef(null);
   const currentOptionRef = useRef(null);
   const clickOutRef = useRef(null);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [openDropdownStyles, setOpenDropdownStyles] = useState({
+    top: '0',
+    background: 'transparent',
+  });
+
+  useEffect(() => {
+    const optionsBottom =
+      optionsWrapperRef.current.getBoundingClientRect().bottom;
+
+    const windowHeight = window.innerHeight;
+
+    const optionsBottomDifference = windowHeight - optionsBottom;
+
+    if (optionsBottomDifference < 0) {
+      if (isDropdownOpen) {
+        setOpenDropdownStyles({
+          top: `${optionsBottomDifference - 20}px`,
+          background: 'var(--green-teal-mid-10)',
+        });
+      }
+    } else {
+      setOpenDropdownStyles({
+        top: '0',
+        background: 'transparent',
+      });
+    }
+  }, [isDropdownOpen]);
 
   const selectedOptionStyles = {
     backgroundColor: 'var(--blue-lightest)',
-  };
-
-  const openDropdownStyles = {
-    top: isDropdownOpen ? `-${qty * 1.8}em` : '0',
-    background: isDropdownOpen ? 'var(--green-teal-mid-10)' : 'transparent',
   };
 
   const getOptions = () => {
     const options = [];
     for (let i = 1; i < 11; i++) {
       options.push(
-        <option
+        <div
           className={styles.option}
           value={i}
+          key={i}
           style={qty === i ? selectedOptionStyles : null}
           onClick={() => {
             setCurrentProductConfig({ ...currentProductConfig, qty: i });
@@ -47,7 +71,7 @@ export default function QtySelect({
             }
           }}>
           {i}
-        </option>
+        </div>
       );
     }
     return options;
@@ -65,6 +89,7 @@ export default function QtySelect({
       {qty && (
         <div
           className={styles.optionWrapper}
+          ref={optionsWrapperRef}
           style={openDropdownStyles}
           onClick={() => {
             toggleOptions();

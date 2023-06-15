@@ -74,6 +74,7 @@ export const CartProvider = ({ children }) => {
             : total + item.qty * item.product.price,
         0
       );
+
       return { subtotal: newTotal, shipping: 0, tax: 0, total: newTotal };
     }
   };
@@ -116,28 +117,33 @@ export const CartProvider = ({ children }) => {
             items: currentCartItems,
           })
         );
-        return JSON.parse(window.localStorage.getItem('cart'));
+        const updatedCart = JSON.parse(window.localStorage.getItem('cart'));
+        setCart(updatedCart);
+        setCartTotal(setTotal);
+        setNumCartItems(setNumItems);
+      } else {
+        window.localStorage.setItem(
+          'cart',
+          JSON.stringify({
+            items: [
+              ...currentCartItems,
+              {
+                productName: product.title,
+                product,
+                qty,
+                size,
+                color,
+                collection,
+              },
+            ],
+          })
+        );
+
+        const updatedCart = JSON.parse(window.localStorage.getItem('cart'));
+        setCart(updatedCart);
+        setCartTotal(setTotal);
+        setNumCartItems(setNumItems);
       }
-
-      window.localStorage.setItem(
-        'cart',
-        JSON.stringify({
-          items: [
-            ...currentCartItems,
-            {
-              productName: product.title,
-              product,
-              qty,
-              size,
-              color,
-              collection,
-            },
-          ],
-        })
-      );
-
-      const updatedCart = JSON.parse(window.localStorage.getItem('cart'));
-      setCart(updatedCart);
     } else {
       const newItem = {
         productName: product.title,
@@ -155,6 +161,7 @@ export const CartProvider = ({ children }) => {
       window.localStorage.setItem('cart', JSON.stringify(newCart));
       setCart(newCart);
       setNumCartItems(qty);
+      setCartTotal(setTotal);
     }
     setCart(JSON.parse(window.localStorage.getItem('cart')));
   };
