@@ -1,0 +1,9 @@
+.errorWrap {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 4em 0em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

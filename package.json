@@ -31,6 +31,7 @@
     "react-simple-image-slider": "^2.4.1",
     "react-slideshow-image": "^4.2.1",
     "sharp": "^0.32.1",
-    "stripe": "^12.9.0"
+    "stripe": "^12.9.0",
+    "typescript": "^5.1.3"
   }
 }

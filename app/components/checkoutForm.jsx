@@ -10,6 +10,7 @@ import { createCheckoutSession } from '@/app/api/checkout/checkoutSession';
 
 // context
 import { CartContext } from '@/app/context/cartContext';
+import { LoadingContext } from '@/app/context/loadingContext';
 
 // hooks
 import { useState, useEffect, useContext } from 'react';
@@ -22,10 +23,12 @@ const stripePromise = loadStripe(
 );
 
 export default function CheckoutForm() {
+  const { setLoading } = useContext(LoadingContext);
+
   const { cart, numCartItems, cartTotal } = useContext(CartContext);
-  const subtotal = cartTotal.subtotal;
-  const shipping = cartTotal.shipping;
-  const tax = cartTotal.tax;
+  const [subtotal, setSubtotal] = useState(null);
+  const [shipping, setShipping] = useState(null);
+  const [tax, setTax] = useState(null);
 
   const [checkoutSession, setCheckoutSession] = useState(null);
 
@@ -34,11 +37,39 @@ export default function CheckoutForm() {
 
   useEffect(() => {
     if (checkoutSession) {
+      setLoading(true);
+
       router.push(checkoutSession);
     }
-  }, [cart, numCartItems, checkoutSession, router, cartTotal]);
+    if (subtotal === null || shipping === null || tax === null) {
+      if (cartTotal) {
+        setSubtotal(cartTotal.subtotal);
+        setShipping(cartTotal.shipping);
+        setTax(cartTotal.tax);
+      }
+    }
+    if (cartTotal) {
+      if (subtotal !== cartTotal.subtotal) {
+        setSubtotal(cartTotal.subtotal);
+        setShipping(cartTotal.shipping);
+        setTax(cartTotal.tax);
+      }
+    }
+    console.log('checkoutSession', checkoutSession);
+  }, [
+    cart,
+    numCartItems,
+    checkoutSession,
+    router,
+    cartTotal,
+    shipping,
+    tax,
+    subtotal,
+    setLoading,
+  ]);
 
   const handleCheckout = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const getCheckoutSession = async () => {
       const res = await createCheckoutSession({ origin: origin, cart: cart });
@@ -47,6 +78,8 @@ export default function CheckoutForm() {
     };
 
     if (checkoutSession === null) {
+      setLoading(true);
+
       getCheckoutSession();
     }
   };
@@ -62,49 +95,54 @@ export default function CheckoutForm() {
       <div className={spacingStyles.bottomPaddingSm}>
         <h1 className={textStyles.headingXs}>Order Summary</h1>
       </div>
-      <section className={styles.summayWrap}>
-        <div className={styles.priceWrap}>
-          <div className={styles.priceLine}>
-            <p className={textStyles.paragraphXxs}>Subtotal</p>
-            <p
-              className={textStyles.paragraphXxs}
-              style={alignRight}>
-              {`$${subtotal.toFixed(2)}`}
-            </p>
-          </div>
-          <div className={styles.priceLine}>
-            <p className={textStyles.paragraphXxs}>Shipping</p>
-            <p
-              className={textStyles.paragraphXxs}
-              style={alignRight}>
-              {shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}
-            </p>
-          </div>
-          <div className={styles.priceLine}>
-            <p className={textStyles.paragraphXxs}>Estimated Tax</p>
-            <p
-              className={textStyles.paragraphXxs}
-              style={alignRight}>
-              {`$${tax.toFixed(2)}`}
-            </p>
-          </div>
-          <div
-            className={styles.priceLine}
-            style={{ fontWeight: 600, color: 'var(--darkest-gray)' }}>
-            <p className={textStyles.paragraphXxs}>Total</p>
-            <p
-              className={textStyles.paragraphXxs}
-              style={alignRight}>
-              {`$${cartTotal.total.toFixed(2)}`}
-            </p>
-          </div>
-        </div>
-        <button
-          type='submit'
-          className={textStyles.linkBlockGreen}>
-          Proceed to Checkout
-        </button>
-      </section>
+      {subtotal !== null &&
+        tax !== null &&
+        shipping !== null &&
+        cartTotal !== null && (
+          <section className={styles.summayWrap}>
+            <div className={styles.priceWrap}>
+              <div className={styles.priceLine}>
+                <p className={textStyles.paragraphXxs}>Subtotal</p>
+                <p
+                  className={textStyles.paragraphXxs}
+                  style={alignRight}>
+                  {`$${subtotal.toFixed(2)}`}
+                </p>
+              </div>
+              <div className={styles.priceLine}>
+                <p className={textStyles.paragraphXxs}>Shipping</p>
+                <p
+                  className={textStyles.paragraphXxs}
+                  style={alignRight}>
+                  {shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}
+                </p>
+              </div>
+              <div className={styles.priceLine}>
+                <p className={textStyles.paragraphXxs}>Estimated Tax</p>
+                <p
+                  className={textStyles.paragraphXxs}
+                  style={alignRight}>
+                  {`$${tax.toFixed(2)}`}
+                </p>
+              </div>
+              <div
+                className={styles.priceLine}
+                style={{ fontWeight: 600, color: 'var(--darkest-gray)' }}>
+                <p className={textStyles.paragraphXxs}>Total</p>
+                <p
+                  className={textStyles.paragraphXxs}
+                  style={alignRight}>
+                  {`$${cartTotal.total.toFixed(2)}`}
+                </p>
+              </div>
+            </div>
+            <button
+              type='submit'
+              className={textStyles.linkBlockGreen}>
+              Proceed to Checkout
+            </button>
+          </section>
+        )}
     </form>
   );
 }

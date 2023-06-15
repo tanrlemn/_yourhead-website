@@ -29,8 +29,8 @@ export default function Home() {
   const { loading } = useContext(LoadingContext);
 
   const mobile = useIsMobile();
-  const [imgMax, setImgMax] = useState(mobile ? '100%' : '35em');
-  const [imgMin, setImgMin] = useState(mobile ? '100%' : '25em');
+  const [imgMax, setImgMax] = useState(!mobile ? '100%' : '35em');
+  const [imgMin, setImgMin] = useState(!mobile ? '100%' : '25em');
 
   useEffect(() => {
     setImgMax(mobile ? '100%' : '35em');
