@@ -39,14 +39,14 @@ export default function Cart() {
     if (searchParams.get('success')) {
       if (!success) {
         clearCart();
-        router.push('/cart');
+        router.replace('/cart');
         setSuccess(true);
       }
       console.log('Order placed! You will receive an email confirmation.');
     }
 
     if (searchParams.get('canceled')) {
-      router.push('/cart');
+      router.replace('/cart');
       setSuccess(false);
 
       console.log(
