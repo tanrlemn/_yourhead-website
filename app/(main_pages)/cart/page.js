@@ -39,7 +39,6 @@ export default function Cart() {
     if (searchParams.get('success')) {
       if (!success) {
         clearCart();
-        router.replace('/cart');
         setSuccess(true);
       }
       console.log('Order placed! You will receive an email confirmation.');
@@ -56,12 +55,10 @@ export default function Cart() {
 
     if (cart.items && cart.items.length > 0) {
       setCartItems(cart.items);
-      setLoading(false);
     }
 
     if (cartItems.length !== numCartItems) {
       setCartItems(cart.items);
-      setLoading(false);
     }
   }, [
     searchParams,
@@ -72,6 +69,7 @@ export default function Cart() {
     clearCart,
     success,
     setLoading,
+    loading,
   ]);
 
   const alignRight = {

@@ -37,6 +37,8 @@ export default function CheckoutForm() {
 
   useEffect(() => {
     if (checkoutSession) {
+      setLoading(true);
+
       router.push(checkoutSession);
     }
     if (subtotal === null || shipping === null || tax === null) {
@@ -63,6 +65,7 @@ export default function CheckoutForm() {
     shipping,
     tax,
     subtotal,
+    setLoading,
   ]);
 
   const handleCheckout = async (e) => {
@@ -75,6 +78,8 @@ export default function CheckoutForm() {
     };
 
     if (checkoutSession === null) {
+      setLoading(true);
+
       getCheckoutSession();
     }
   };
