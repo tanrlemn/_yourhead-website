@@ -14,8 +14,9 @@ export default function OrderSuccess() {
     <div className={styles.successWrap}>
       <div className={spacingStyles.bottomTopMarginLg}>
         <LoadingDiv />
-
-        <h2 className={textStyles.headingLg}>Order Placed!</h2>
+        <div className={spacingStyles.bottomMarginLg}>
+          <h2 className={textStyles.headingLg}>Order Placed!</h2>
+        </div>
         <p className={textStyles.paragraphXs}>
           You will receive an email confirmation shortly.
         </p>

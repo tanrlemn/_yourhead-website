@@ -21,6 +21,7 @@ import CheckoutForm from '@/app/components/checkoutForm';
 import Link from 'next/link';
 import Loading from '@/app/loading';
 import OrderSuccess from '@/app/components/orderSuccess';
+import LoadingDiv from '@/app/components/loadingDiv';
 
 export default function Cart() {
   const { loading, setLoading } = useContext(LoadingContext);
@@ -100,17 +101,19 @@ export default function Cart() {
               <Grid
                 item
                 mobile={12}>
-                <div
-                  className={spacingStyles.bottomPaddingSm}
-                  style={
-                    isMobile
-                      ? mobileBorder
-                      : numCartItems > 0
-                      ? null
-                      : mobileBorder
-                  }>
-                  <h1 className={textStyles.headingSm}>Shopping Bag</h1>
-                </div>
+                {numCartItems !== 0 && (
+                  <div
+                    className={spacingStyles.bottomPaddingSm}
+                    style={
+                      isMobile
+                        ? mobileBorder
+                        : numCartItems > 0
+                        ? null
+                        : mobileBorder
+                    }>
+                    <h1 className={textStyles.headingSm}>Shopping Bag</h1>
+                  </div>
+                )}
               </Grid>
               {numCartItems > 0 && (
                 <>
@@ -174,12 +177,17 @@ export default function Cart() {
                 </>
               )}
               {!loading && numCartItems === 0 && (
-                <>
-                  <div className={spacingStyles.bottomTopMarginLg}>
+                <div className={styles.noItemsWrap}>
+                  <div className={spacingStyles.topMarginXl}>
+                    <LoadingDiv />
+                    <div className={spacingStyles.bottomMarginLg}>
+                      <h2 className={textStyles.headingLg}>Nothing here...</h2>
+                    </div>
                     <p className={textStyles.paragraphXs}>
                       Your shopping bag is empty!
                     </p>
-                    <div className={spacingStyles.topMarginLg}>
+
+                    <div className={spacingStyles.topMarginSm}>
                       <Link
                         href='/shop'
                         className={textStyles.linkBlockChartreuse}>
@@ -187,7 +195,7 @@ export default function Cart() {
                       </Link>
                     </div>
                   </div>
-                </>
+                </div>
               )}
             </Grid>
           </Grid>
