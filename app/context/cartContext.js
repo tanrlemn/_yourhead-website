@@ -61,6 +61,8 @@ export const CartProvider = ({ children }) => {
         0
       );
       return numItems;
+    } else {
+      return 0;
     }
   };
 
@@ -76,6 +78,8 @@ export const CartProvider = ({ children }) => {
       );
 
       return { subtotal: newTotal, shipping: 0, tax: 0, total: newTotal };
+    } else {
+      return { subtotal: 0, shipping: 0, tax: 0, total: 0 };
     }
   };
 
@@ -230,7 +234,7 @@ export const CartProvider = ({ children }) => {
       }
 
       const updatedCart = JSON.parse(window.localStorage.getItem('cart'));
-
+      console.log(updatedCart);
       setCart(updatedCart);
       setNumCartItems(setNumItems);
       setCartTotal(setTotal);

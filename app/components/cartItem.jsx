@@ -17,6 +17,7 @@ import { useWindowSize } from '@/app/api/hooks/useWindowSize';
 import { Grid } from '@mui/material';
 import Image from 'next/image';
 import QtySelect from './qtySelect';
+import Link from 'next/link';
 
 export default function CartItem({ item }) {
   const { updateCart, removeFromCart } = useContext(CartContext);
@@ -79,12 +80,14 @@ export default function CartItem({ item }) {
         item
         laptop={4}
         mobile={4}>
-        <Image
-          src={product.main_image}
-          alt={product.title}
-          width={imageWidth}
-          height={imageHeight}
-        />
+        <Link href={`/shop/${item.product.slug}`}>
+          <Image
+            src={product.main_image}
+            alt={product.title}
+            width={imageWidth}
+            height={imageHeight}
+          />
+        </Link>
       </Grid>
       <Grid
         item

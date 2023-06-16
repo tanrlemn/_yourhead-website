@@ -30,3 +30,12 @@
     min-width: 50%;
   }
 }
+
+.noItemsWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 3em 0px;
+}

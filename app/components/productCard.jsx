@@ -36,7 +36,7 @@ export default function ProductCard({ product, collection }) {
   const windowSize = useWindowSize();
   const mobile = useIsMobile();
   const imageWidth = !mobile ? windowSize / 3.7 : windowSize / 2.5;
-  const imageHeight = imageWidth * 1.5;
+  const imageHeight = imageWidth * 1.25;
 
   const limitedEdition = product.limited_edition;
   const numEditions = product.num_editions;

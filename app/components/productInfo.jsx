@@ -19,6 +19,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Slide } from 'react-slideshow-image';
 import QtySelect from './qtySelect';
+import ToCartModal from './toCartModal';
 
 export default function ProductInfo({ product, collection }) {
   // context
@@ -28,6 +29,8 @@ export default function ProductInfo({ product, collection }) {
 
   const [currentImage, setCurrentImage] = useState(product.main_image);
   const [mobileLayout, setMobileLayout] = useState(false);
+
+  const [addedToCart, setAddedToCart] = useState(false);
 
   const [currentProductConfig, setCurrentProductConfig] = useState({
     qty: 1,
@@ -91,7 +94,7 @@ export default function ProductInfo({ product, collection }) {
 
   const windowSize = useWindowSize();
   const imageWidth = isMobile ? windowSize - 40 : windowSize / 3.7;
-  const imageHeight = imageWidth * 1.5;
+  const imageHeight = imageWidth * 1.25;
 
   const selectedOptionStyles = {
     backgroundColor: 'var(--blue-lightest)',
@@ -134,6 +137,7 @@ export default function ProductInfo({ product, collection }) {
       collection: collection,
     });
     setNumCartItems(setNumItems);
+    setAddedToCart(true);
     return res;
   };
 
@@ -290,14 +294,23 @@ export default function ProductInfo({ product, collection }) {
                   </button>
                 </div>
                 <div className={spacingStyles.topMarginMd}>
-                  <button className={textStyles.linkBlockGrayOutline}>
-                    Shop related items
-                  </button>
+                  <Link href={`/shop/collections/${collection.toLowerCase()}`}>
+                    <div className={textStyles.linkBlockGrayOutline}>
+                      Shop related items
+                    </div>
+                  </Link>
                 </div>
               </form>
             </div>
           </div>
         </div>
+        {addedToCart && (
+          <ToCartModal
+            product={product}
+            collection={collection}
+            setAddedToCart={setAddedToCart}
+          />
+        )}
       </div>
     </>
   );
