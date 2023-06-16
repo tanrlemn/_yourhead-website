@@ -52,9 +52,9 @@ export default function PaintingRealPeople() {
           <div className={spacingStyles.bottomMarginMd}>
             <p className={textStyles.paragraphMain}>
               YOURHEAD specializes in unique portrait representations done with
-              oil paint. Through a series of in-person painting sessions, the
-              artist explores what it means to get to know people, and how to
-              capture their essence in a painting.
+              oil paint. Through in-person painting sessions, the artist
+              explores what it means to get to know people and how to capture
+              their essence.
             </p>
           </div>
           <div className={styles.heroButtonsWrap}>
