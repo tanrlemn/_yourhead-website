@@ -2,8 +2,16 @@
   margin-top: 2em;
 }
 
+.topMarginMdLg {
+  margin-top: 1.5em;
+}
+
 .topMarginMd {
   margin-top: 1.2em;
+}
+
+.topMarginSm {
+  margin-top: 0.7em;
 }
 
 .topMarginXl {
@@ -98,6 +106,13 @@
   line-height: inherit;
 }
 
+.blueUnderscoreLg {
+  border-bottom: var(--blue-light-border-4);
+  min-width: var(--underscore-width-lg);
+  display: inline-block;
+  line-height: inherit;
+}
+
 .blueUnderscoreWrap {
   display: flex;
   flex-direction: row;
@@ -124,4 +139,24 @@
 
 .closed {
   display: none;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.absolutelyRight {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
 }
