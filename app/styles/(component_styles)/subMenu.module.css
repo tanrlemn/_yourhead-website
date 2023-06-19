@@ -48,8 +48,16 @@
 
   .subMenu {
     border-radius: 0px;
-    padding: 0.4em;
-    gap: 1em;
+    padding: 0.4em 1.3em;
+    gap: 1.5em;
+    overflow-x: scroll;
+    justify-content: flex-start;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .subMenu::-webkit-scrollbar {
+    display: none;
   }
 
   .navTitleWrap {

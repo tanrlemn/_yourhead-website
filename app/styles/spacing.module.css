@@ -74,6 +74,10 @@
   padding: 2em;
 }
 
+.allPaddingMd {
+  padding: 1em;
+}
+
 .rightPaddingXs {
   padding-right: 0.5em;
 }

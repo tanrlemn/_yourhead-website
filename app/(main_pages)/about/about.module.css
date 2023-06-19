@@ -5,10 +5,12 @@
   min-height: 100vh;
   background: #fff;
   color: var(--green-dark);
+  overflow: hidden;
 }
 
 .heroWrapper {
   width: 100%;
+
   z-index: 2;
 
   padding: 3em 2em 0em 2em;
@@ -94,4 +96,51 @@
 .projectImageWrap {
   margin-left: -15em;
   margin-right: 2em;
+}
+
+@media screen and (max-width: 1090px) {
+  .heroContent {
+    flex-flow: column-reverse nowrap;
+  }
+
+  .heroTitle {
+    padding-top: 0;
+    min-width: 100%;
+  }
+
+  .profileImg {
+    margin-top: -12em;
+    max-width: 100%;
+    margin-left: 5em;
+    object-fit: cover;
+  }
+
+  .statementWrap {
+    margin-top: 1em;
+  }
+
+  .statementTextWrap {
+    padding: 4em 1em;
+    margin: 1em;
+  }
+
+  .experienceWrap {
+    padding: 3em 1em 5em 1em;
+  }
+
+  .checkboxCardWrap {
+    margin-left: 0;
+    flex-flow: column nowrap;
+  }
+
+  .projectWrap {
+    flex-flow: column nowrap;
+    padding: 3em 1em;
+  }
+
+  .projectImageWrap {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 2em;
+  }
 }

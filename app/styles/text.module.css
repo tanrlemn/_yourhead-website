@@ -13,7 +13,7 @@
 .headingMd {
   font-size: 2.5em;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .headingSm {
@@ -370,9 +370,9 @@
 /* MOBILE */
 /* MOBILE */
 /* MOBILE */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1090px) {
   .headingXl {
-    font-size: 4em;
+    font-size: 3.5em;
   }
 
   .headingLg {

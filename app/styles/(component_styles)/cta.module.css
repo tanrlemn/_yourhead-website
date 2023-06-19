@@ -138,4 +138,20 @@
     min-width: 90%;
     max-width: 90%;
   }
+
+  .columnWrap {
+    padding: 3em 0;
+    max-width: 100%;
+  }
+
+  .ctaChecksWrap {
+    flex-flow: column nowrap;
+    max-width: 100%;
+    margin: 2em 0px;
+  }
+
+  .checkItem {
+    max-width: 100%;
+    margin: 1em 0px;
+  }
 }

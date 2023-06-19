@@ -117,7 +117,7 @@ export default function Home() {
                 height={300}
                 width={300}
                 style={squareImage}
-                alt='Donut painting'
+                alt='Bliss painting'
               />
             </div>
           </div>
@@ -128,7 +128,7 @@ export default function Home() {
                 height={300}
                 width={300}
                 style={squareImage}
-                alt='Donut painting'
+                alt='Owner painting'
               />
             </div>
             <div className={styles.imageFrameSquare}>
@@ -137,7 +137,7 @@ export default function Home() {
                 height={300}
                 width={300}
                 style={squareImage}
-                alt='Donut painting'
+                alt='Whalerider painting'
               />
             </div>
           </div>

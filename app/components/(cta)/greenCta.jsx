@@ -1,7 +1,8 @@
+'use client';
+
 // styles
 import styles from '../../styles/(component_styles)/cta.module.css';
 import textStyles from '../../styles/text.module.css';
-import spacingStyles from '../../styles/spacing.module.css';
 
 // images
 import checkIcon from '@/public/icons/checkIcon.svg';
@@ -11,7 +12,12 @@ import { BsArrowRight } from 'react-icons/bs';
 // components
 import Image from 'next/image';
 
+// hooks
+import { useIsMobile } from '@/app/api/hooks/useIsMobile';
+
 export default function GreenCta() {
+  const isMobile = useIsMobile();
+
   const lightText = {
     color: '#d8eecd',
     opacity: '1',
@@ -20,9 +26,14 @@ export default function GreenCta() {
     backgroundImage: `url(${textBurst.src})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'bottom right',
-    padding: '0 0.6em 0.5em 0',
+    padding: isMobile ? '0 0.8em 0.7em 0' : '0 0.6em 0.5em 0',
     color: '#ff8d86',
   };
+
+  const mobileLineHeight = {
+    lineHeight: '1.3em',
+  };
+
   return (
     <div className={styles.greenCtaWrap}>
       <div className={styles.columnWrap}>
@@ -33,7 +44,9 @@ export default function GreenCta() {
             Fill out a contact request
           </div>
         </div>
-        <h2 className={textStyles.headingMd}>
+        <h2
+          className={textStyles.headingMd}
+          style={isMobile ? mobileLineHeight : null}>
           Collaborate with{' '}
           <span
             className={textStyles.textBurst}

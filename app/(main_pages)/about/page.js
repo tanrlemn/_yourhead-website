@@ -24,14 +24,6 @@ import { useEffect, useState } from 'react';
 import { useIsMobile } from '../../api/hooks/useIsMobile';
 
 export default function About() {
-  const orangeBurst = {
-    backgroundImage: `url(${textBurst.src})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'bottom right',
-    padding: '0 0.3em 0.1em 0',
-    color: '#ff8d86',
-  };
-
   const mobile = useIsMobile();
   const [imgMax, setImgMax] = useState(!mobile ? '100%' : '35em');
   const [imgMin, setImgMin] = useState(!mobile ? '100%' : '25em');
@@ -40,6 +32,14 @@ export default function About() {
     setImgMax(mobile ? '100%' : '35em');
     setImgMin(mobile ? '100%' : '25em');
   }, [mobile]);
+
+  const orangeBurst = {
+    backgroundImage: `url(${textBurst.src})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'bottom right',
+    padding: mobile ? '0 0.5em 0.3em 0' : '0 0.3em 0.1em 0',
+    color: '#ff8d86',
+  };
 
   const squareImage = {
     maxWidth: imgMax,
@@ -50,6 +50,10 @@ export default function About() {
     margin: '5px',
     objectFit: 'cover',
     objectPosition: '50% 20%',
+  };
+
+  const mobilePadding = {
+    padding: '1em',
   };
   return (
     <main className={styles.main}>
@@ -198,7 +202,9 @@ export default function About() {
         </div>
       </div>
 
-      <div className={spacingStyles.allPaddingLg}>
+      <div
+        className={spacingStyles.allPaddingLg}
+        style={mobile ? mobilePadding : null}>
         <h2 className={textStyles.headingXl}>Most recent project</h2>
       </div>
       <div className={styles.projectWrap}>
