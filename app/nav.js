@@ -126,14 +126,14 @@ export default function Nav() {
                   className={isMobile ? navStyles.navLink : nav.link}>
                   Home
                 </Link>
-                <Link
+                {/* <Link
                   onClick={() => {
                     setOpenMenu(false);
                   }}
                   href='/painting-real-people'
                   className={isMobile ? navStyles.navLink : nav.link}>
                   Painting Real People
-                </Link>
+                </Link> */}
                 <Link
                   onClick={() => {
                     setOpenMenu(false);

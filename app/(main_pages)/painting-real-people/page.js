@@ -16,6 +16,7 @@ import consultation from '@/public/images/consultation.webp';
 
 // components
 import Image from 'next/image';
+import Link from 'next/link';
 import FlexCard from '../../components/flexCard';
 import FlexWrap from '../../components/flexWrap';
 import CheckboxCard from '../../components/checkboxCard';
@@ -52,19 +53,18 @@ export default function PaintingRealPeople() {
           <div className={spacingStyles.bottomMarginMd}>
             <p className={textStyles.paragraphMain}>
               YOURHEAD specializes in unique portrait representations done with
-              oil paint. Through a series of in-person painting sessions, the
-              artist explores what it means to get to know people, and how to
-              capture their essence in a painting.
+              oil paint. Through in-person painting sessions, the artist
+              explores what it means to get to know people and how to capture
+              their essence.
             </p>
           </div>
           <div className={styles.heroButtonsWrap}>
-            <a className={textStyles.linkBlockGreen}>
-              <div className={textStyles.buttonLabel}>
-                Request to be painted
-              </div>
-
+            <Link
+              href='/painting-real-people'
+              className={textStyles.linkBlockBlack}>
+              <div className={textStyles.buttonLabel}>Read the latest post</div>
               <BsArrowRight />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

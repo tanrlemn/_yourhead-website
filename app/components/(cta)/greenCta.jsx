@@ -5,15 +5,23 @@ import spacingStyles from '../../styles/spacing.module.css';
 
 // images
 import checkIcon from '@/public/icons/checkIcon.svg';
+import textBurst from '@/public/icons/textBurst.svg';
 import { BsArrowRight } from 'react-icons/bs';
 
 // components
 import Image from 'next/image';
 
-export default function GreenCta({ waitingPeriod }) {
+export default function GreenCta() {
   const lightText = {
     color: '#d8eecd',
     opacity: '1',
+  };
+  const orangeBurst = {
+    backgroundImage: `url(${textBurst.src})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'bottom right',
+    padding: '0 0.6em 0.5em 0',
+    color: '#ff8d86',
   };
   return (
     <div className={styles.greenCtaWrap}>
@@ -22,11 +30,16 @@ export default function GreenCta({ waitingPeriod }) {
           <div
             className={textStyles.labelTag}
             style={lightText}>
-            Get started with YOURHEAD
+            Fill out a contact request
           </div>
         </div>
         <h2 className={textStyles.headingMd}>
-          Fill out a commission request form to begin
+          Collaborate with{' '}
+          <span
+            className={textStyles.textBurst}
+            style={orangeBurst}>
+            YOURHEAD
+          </span>
         </h2>
         <div className={styles.ctaChecksWrap}>
           <div className={styles.checkItem}>
@@ -42,7 +55,7 @@ export default function GreenCta({ waitingPeriod }) {
             <p
               className={textStyles.paragraphXs}
               style={lightText}>
-              No credit card required
+              Determined & persistent
             </p>
           </div>
           <div className={styles.checkItem}>
@@ -58,7 +71,7 @@ export default function GreenCta({ waitingPeriod }) {
             <p
               className={textStyles.paragraphXs}
               style={lightText}>
-              Quick response time
+              Easy to work with
             </p>
           </div>
           <div className={styles.checkItem}>
