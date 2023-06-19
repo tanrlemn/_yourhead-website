@@ -1,0 +1,97 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  background: #fff;
+  color: var(--green-dark);
+}
+
+.heroWrapper {
+  width: 100%;
+  z-index: 2;
+
+  padding: 3em 2em 0em 2em;
+
+  min-height: 100%;
+  background: var(--orange-light);
+  border-bottom: var(--green-dark-border);
+}
+
+.heroContent {
+  min-height: 100%;
+  display: flex;
+}
+
+.heroTitle {
+  padding-top: 5em;
+  min-width: 55%;
+}
+
+.profileImg {
+  margin-left: -6em;
+}
+
+.flexTag {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.bulletTag {
+  width: 12px;
+  height: 12px;
+  background: var(--green-mid-dark);
+  border-radius: 20px;
+}
+
+.statementWrap {
+  display: flex;
+  align-items: center;
+}
+
+.statementTextWrap {
+  padding: 5.5em 5em;
+  border: var(--blue-light-border-2);
+  border-radius: 9px;
+  margin: 5em;
+}
+
+.flexCardWrap {
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 50px 75px 50px;
+}
+
+.flexTitle {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 2em;
+}
+
+.experienceWrap {
+  width: 100%;
+  padding: 3em 3em 5em 3em;
+}
+
+.checkboxCardWrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-left: 10em;
+}
+
+.projectWrap {
+  display: flex;
+  padding: 3em;
+}
+
+.projectText {
+  min-width: 40%;
+}
+
+.projectImageWrap {
+  margin-left: -15em;
+  margin-right: 2em;
+}

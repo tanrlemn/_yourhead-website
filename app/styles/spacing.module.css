@@ -66,6 +66,10 @@
   padding-bottom: 1em;
 }
 
+.allPaddingXl {
+  padding: 5em;
+}
+
 .allPaddingLg {
   padding: 2em;
 }
@@ -86,8 +90,33 @@
   height: 1px;
 }
 
+.marqueeDividerGreen {
+  background: var(--green-teal-mid);
+  min-width: 100%;
+  max-width: 100%;
+  height: 1px;
+}
+
 .blockDividerOrange {
   background: var(--orange-lightest);
+  min-width: 40%;
+  max-width: 50%;
+  margin: 0.75em 2em 1.5em 0;
+  height: 1em;
+  border-radius: 100px;
+}
+
+.blockDividerGreen {
+  background: var(--green-lightest);
+  min-width: 40%;
+  max-width: 50%;
+  margin: 0.75em 2em 1.5em 0;
+  height: 1em;
+  border-radius: 100px;
+}
+
+.blockDividerBlue {
+  background: var(--blue-lightest);
   min-width: 40%;
   max-width: 50%;
   margin: 0.75em 2em 1.5em 0;
@@ -146,6 +175,12 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.flexCentered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .absolutelyRight {

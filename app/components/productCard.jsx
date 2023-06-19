@@ -1,5 +1,4 @@
 // styles
-import Image from 'next/image';
 import styles from '../styles/(component_styles)/product.module.css';
 import textStyles from '../styles/text.module.css';
 import spacingStyles from '../styles/spacing.module.css';
@@ -10,6 +9,7 @@ import { useState, useRef } from 'react';
 
 // components
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ProductCard({ product, collection }) {
   const imageRef = useRef(null);

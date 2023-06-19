@@ -80,21 +80,22 @@ export default function Home() {
           <div className={spacingStyles.bottomTopMarginLg}>
             <p className={textStyles.paragraphMain}>
               We could pretend that we don&apos;t know each other, that we
-              aren&apos;t real. But maybe let&apos;s paint each other just to
+              aren&apos;t real. But maybe let&apos;s paint portraits just to
               make sure.
             </p>
           </div>
           <div className={styles.heroButtonsWrap}>
-            <button
+            <Link
+              href='/shop'
               className={textStyles.linkBlockChartreuse}
               style={buttonStyle}>
-              <div className={styles.buttonLabel}>Get started</div>
+              <div className={textStyles.buttonLabel}>View shop</div>
               <BsArrowRight />
-            </button>
+            </Link>
             <Link
-              href='/painting-real-people'
-              className={styles.linkBlockWhite}>
-              <div className={styles.buttonLabel}>Read more</div>
+              href='/about'
+              className={textStyles.linkBlockWhite}>
+              <div className={textStyles.buttonLabel}>Learn more</div>
               <BsArrowRight />
             </Link>
           </div>

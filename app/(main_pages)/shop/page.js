@@ -8,7 +8,7 @@ import textStyles from '@/app/styles/text.module.css';
 import { supabase } from '@/app/api/db/getSupabase';
 
 // hooks
-import { useEffect, useState } from 'react';
+import { useEffect, useState, cache } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 // components
@@ -72,13 +72,13 @@ export default function Shop() {
     };
 
     if (supabaseProducts === null) {
-      getSupabase('products');
+      cache(getSupabase('products'));
     }
     if (supabaseCollections === null) {
-      getSupabase('collection_types');
+      cache(getSupabase('collection_types'));
     }
     if (supabaseProductTypes === null) {
-      getSupabase('product_types');
+      cache(getSupabase('product_types'));
     }
 
     if (
