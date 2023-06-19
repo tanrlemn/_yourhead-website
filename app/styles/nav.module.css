@@ -136,7 +136,7 @@
 
 .footerWrap {
   min-width: 100%;
-  background: #fff;
+  background: var(--chartreuse-lightest);
   color: #2c2c2c;
   border-top: var(--orange-light-border);
 }
@@ -282,6 +282,10 @@
   .footerWrap {
     max-width: 100vw;
     overflow: hidden;
+  }
+
+  .cartWrap .navLink {
+    padding: 10px 15px;
   }
 }
 

@@ -40,3 +40,14 @@
   object-fit: contain;
   filter: invert(1) sepia(1) brightness(0.1);
 }
+
+@media screen and (max-width: 1090px) {
+  .experienceCard {
+    max-width: 100%;
+    margin-bottom: 2em;
+  }
+
+  .experienceCard:first-child {
+    margin-right: 0em;
+  }
+}
