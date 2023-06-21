@@ -121,6 +121,16 @@
   opacity: 0.72;
 }
 
+.greenTag {
+  background: var(--yellow-light);
+  padding: 7px 20px;
+  max-width: fit-content;
+  border-radius: 100px;
+  text-transform: uppercase;
+  font-size: 0.5em;
+  line-height: 1;
+}
+
 .orderedList {
   margin-left: 1.5em;
 }
@@ -147,6 +157,30 @@
 .linkBlockChartreuse:hover {
   background: var(--blue-mid);
   color: #fff;
+}
+
+.linkBlockBlue {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 25px;
+  background: var(--blue-mid);
+  border-radius: 100px;
+  color: #fff;
+  white-space: nowrap;
+  min-width: fit-content;
+  max-width: fit-content;
+  transition: all 0.2s ease-in-out;
+  font-weight: 500;
+  font-size: inherit;
+  min-width: 100%;
+  text-align: center;
+}
+
+.linkBlockBlue:hover {
+  background: var(--chartreuse);
+  color: var(--green-dark);
 }
 
 .linkBlockWhite {
@@ -359,6 +393,38 @@
   font-size: 0.8em;
   line-height: 1em;
   color: var(--medium-gray);
+}
+
+.labelMd {
+  font-weight: 500;
+  font-size: 1em;
+  line-height: 1em;
+  color: var(--medium-gray);
+  margin-bottom: 0.5em;
+}
+
+.input {
+  background: #fff;
+  padding: 13px 25px;
+  outline: none;
+  border: none;
+  color: #2c2c2c;
+  border-radius: 100px;
+  margin-right: 10px;
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.textArea {
+  background: #fff;
+  padding: 13px 25px;
+  outline: none;
+  border: none;
+  color: #2c2c2c;
+  border-radius: 9px;
+  margin-right: 10px;
+  max-width: 100%;
+  min-width: 100%;
 }
 
 .aBitBolder {

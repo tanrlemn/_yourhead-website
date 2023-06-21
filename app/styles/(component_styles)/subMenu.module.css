@@ -36,7 +36,7 @@
 }
 
 .navLink:hover {
-  box-shadow: 0px -3px 0px var(--blue-light) inset;
+  box-shadow: var(--blue-underline-shadow);
 }
 
 @media screen and (max-width: 1090px) {

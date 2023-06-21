@@ -7,10 +7,12 @@ import spacingStyles from './styles/spacing.module.css';
 
 // images
 import { BsArrowRight } from 'react-icons/bs';
-import donut from '@/public/images/donut.jpg';
-import bliss from '@/public/images/bliss.jpg';
-import owner from '@/public/images/owner.jpg';
-import whalerider from '@/public/images/whalerider.jpg';
+// paintingRealPeople
+import whalerider from '@/public/images/paintingRealPeople/whalerider.webp';
+import donut from '@/public/images/paintingRealPeople/donut.webp';
+// findingYourhead
+import owner from '@/public/images/findingYourhead/owner.webp';
+import bliss from '@/public/images/findingYourhead/bliss.webp';
 import textBurst from '@/public/icons/textBurst.svg';
 
 // context

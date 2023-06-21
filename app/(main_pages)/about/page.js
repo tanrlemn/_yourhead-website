@@ -4,12 +4,12 @@
 import styles from './about.module.css';
 import textStyles from '../../styles/text.module.css';
 import spacingStyles from '../../styles/spacing.module.css';
-import homeStyles from '../../styles/home.module.css';
 
 // images
 import textBurst from '@/public/icons/textBurst.svg';
-import whalerider from '@/public/images/whalerider.jpg';
-import donut from '@/public/images/donut.jpg';
+import whalerider from '@/public/images/paintingRealPeople/whalerider.webp';
+import donut from '@/public/images/paintingRealPeople/donut.webp';
+
 import profileImg from '@/public/images/profile-img.png';
 
 // components
@@ -25,12 +25,12 @@ import { useIsMobile } from '../../api/hooks/useIsMobile';
 
 export default function About() {
   const mobile = useIsMobile();
-  const [imgMax, setImgMax] = useState(!mobile ? '100%' : '35em');
-  const [imgMin, setImgMin] = useState(!mobile ? '100%' : '25em');
+  const [imgMax, setImgMax] = useState(!mobile ? '45vw' : '15em');
+  const [imgMin, setImgMin] = useState(!mobile ? '45vw' : '10em');
 
   useEffect(() => {
-    setImgMax(mobile ? '100%' : '35em');
-    setImgMin(mobile ? '100%' : '25em');
+    setImgMax(mobile ? '45vw' : '15em');
+    setImgMin(mobile ? '45vw' : '10em');
   }, [mobile]);
 
   const orangeBurst = {
@@ -44,8 +44,6 @@ export default function About() {
   const squareImage = {
     maxWidth: imgMax,
     maxHeight: imgMax,
-    minWidth: imgMin,
-    minHeight: '100%',
     borderRadius: '10px',
     margin: '5px',
     objectFit: 'cover',
@@ -78,8 +76,8 @@ export default function About() {
             </div>
 
             <h1 className={textStyles.headingXl}>
-              Searching for <br />
-              real{' '}
+              Searching <br />
+              for real{' '}
               <span
                 className={textStyles.textBurst}
                 style={orangeBurst}>
@@ -157,13 +155,25 @@ export default function About() {
               {
                 dates: 'October 2019 - Present',
                 company: 'Thought Co',
-                title: 'Owner & Designer',
+                title: 'Designer & Developer',
                 location: 'Anderson, IN',
                 checkItems: [
                   'UX, marketing, and web development',
                   'Design and execute ',
                   'Freelance using sites like Upwork ',
                   '3-5 long-term clients ',
+                ],
+              },
+              {
+                dates: 'June 2018 - June 2019',
+                company: 'Oakpark Preschool',
+                title: 'Art Teacher',
+                location: 'Massillon, OH',
+                checkItems: [
+                  'Taught art to children ages 0-9 year olds',
+                  'Created and executed lesson plans',
+                  'Managed classrooms of 5-15 students',
+                  'Managed and maintained art supplies',
                 ],
               },
             ]}
@@ -196,8 +206,63 @@ export default function About() {
                   },
                 ],
               },
+              {
+                dates: '2014 - 2016 & 2019',
+                company: 'A Town Center',
+                title: 'Artist in Residence',
+                location: 'Anderson, IN',
+                checkItems: [
+                  'Pilot artist in residence program',
+                  'Taught art classes to children and adults',
+                  'Created and sold artworks',
+                  'Created and sold custom art commissions',
+                ],
+              },
             ]}
             backgroundColor='#fff'
+          />
+          <ExperienceCard
+            subtitle={true}
+            subtitleText='– Caring for the Community'
+            title={'Community Engagement.'}
+            items={[
+              {
+                dates: '2019 - 2022',
+                company: 'Local Homeschool Group',
+                title: 'Art Teacher',
+                location: 'Anderson, IN',
+                checkItems: [
+                  'Taught art classes to children ages 5-12',
+                  'Created and executed weekly lesson plans',
+                  'Designed innovative art experiences',
+                ],
+              },
+              {
+                dates: '2014 - 2019',
+                company: 'Various Organizations',
+                title: 'Live Paintings',
+                location: 'United States',
+                checkItems: [
+                  'Painted live at 20+ events',
+                  'Created and sold artworks',
+                  'Donated artworks to charity',
+                  'Orchestrated community paintings & art projects',
+                ],
+              },
+              {
+                dates: '2015-2016',
+                company: 'Ohio Church of God Youth & Discipleship',
+                title: 'Artist in Residence',
+                location: 'Columbus, OH',
+                checkItems: [
+                  'Taught art classes to youth at 5 summer camps',
+                  'Completed live paintings summer camps',
+                  'Led a community mural project',
+                  'Taught workshops at 2 leadership retreats',
+                ],
+              },
+            ]}
+            backgroundColor='#d8f0ff'
           />
         </div>
       </div>
@@ -205,25 +270,25 @@ export default function About() {
       <div
         className={spacingStyles.allPaddingLg}
         style={mobile ? mobilePadding : null}>
-        <h2 className={textStyles.headingXl}>Most recent project</h2>
+        <h2 className={textStyles.headingLg}>Current working project</h2>
       </div>
       <div className={styles.projectWrap}>
         <div className={styles.projectImageWrap}>
-          <div className={homeStyles.heroRail}>
-            <div className={homeStyles.imageFrameSquare}>
+          <div className={styles.imageRail}>
+            <div className={styles.imageFrameSquare}>
               <Image
                 src={donut}
-                height={300}
-                width={300}
+                height={imgMax}
+                width={imgMax}
                 style={squareImage}
                 alt='Donut painting'
               />
             </div>
-            <div className={homeStyles.imageFrameSquare}>
+            <div className={styles.imageFrameSquare}>
               <Image
                 src={whalerider}
-                height={300}
-                width={300}
+                height={imgMax}
+                width={imgMax}
                 style={squareImage}
                 alt='Donut painting'
               />

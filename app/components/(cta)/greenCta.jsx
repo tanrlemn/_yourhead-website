@@ -9,14 +9,19 @@ import checkIcon from '@/public/icons/checkIcon.svg';
 import textBurst from '@/public/icons/textBurst.svg';
 import { BsArrowRight } from 'react-icons/bs';
 
-// components
-import Image from 'next/image';
+// context
+import { ContactContext } from '@/app/context/contactContext';
 
 // hooks
 import { useIsMobile } from '@/app/api/hooks/useIsMobile';
+import { useContext } from 'react';
+
+// components
+import Image from 'next/image';
 
 export default function GreenCta() {
   const isMobile = useIsMobile();
+  const { setShowContactBar } = useContext(ContactContext);
 
   const lightText = {
     color: '#d8eecd',
@@ -107,14 +112,8 @@ export default function GreenCta() {
         <div className={styles.heroButtonsWrap}>
           <button
             className={textStyles.linkBlockChartreuse}
-            data-tf-slider='diYCs0i7'
-            data-tf-position='right'
-            data-tf-opacity='100'
-            data-tf-iframe-props='title=YOURHEAD Commission Request'
-            data-tf-transitive-search-params
-            data-tf-medium='snippet'>
+            onClick={() => setShowContactBar(true)}>
             <div className={textStyles.buttonLabel}>Get started</div>
-
             <BsArrowRight />
           </button>
         </div>

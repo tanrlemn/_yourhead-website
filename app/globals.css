@@ -74,6 +74,7 @@
   --light-hover-shadow: inset 0px -3px var(--green-light);
   --gray-hover-shadow: inset 0px -3px #7b7d7b5e;
   --light-gray-link-shadow: inset 0px -3px #ffffff1a;
+  --blue-underline-shadow: 0px -3px 0px var(--blue-light) inset;
 
   /* borders */
   --exclusive-border: 4px solid var(--orange-mid);
@@ -84,6 +85,7 @@
   --orange-light-border: 1.5em solid var(--orange-light);
   --orange-border: 2px solid var(--orange-mid);
 
+  --green-light-border-lg: 1.5em solid var(--green-light);
   --green-mid-border: 1px solid var(--green-mid);
   --green-teal-mid-border: 1px solid var(--green-teal-mid);
   --green-dark-border: 1px solid var(--green-dark);

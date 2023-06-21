@@ -1,6 +1,7 @@
 .pricingCard {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 4em 2em 2em 2em;
   border-radius: 10px;
   background-color: #fff;
@@ -45,8 +46,11 @@
   opacity: 0.7;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1090px) {
   .pricingCard {
     max-width: 92%;
+  }
+  .pricingCard:last-child {
+    margin-right: 1em;
   }
 }
