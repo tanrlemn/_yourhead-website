@@ -5,13 +5,14 @@
   border-radius: 10px;
   background-color: #fff;
   border: var(--dark-gray-border-20);
-  max-width: 45%;
+  max-width: 33%;
   text-align: left;
   max-height: fit-content;
+  margin-right: 1em;
 }
 
-.experienceCard:first-child {
-  margin-right: 2em;
+.experienceCard:last-child {
+  margin-right: 0;
 }
 
 .checkItem {
@@ -43,11 +44,18 @@
 
 @media screen and (max-width: 1090px) {
   .experienceCard {
-    max-width: 100%;
+    max-width: 47%;
     margin-bottom: 2em;
   }
 
-  .experienceCard:first-child {
+  .experienceCard:last-child {
     margin-right: 0em;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .experienceCard {
+    min-width: 100%;
+    max-width: 100%;
   }
 }

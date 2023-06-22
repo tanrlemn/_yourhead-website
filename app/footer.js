@@ -18,7 +18,7 @@ import { useContext } from 'react';
 import Marquee from './components/marquee';
 import Link from 'next/link';
 
-export default function Footer() {
+export default function Footer({ showContactBar, setShowContactBar }) {
   const { loading } = useContext(LoadingContext);
 
   // styles
@@ -34,8 +34,8 @@ export default function Footer() {
               <div className={textStyles.footerTitle}>YOURHEAD</div>
               <div className={spacingStyles.bottomTopMarginMd}>
                 <div className={textStyles.paragraphSm}>
-                  YOURHEAD is a portrait painter, offering a unique style at
-                  affordable prices.
+                  YOURHEAD is a painter, musician, and innovator, offering a
+                  unique style and approach to all aspects of life.
                 </div>
               </div>
               <form
@@ -92,7 +92,12 @@ export default function Footer() {
                 <div className={textStyles.footerHeading}>Support</div>
                 <ul className={navStyles.footerList}>
                   <li className={navStyles.footerLink}>
-                    <Link href='/support/contact'>Contact</Link>
+                    <div
+                      onClick={() => {
+                        setShowContactBar(true);
+                      }}>
+                      Contact
+                    </div>
                   </li>
                   <li className={navStyles.footerLink}>
                     <Link href='/support/faqs'>FAQs</Link>

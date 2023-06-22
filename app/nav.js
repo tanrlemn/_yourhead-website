@@ -13,6 +13,7 @@ import bag from '../public/icons/bag.svg';
 // context
 import { LoadingContext } from './context/loadingContext';
 import { CartContext } from './context/cartContext';
+import { ContactContext } from './context/contactContext';
 
 // hooks
 import { useState, useEffect, useContext } from 'react';
@@ -25,12 +26,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import RainbowLetters from './components/rainbowLetters';
 import NavSubMenu from './components/navSubMenu';
+import ContactBar from './components/contactSidebar';
 
 export default function Nav() {
   // context
-  const { cart, numCartItems, setNumCartItems, setNumItems } =
-    useContext(CartContext);
+  const { cart, numCartItems } = useContext(CartContext);
   const { loading, setLoading } = useContext(LoadingContext);
+  const { showContactBar, setShowContactBar } = useContext(ContactContext);
 
   // hooks
   const pathname = usePathname();
@@ -98,9 +100,18 @@ export default function Nav() {
     filter: 'invert(0) sepia(0) saturate(0) hue-rotate(0deg)',
   };
 
+  const sideBarStyle = {
+    left: showContactBar ? '0' : '-100vw',
+  };
+
   return (
     <>
       <nav className={nav.background}>
+        <ContactBar
+          style={sideBarStyle}
+          setShowContactBar={setShowContactBar}
+          showContactBar={showContactBar}
+        />
         <div className={navStyles.innerNav}>
           <Link
             onClick={() => {
@@ -142,14 +153,14 @@ export default function Nav() {
                   className={isMobile ? navStyles.navLink : nav.link}>
                   Shop
                 </Link>
-                {/* <Link
+                <Link
                   onClick={() => {
                     setOpenMenu(false);
                   }}
                   href='/recents'
                   className={isMobile ? navStyles.navLink : nav.link}>
                   Recents
-                </Link> */}
+                </Link>
                 {/* <Link
                         onClick={() => {
                           setOpenMenu(false);
@@ -166,14 +177,14 @@ export default function Nav() {
                   className={isMobile ? navStyles.navLink : nav.link}>
                   About
                 </Link>
-                <Link
+                <div
                   onClick={() => {
                     setOpenMenu(false);
+                    setShowContactBar(true);
                   }}
-                  href='/support'
                   className={isMobile ? navStyles.navLink : nav.link}>
                   Contact
-                </Link>
+                </div>
               </div>
               {/* <div className={navStyles.navButtonsWrap}>
                     <div className={spacingStyles.rightPaddingXs}>

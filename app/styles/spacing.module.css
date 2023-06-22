@@ -146,6 +146,13 @@
   line-height: inherit;
 }
 
+.orangeUnderscoreLg {
+  border-bottom: var(--orange-light-border);
+  min-width: var(--underscore-width-lg);
+  display: inline-block;
+  line-height: inherit;
+}
+
 .blueUnderscoreWrap {
   display: flex;
   flex-direction: row;
@@ -190,6 +197,12 @@
 .absolutelyRight {
   position: absolute;
   right: 0;
+  top: 0;
+}
+
+.absolutelyLeft {
+  position: absolute;
+  left: 0;
   top: 0;
 }
 

@@ -5,6 +5,7 @@ import '@/app/globals.css';
 // context
 import { LoadingContext } from './context/loadingContext';
 import { CartProvider } from './context/cartContext';
+import { ContactContext } from './context/contactContext';
 
 // hooks
 import { useState, Suspense } from 'react';
@@ -24,6 +25,9 @@ export default function RootLayout({ children }) {
   const [loading, setLoading] = useState(true);
   const loadingValue = { loading, setLoading };
 
+  const [showContactBar, setShowContactBar] = useState(false);
+  const showContactValue = { showContactBar, setShowContactBar };
+
   const theme = createTheme({
     breakpoints: {
       values: {
@@ -39,21 +43,29 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <LoadingContext.Provider value={loadingValue}>
-        <CartProvider>
-          <ThemeProvider theme={theme}>
-            <body className={inter.className}>
-              <script
-                src='https://accounts.google.com/gsi/client'
-                async
-                defer></script>
-              <Suspense fallback={<Loading />}>
-                <Nav />
-                {children}
-              </Suspense>
-              <Footer />
-            </body>
-          </ThemeProvider>
-        </CartProvider>
+        <ContactContext.Provider value={showContactValue}>
+          <CartProvider>
+            <ThemeProvider theme={theme}>
+              <body className={inter.className}>
+                <script
+                  src='https://accounts.google.com/gsi/client'
+                  async
+                  defer></script>
+                <Suspense fallback={<Loading />}>
+                  <Nav
+                    setShowContactBar={setShowContactBar}
+                    showContactBar={showContactBar}
+                  />
+                  {children}
+                </Suspense>
+                <Footer
+                  setShowContactBar={setShowContactBar}
+                  showContactBar={showContactBar}
+                />
+              </body>
+            </ThemeProvider>
+          </CartProvider>
+        </ContactContext.Provider>
       </LoadingContext.Provider>
     </html>
   );

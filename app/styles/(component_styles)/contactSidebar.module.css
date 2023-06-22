@@ -1,0 +1,27 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  justify-content: flex-start;
+  align-items: flex-start;
+  transition: all 0.5s ease-in-out;
+  z-index: 10000;
+  background: var(--blue-light);
+  padding: 3em 2em;
+  min-height: 100vh;
+  max-width: 33.33vw;
+  display: flex;
+  flex-flow: column nowrap;
+  border-left: var(--green-light-border-lg);
+}
+
+.formGroup {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 1.3em;
+}
+
+@media screen and (max-width: 1090px) {
+  .sidebar {
+    max-width: 90%;
+  }
+}

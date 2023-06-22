@@ -18,6 +18,7 @@
   padding: 0px 20px;
   border-bottom: 1px solid #47888a;
   z-index: 100;
+  height: 5em;
 }
 
 .navWrapperShop {
@@ -34,7 +35,6 @@
 .innerNav {
   width: 100%;
   height: 100%;
-  padding: 10px 0px;
   display: flex;
   align-items: center;
 }
@@ -67,6 +67,8 @@
 
 .navLinkWrap {
   margin-right: 20px;
+  display: flex;
+  flex-flow: row nowrap;
 }
 
 .navLink {
@@ -75,6 +77,7 @@
   border-radius: 9px;
   color: #fff;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .navLinkShop {
@@ -114,6 +117,7 @@
 
 .cartWrap {
   position: relative;
+  z-index: 101;
 }
 
 .cartLabel {
@@ -177,6 +181,12 @@
   margin: 0;
   margin-left: 0;
   padding: 0.5em 0;
+  cursor: pointer;
+  max-width: fit-content;
+}
+
+.footerLink:hover {
+  box-shadow: var(--blue-underline-shadow);
 }
 
 .footerLower {
@@ -190,6 +200,7 @@
     min-height: 50px;
     display: flex;
     align-items: center;
+    height: 60px;
   }
 
   .navWrapperShop {
@@ -259,7 +270,7 @@
   }
 
   .navSpacer {
-    height: 50px;
+    height: 60px;
   }
 
   .shopNavSpacer {
@@ -275,7 +286,7 @@
     filter: invert(1) sepia(1) saturate(1) hue-rotate(180deg);
     width: 20px;
     height: 20px;
-    margin-right: 10px;
+    margin-left: 10px;
     cursor: pointer;
   }
 

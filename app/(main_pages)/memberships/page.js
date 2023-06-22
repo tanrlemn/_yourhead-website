@@ -6,8 +6,8 @@ import textStyles from '@/app/styles/text.module.css';
 import spacingStyles from '@/app/styles/spacing.module.css';
 
 // apis
-import { getBenefitsText } from '@/app/api/db/getBenefitsText';
-import { memberships } from '@/app/api/db/getMembershipInfo';
+import { supabaseBenefits } from '@/app/api/db/supabaseBenefits';
+import { supabaseMemberships } from '@/app/api/db/supabaseMemberships';
 
 // context
 import { LoadingContext } from '@/app/context/loadingContext';
@@ -31,7 +31,7 @@ export default function Pricing() {
 
   useEffect(() => {
     const getMemberships = async () => {
-      const membershipsData = await memberships();
+      const membershipsData = await supabaseMemberships();
       setCurrentMemberships(membershipsData);
     };
 
@@ -51,7 +51,7 @@ export default function Pricing() {
 
   useEffect(() => {
     const getText = async () => {
-      const data = await getBenefitsText();
+      const data = await supabaseBenefits();
       setBenefitsText(data);
     };
 

@@ -17,6 +17,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  min-width: 100%;
 }
 
 .productWrap {

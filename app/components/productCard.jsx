@@ -5,7 +5,7 @@ import spacingStyles from '../styles/spacing.module.css';
 
 // hooks
 import { useWindowSize, useIsMobile } from '../api/hooks/useWindowSize';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 // components
 import Link from 'next/link';
@@ -23,6 +23,15 @@ export default function ProductCard({ product, collection }) {
       ? [product.main_image, ...product.additional_image_urls]
       : null
   );
+
+  useEffect(() => {
+    if (hasAdditionalImages) {
+      setAdditionalImages([
+        product.main_image,
+        ...product.additional_image_urls,
+      ]);
+    }
+  }, [product, hasAdditionalImages, hovering]);
 
   collection =
     collection.collection.charAt(0).toUpperCase() +
