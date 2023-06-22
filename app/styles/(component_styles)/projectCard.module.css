@@ -17,13 +17,13 @@
   margin-right: 2em;
   max-width: 45%;
   min-width: 45%;
+  min-height: 12em;
   justify-content: flex-end;
 }
 
 .imageFrameSquare {
   max-width: 50%;
   min-width: 50%;
-  min-height: 50%;
   display: flex;
   object-fit: cover;
 }

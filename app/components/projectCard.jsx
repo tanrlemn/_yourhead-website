@@ -9,23 +9,24 @@ import spacingStyles from '../styles/spacing.module.css';
 import { BsArrowRight } from 'react-icons/bs';
 
 // hooks
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import { usePreserveScroll } from '../api/helpers/preserveScroll';
 
 // components
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function ProjectCard({ project, backgroundColor }) {
-  const [viewMore, setViewMore] = useState(false);
   const projectCardRef = useRef(null);
+  const router = useRouter();
+  const scrollTo = usePreserveScroll(projectCardRef);
 
   const background = {
     backgroundColor: `var(${backgroundColor})`,
   };
 
-  const executeScroll = () => {
-    projectCardRef.current.scrollIntoView({ alignToTop: true });
-    window.scrollBy(0, -100);
+  const centerText = {
+    textAlign: 'center',
   };
 
   return (
@@ -35,28 +36,33 @@ export default function ProjectCard({ project, backgroundColor }) {
       ref={projectCardRef}>
       <div className={styles.imageRail}>
         {project.images.map((image, index) => {
-          return (
-            <div
-              className={styles.imageFrameSquare}
-              key={index}>
-              <Image
-                src={image.src}
-                height={300}
-                width={300}
-                alt={`${project.title} image`}
-                className={styles.projectImage}
-              />
-            </div>
-          );
+          if (index < 2)
+            return (
+              <div
+                className={styles.imageFrameSquare}
+                key={index}>
+                <Image
+                  src={image}
+                  height={300}
+                  width={300}
+                  alt={`${project.title} image`}
+                  className={styles.projectImage}
+                />
+              </div>
+            );
         })}
       </div>
       <div>
         {project.isCurrent && (
-          <div className={textStyles.greenTag}>Current project</div>
+          <div className={spacingStyles.bottomMarginSm}>
+            <div className={textStyles.greenTag}>Current project</div>
+          </div>
         )}
-        <div className={spacingStyles.bottomTopMarginMd}>
+        <div className={spacingStyles.bottomMarginSm}>
           <div className={textStyles.outlineTextGrey}>
-            <div className={textStyles.labelTag}>
+            <div
+              className={textStyles.labelTag}
+              style={centerText}>
               ––{'  '}
               {project.subtitle}
               {'  '}––
@@ -64,20 +70,28 @@ export default function ProjectCard({ project, backgroundColor }) {
           </div>
         </div>
 
-        <div className={spacingStyles.bottomMarginXs}>
+        <div className={spacingStyles.bottomMarginSm}>
           <h2 className={textStyles.headingLg}>{project.title}</h2>
         </div>
 
         <div className={spacingStyles.bottomMarginLg}>
           <p className={textStyles.paragraphXs}>{project.description}</p>
+          <div className={spacingStyles.bottomTopMarginMd}>
+            <p className={textStyles.paragraphXxs}>{project.year}</p>
+            <p className={textStyles.paragraphXxs}>
+              – {project.images.length} images
+            </p>
+          </div>
         </div>
         <div className={spacingStyles.topMarginMd}>
-          <Link
-            href={project.slug}
+          <div
+            onClick={() => {
+              router.push(`${project.slug}?scrollTo=${scrollTo}`);
+            }}
             className={textStyles.linkBlockBlack}>
             <div className={textStyles.buttonLabel}>View project</div>
             <BsArrowRight />
-          </Link>
+          </div>
         </div>
       </div>
     </div>

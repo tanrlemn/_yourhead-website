@@ -6,19 +6,20 @@ import styles from '../projects.module.css';
 // apis
 import { supabase } from '@/app/api/db/getSupabase';
 import { supabaseProduct } from '@/app/api/db/supabaseProduct';
+import { supabaseProject } from '@/app/api/db/supabaseProject';
 
 // hooks
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 // components
-import ProductInfo from '@/app/components/productInfo';
+import ProjectInfo from '@/app/components/projectInfo';
 
 export async function generateStaticParams() {
-  const products = await supabase('products');
+  const projects = await supabase('projects');
 
-  return products.map((product) => ({
-    slug: product.slug,
+  return projects.map((project) => ({
+    slug: project.slug,
   }));
 }
 
@@ -44,7 +45,7 @@ export default function Product({ params }) {
     const getCollections = async () => {
       const res = await supabase('collection_types');
       const collection = res.find(
-        (collection) => collection.id === currentProduct.collection_id
+        (collection) => collection.id === relatedProducts.collection_id
       );
       setSupabaseCollections(collection);
     };
@@ -57,7 +58,7 @@ export default function Product({ params }) {
     }
 
     if (currentProject === null) {
-      // getSupabaseProject();
+      getSupabaseProject();
     }
   }, [
     relatedProducts,
@@ -68,13 +69,8 @@ export default function Product({ params }) {
   ]);
 
   return (
-    <div className={styles.productWrap}>
-      {relatedProducts !== null && supabaseCollections !== null && (
-        <ProductInfo
-          product={relatedProducts}
-          collection={supabaseCollections}
-        />
-      )}
+    <div>
+      {currentProject !== null && <ProjectInfo project={currentProject} />}
     </div>
   );
 }

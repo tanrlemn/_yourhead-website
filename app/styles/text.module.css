@@ -7,7 +7,7 @@
 .headingLg {
   font-size: 3rem;
   font-weight: 700;
-  line-height: 1/1;
+  line-height: 1;
 }
 
 .headingMd {
@@ -70,7 +70,7 @@
   font-weight: 700;
   border: var(--dark-gray-border-20);
   border-radius: 100px;
-  padding: 10px 30px;
+  padding: 7px 20px;
   display: block;
   max-width: fit-content;
 }
@@ -129,6 +129,12 @@
   text-transform: uppercase;
   font-size: 0.5em;
   line-height: 1;
+}
+.flexTag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
 }
 
 .orderedList {
@@ -438,7 +444,7 @@
 /* MOBILE */
 @media screen and (max-width: 1090px) {
   .headingXl {
-    font-size: 3.5em;
+    font-size: 3em;
   }
 
   .headingLg {

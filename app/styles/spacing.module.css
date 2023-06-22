@@ -200,6 +200,12 @@
   top: 0;
 }
 
+.absolutelyLeft {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 .icon {
   width: 20px;
   height: 20px;
