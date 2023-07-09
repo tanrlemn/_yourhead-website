@@ -1,0 +1,32 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  background: #fff;
+  color: var(--green-dark);
+  overflow: hidden;
+}
+
+.downloadLink {
+  position: absolute;
+  right: 6em;
+  top: 6em;
+}
+
+.experienceWrap {
+  position: relative;
+  width: 100%;
+  padding: 3em 3em 5em 3em;
+}
+
+@media screen and (max-width: 1090px) {
+  .experienceWrap {
+    padding: 3em 1em 5em 1em;
+  }
+
+  .checkboxCardWrap {
+    margin-left: 0;
+    flex-wrap: wrap;
+  }
+}

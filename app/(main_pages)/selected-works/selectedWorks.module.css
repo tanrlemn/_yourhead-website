@@ -1,0 +1,37 @@
+.main {
+  padding-top: 2em;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-bottom: 5em;
+}
+
+.heroWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  min-height: 100%;
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 60%;
+}
+
+.imageWrap {
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+}
+
+.projectsWrap {
+  max-width: 90%;
+  min-width: 90%;
+}
+
+@media screen and (max-width: 1090px) {
+  .heroContent {
+    max-width: 100%;
+  }
+}

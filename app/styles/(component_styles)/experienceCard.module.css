@@ -2,10 +2,9 @@
   display: flex;
   flex-direction: column;
   padding: 3em 2em;
-  border-radius: 10px;
   background-color: #fff;
-  border: var(--dark-gray-border-20);
-  max-width: 33%;
+  max-width: 100%;
+  min-width: 100%;
   text-align: left;
   max-height: fit-content;
   margin-right: 1em;

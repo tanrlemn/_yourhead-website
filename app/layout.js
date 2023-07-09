@@ -4,7 +4,6 @@ import '@/app/globals.css';
 
 // context
 import { LoadingContext } from './context/loadingContext';
-import { CartProvider } from './context/cartContext';
 import { ContactContext } from './context/contactContext';
 
 // hooks
@@ -44,27 +43,25 @@ export default function RootLayout({ children }) {
     <html lang='en'>
       <LoadingContext.Provider value={loadingValue}>
         <ContactContext.Provider value={showContactValue}>
-          <CartProvider>
-            <ThemeProvider theme={theme}>
-              <body className={inter.className}>
-                <script
-                  src='https://accounts.google.com/gsi/client'
-                  async
-                  defer></script>
-                <Suspense fallback={<Loading />}>
-                  <Nav
-                    setShowContactBar={setShowContactBar}
-                    showContactBar={showContactBar}
-                  />
-                  {children}
-                </Suspense>
-                <Footer
+          <ThemeProvider theme={theme}>
+            <body className={inter.className}>
+              <script
+                src='https://accounts.google.com/gsi/client'
+                async
+                defer></script>
+              <Suspense fallback={<Loading />}>
+                <Nav
                   setShowContactBar={setShowContactBar}
                   showContactBar={showContactBar}
                 />
-              </body>
-            </ThemeProvider>
-          </CartProvider>
+                {children}
+              </Suspense>
+              <Footer
+                setShowContactBar={setShowContactBar}
+                showContactBar={showContactBar}
+              />
+            </body>
+          </ThemeProvider>
         </ContactContext.Provider>
       </LoadingContext.Provider>
     </html>

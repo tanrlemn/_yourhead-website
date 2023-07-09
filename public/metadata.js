@@ -11,7 +11,7 @@ export const metadata = {
   openGraph: {
     images: '/opengraph-image.jpeg',
   },
-  title: 'YOURHEAD',
+  title: 'YOURHEAD Portfolio',
   description: 'The Official Website of YOURHEAD',
   url: 'https://yourheadisourhead.com',
   siteName: 'YOURHEAD',
