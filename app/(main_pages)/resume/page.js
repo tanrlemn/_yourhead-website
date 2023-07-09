@@ -8,35 +8,19 @@ import spacingStyles from '../../styles/spacing.module.css';
 // images
 import { BsArrowDown } from 'react-icons/bs';
 
+// hooks
+import { useIsMobile } from '@/app/api/hooks/useIsMobile';
+
 // components
 import ExperienceCard from '../../components/experienceCard';
 import Link from 'next/link';
 
 export default function Resume() {
-  const downloadFile = () => {
-    fetch('resume.pdf').then((response) => {
-      response.blob().then((blob) => {
-        const fileURL = window.URL.createObjectURL(blob);
+  const isMobile = useIsMobile();
 
-        let alink = document.createElement('a');
-        alink.href = fileURL;
-        alink.download = 'resume.pdf';
-        alink.click();
-      });
-    });
-  };
   return (
     <main className={styles.main}>
       <div className={styles.experienceWrap}>
-        <div className={styles.downloadLink}>
-          <Link
-            href={'/files/resume.pdf'}
-            target='_blank'
-            className={textStyles.linkBlockBlack}>
-            <div className={textStyles.buttonLabel}>Download</div>
-            <BsArrowDown />
-          </Link>
-        </div>
         <div className={styles.flexTitle}>
           <div className={spacingStyles.blockDividerBlue}></div>
           <h2 className={textStyles.headingMd}>Experience & Awards</h2>
@@ -49,6 +33,15 @@ export default function Resume() {
             <h3 className={textStyles.headingXxs}>
               Resides and works in Anderson, Indiana
             </h3>
+          </div>
+          <div className={styles.downloadLink}>
+            <Link
+              href={'/files/resume.pdf'}
+              target='_blank'
+              className={textStyles.linkBlockBlack}>
+              <div className={textStyles.buttonLabel}>Download</div>
+              <BsArrowDown />
+            </Link>
           </div>
         </div>
         <div className={styles.checkboxCardWrap}>
@@ -127,7 +120,8 @@ export default function Resume() {
             ]}
           />
         </div>
-        <div style={{ paddingLeft: '2em', paddingTop: '3em' }}>
+        <div
+          style={{ paddingLeft: isMobile ? '0em' : '2em', paddingTop: '3em' }}>
           <div className={spacingStyles.bottomMarginLg}>
             <h2 className={textStyles.headingSm}>Contact.</h2>
           </div>

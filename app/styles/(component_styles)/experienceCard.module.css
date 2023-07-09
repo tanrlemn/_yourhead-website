@@ -43,8 +43,7 @@
 
 @media screen and (max-width: 1090px) {
   .experienceCard {
-    max-width: 47%;
-    margin-bottom: 2em;
+    padding: 3em 0em 0em 0em;
   }
 
   .experienceCard:last-child {
