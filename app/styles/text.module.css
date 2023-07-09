@@ -1,5 +1,5 @@
 .headingXl {
-  font-size: 5.5rem;
+  font-size: 4.5rem;
   font-weight: 700;
   line-height: 1;
 }
@@ -52,7 +52,7 @@
 }
 
 .textBurst {
-  color: var(--green-light);
+  color: var(--green-dark);
 }
 
 .outlineText {
@@ -435,6 +435,10 @@
 
 .aBitBolder {
   font-weight: 600;
+}
+
+.lightWeight {
+  font-weight: 300;
 }
 
 /* MOBILE */

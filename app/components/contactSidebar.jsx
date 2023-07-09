@@ -39,60 +39,18 @@ export default function ContactBar({ showContactBar, setShowContactBar }) {
           />
         </div>
         <div className={spacingStyles.bottomTopMarginLg}>
-          <h2 className={textStyles.headingMd}>
-            Leave a message after the beep...
-          </h2>
-          <div className={spacingStyles.blockDividerBlue}></div>
-          <div className={spacingStyles.bottomMarginMd}>
-            <p>Beep.</p>
-          </div>
-          <div className={spacingStyles.marqueeDividerGreen}></div>
+          <h2 className={textStyles.headingSm}>Contact.</h2>
         </div>
-        <form>
-          <div className={styles.formGroup}>
-            <label
-              htmlFor='name'
-              className={textStyles.labelMd}>
-              Name
-            </label>
-            <input
-              type='text'
-              id='name'
-              name='name'
-              className={textStyles.input}
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <label
-              htmlFor='email'
-              className={textStyles.labelMd}>
-              Email
-            </label>
-            <input
-              type='email'
-              id='email'
-              name='email'
-              className={textStyles.input}
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <label
-              htmlFor='message'
-              className={textStyles.labelMd}>
-              Message
-            </label>
-            <textarea
-              id='message'
-              name='message'
-              className={textStyles.textArea}
-            />
-          </div>
-          <button
-            type='submit'
-            className={textStyles.linkBlockChartreuse}>
-            Send
-          </button>
-        </form>
+        <div className={textStyles.lightWeight}>
+          <p className={textStyles.paragraphXs}>YOURHEAD | Tanner Lemon</p>
+          <p className={textStyles.paragraphXxs}>Anderson, IN</p>
+          <br />
+          <p className={textStyles.paragraphXxs}>yourheadisourhead.com</p>
+          <p className={textStyles.paragraphXxs}>
+            tanner@yourheadisourhead.com
+          </p>
+          <p className={textStyles.paragraphXxs}>+1 (765) 313-6929</p>
+        </div>
       </div>
     </div>
   );

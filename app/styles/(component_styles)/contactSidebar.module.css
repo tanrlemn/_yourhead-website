@@ -5,13 +5,12 @@
   align-items: flex-start;
   transition: all 0.5s ease-in-out;
   z-index: 10000;
-  background: var(--blue-light);
-  padding: 3em 2em;
+  background: var(--blue-lightest);
+  padding: 6em 4em 3em 3em;
   min-height: 100vh;
-  max-width: 33.33vw;
+  max-width: 40vw;
   display: flex;
   flex-flow: column nowrap;
-  border-left: var(--green-light-border-lg);
 }
 
 .formGroup {

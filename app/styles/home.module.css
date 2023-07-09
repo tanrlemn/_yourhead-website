@@ -4,66 +4,41 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
-  background: var(--green-teal-mid-dark);
-  color: #fff;
+  color: var(--green-dark);
 }
 
 .heroWrapper {
   width: 100%;
   z-index: 2;
   display: flex;
-  padding: 30px;
+  padding: 5em 3em;
   min-height: 100%;
 }
 
 .heroContent {
-  padding-right: 4em;
-  min-width: 45%;
-  max-width: 50%;
+  padding-right: 3em;
+  min-width: 40%;
+  max-width: 45%;
   min-height: 100%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   font-size: 1em;
+  color: var(--medium-gray);
 }
 .heroButtonsWrap {
   display: flex;
-  align-items: center;
+  flex-flow: column nowrap;
   width: 100%;
-}
-.linkBlockChartreuse {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 32px;
-  background: var(--chartreuse);
-  border-radius: 100px;
-  color: var(--green-dark);
-  max-width: fit-content;
-}
-.linkBlockWhite {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 9px 3px;
-  margin-left: 20px;
-  color: #fff;
-  max-width: fit-content;
-  box-shadow: var(--light-gray-link-shadow);
-  transition: box-shadow 0.2s ease-in-out;
-}
-.linkBlockWhite:hover {
-  box-shadow: var(--light-hover-shadow);
-}
-.buttonLabel {
-  margin-right: 5px;
 }
 
 .heroImageGrid {
-  background-color: var(--green-teal-mid);
+  background-color: #fff;
+  border: var(--green-teal-mid-border);
   min-height: 100%;
   border-radius: 10px;
-  margin-right: -10em;
+  max-width: 60%;
+  border-radius: 9px;
 }
 
 .heroRail {
@@ -73,23 +48,12 @@
 }
 
 .imageFrameSquare {
-  max-width: 35em;
-  max-height: 35em;
   object-fit: cover;
   overflow: hidden;
 }
 
 .imageFrameSquare:first-child {
-  padding-right: 0.7em;
-}
-
-.greenTag {
-  background: var(--green-mid);
-  padding: 7px 20px;
-  max-width: fit-content;
-  border-radius: 100px;
-  margin-bottom: 2em;
-  text-transform: uppercase;
+  margin-right: 0.7em;
 }
 
 @media screen and (max-width: 950px) {
@@ -110,7 +74,6 @@
     margin-bottom: 50px;
   }
   .heroImageGrid {
-    background-color: var(--green-teal-mid);
     min-height: 100%;
     border-radius: 10px;
     margin-right: 0;
