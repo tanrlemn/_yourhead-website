@@ -29,4 +29,8 @@
     margin-left: 0;
     flex-wrap: wrap;
   }
+
+  .downloadLink {
+    position: static;
+  }
 }

@@ -8,11 +8,16 @@ import spacingStyles from '@/app/styles/spacing.module.css';
 // images
 const images = require.context('@/public/images/selectedWorks');
 
+// hooks
+import { useIsMobile } from '@/app/api/hooks/useIsMobile';
+
 // components
 import { Masonry } from '@mui/lab';
 import Image from 'next/image';
 
 export default function Recents() {
+  const isMobile = useIsMobile();
+
   function shuffle(array) {
     let currentIndex = array.length,
       randomIndex;
@@ -38,6 +43,7 @@ export default function Recents() {
   const squareImage = {
     objectFit: 'contain',
     height: '100%',
+    width: '100%',
   };
 
   const backgrounds = [
@@ -68,7 +74,7 @@ export default function Recents() {
       <div className={styles.projectsWrap}>
         <div className={styles.imagesWrap}>
           <Masonry
-            columns={3}
+            columns={isMobile ? 1 : 3}
             spacing={0}
             style={{ alignContent: 'center' }}>
             {imageList.map((image, index) => {
