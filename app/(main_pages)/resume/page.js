@@ -5,13 +5,38 @@ import styles from './resume.module.css';
 import textStyles from '../../styles/text.module.css';
 import spacingStyles from '../../styles/spacing.module.css';
 
+// images
+import { BsArrowDown } from 'react-icons/bs';
+
 // components
 import ExperienceCard from '../../components/experienceCard';
+import Link from 'next/link';
 
-export default function About() {
+export default function Resume() {
+  const downloadFile = () => {
+    fetch('resume.pdf').then((response) => {
+      response.blob().then((blob) => {
+        const fileURL = window.URL.createObjectURL(blob);
+
+        let alink = document.createElement('a');
+        alink.href = fileURL;
+        alink.download = 'resume.pdf';
+        alink.click();
+      });
+    });
+  };
   return (
     <main className={styles.main}>
       <div className={styles.experienceWrap}>
+        <div className={styles.downloadLink}>
+          <Link
+            href={'/files/resume.pdf'}
+            target='_blank'
+            className={textStyles.linkBlockBlack}>
+            <div className={textStyles.buttonLabel}>Download</div>
+            <BsArrowDown />
+          </Link>
+        </div>
         <div className={styles.flexTitle}>
           <div className={spacingStyles.blockDividerBlue}></div>
           <h2 className={textStyles.headingMd}>Experience & Awards</h2>

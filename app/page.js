@@ -10,9 +10,6 @@ import { BsArrowRight } from 'react-icons/bs';
 import owner from '@/public/images/selectedWorks/owner.webp';
 import bliss from '@/public/images/selectedWorks/bliss.webp';
 
-// context
-import { LoadingContext } from './context/loadingContext';
-
 // hooks
 import { useEffect, useState, useContext } from 'react';
 import { useIsMobile } from './api/hooks/useIsMobile';
@@ -22,8 +19,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Home() {
-  const { loading } = useContext(LoadingContext);
-
   const mobile = useIsMobile();
   const [imgMax, setImgMax] = useState(!mobile ? '100%' : 35);
   const [imgMin, setImgMin] = useState(!mobile ? '100%' : 25);

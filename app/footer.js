@@ -5,9 +5,6 @@ import navStyles from './styles/nav.module.css';
 import textStyles from './styles/text.module.css';
 import spacingStyles from './styles/spacing.module.css';
 
-// files
-import resume from '@/public/files/resume.pdf';
-
 // context
 import { LoadingContext } from './context/loadingContext';
 
@@ -19,19 +16,6 @@ import Link from 'next/link';
 
 export default function Footer({ setShowContactBar }) {
   const { loading } = useContext(LoadingContext);
-
-  const downloadFile = () => {
-    fetch(resume).then((response) => {
-      response.blob().then((blob) => {
-        const fileURL = window.URL.createObjectURL(blob);
-
-        let alink = document.createElement('a');
-        alink.href = fileURL;
-        alink.download = resume;
-        alink.click();
-      });
-    });
-  };
 
   return (
     <>
@@ -52,11 +36,10 @@ export default function Footer({ setShowContactBar }) {
                 <div className={textStyles.footerHeading}>The Artist</div>
                 <ul className={navStyles.footerList}>
                   <li className={navStyles.footerLink}>
-                    <Link href='/resume'>Resume</Link>
-                  </li>
-
-                  <li className={navStyles.footerLink}>
                     <Link href='/selected-works'>Selected works</Link>
+                  </li>{' '}
+                  <li className={navStyles.footerLink}>
+                    <Link href='/resume'>Resume</Link>
                   </li>
                   <li className={navStyles.footerLink}>
                     <div

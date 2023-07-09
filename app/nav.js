@@ -9,7 +9,6 @@ import { CgMenuRight } from 'react-icons/cg';
 
 // context
 import { LoadingContext } from './context/loadingContext';
-import { CartContext } from './context/cartContext';
 import { ContactContext } from './context/contactContext';
 
 // hooks
@@ -23,7 +22,6 @@ import Link from 'next/link';
 import ContactBar from './components/contactSidebar';
 
 export default function Nav() {
-  const { cart, numCartItems } = useContext(CartContext);
   const { loading, setLoading } = useContext(LoadingContext);
   const { showContactBar, setShowContactBar } = useContext(ContactContext);
 
@@ -41,7 +39,7 @@ export default function Nav() {
     setTimeout(() => {
       setLoading(false);
     }, randomTime);
-  }, [pathname, searchParams, isMobile, numCartItems, cart, setLoading]);
+  }, [pathname, searchParams, isMobile, setLoading]);
 
   // styles
 
