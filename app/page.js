@@ -31,6 +31,8 @@ export default function Home() {
   const squareImage = {
     objectFit: 'cover',
     borderRadius: '9px',
+    height: mobile ? imgMax : 'auto',
+    width: mobile ? imgMin : 'auto',
   };
 
   return (
@@ -39,9 +41,7 @@ export default function Home() {
         <div className={styles.heroContent}>
           <h1 className={textStyles.headingXl}>artist.</h1>
           <div className={spacingStyles.bottomTopMarginLg}>
-            <p className={textStyles.paragraphMain}>
-              YOURHEAD primarily focuses on painting portraits in oil.
-            </p>
+            <p className={textStyles.paragraphMain}>YOURHEAD</p>
           </div>
           <div className={styles.heroButtonsWrap}>
             <div className={spacingStyles.bottomMarginSm}>

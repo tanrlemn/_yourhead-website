@@ -6,7 +6,10 @@ import textStyles from '@/app/styles/text.module.css';
 import spacingStyles from '@/app/styles/spacing.module.css';
 
 // images
-const images = require.context('@/public/images/selectedWorks');
+// const images = require.context('@/public/images/selectedWorks');
+
+// constants
+import { works } from '@/app/constants/works';
 
 // hooks
 import { useIsMobile } from '@/app/api/hooks/useIsMobile';
@@ -14,31 +17,12 @@ import { useIsMobile } from '@/app/api/hooks/useIsMobile';
 // components
 import { Masonry } from '@mui/lab';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Recents() {
   const isMobile = useIsMobile();
 
-  function shuffle(array) {
-    let currentIndex = array.length,
-      randomIndex;
-
-    // While there remain elements to shuffle.
-    while (currentIndex != 0) {
-      // Pick a remaining element.
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
-    }
-
-    return array;
-  }
-
-  const imageList = shuffle(images.keys()).map((image) => images(image));
+  // const imageList = shuffle(images.keys()).map((image) => images(image));
 
   const squareImage = {
     objectFit: 'contain',
@@ -77,20 +61,22 @@ export default function Recents() {
             columns={isMobile ? 1 : 3}
             spacing={0}
             style={{ alignContent: 'center' }}>
-            {imageList.map((image, index) => {
+            {works.map((work, index) => {
               return (
-                <div
+                <Link
+                  href={`/works/${work.slug}`}
                   key={index}
+                  currentWork={work}
                   className={styles.imageWrap}
                   style={{ background: backgrounds[index % 4] }}>
                   <Image
-                    src={image}
-                    alt='painting'
+                    src={work.image}
+                    alt={work.title}
                     width={300}
                     height={450}
                     style={squareImage}
                   />
-                </div>
+                </Link>
               );
             })}
           </Masonry>
@@ -98,4 +84,24 @@ export default function Recents() {
       </div>
     </main>
   );
+}
+
+function shuffle(array) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
 }
