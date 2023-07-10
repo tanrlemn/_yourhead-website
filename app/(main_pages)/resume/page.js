@@ -26,7 +26,7 @@ export default function Resume() {
           <h2 className={textStyles.headingMd}>Experience & Awards</h2>
           <div className={spacingStyles.topMarginMd}>
             <h3 className={textStyles.headingXxs}>
-              Born in 1992 in Canton, Ohio <br />
+              YOURHEAD – Born in 1992 in Canton, Ohio <br />
             </h3>
           </div>
           <div className={spacingStyles.bottomTopMarginSm}>

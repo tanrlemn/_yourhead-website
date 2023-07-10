@@ -1,0 +1,23 @@
+.heroContent {
+  display: flex;
+  justify-content: center;
+  padding: 7em 2em;
+  position: relative;
+  min-height: 90vh;
+}
+
+.imageWrap {
+  margin-right: 3em;
+}
+
+@media screen and (max-width: 1090px) {
+  .heroContent {
+    flex-direction: column;
+    padding: 7em 1em;
+  }
+
+  .imageWrap {
+    margin-right: 0 !important;
+    margin-bottom: 2em;
+  }
+}

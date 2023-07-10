@@ -201,7 +201,6 @@
   }
 
   .mobileMenuIcon {
-    filter: invert(1) sepia(1) saturate(1) hue-rotate(180deg);
     width: 20px;
     height: 20px;
     margin-left: 10px;
