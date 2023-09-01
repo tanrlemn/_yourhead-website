@@ -191,7 +191,6 @@ export default function About() {
                 location: 'Bloomington, IN',
                 checkItems: [
                   'Created and released  a 4-song EP accompanied by a music video',
-                  'Performed at 10+ venues in Indiana',
                   'Received a $2,000 grant to fund the project',
                   'Received mentorship from a professional musician',
                 ],

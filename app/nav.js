@@ -137,14 +137,7 @@ export default function Nav() {
                   className={isMobile ? navStyles.navLink : nav.link}>
                   Home
                 </Link>
-                {/* <Link
-                  onClick={() => {
-                    setOpenMenu(false);
-                  }}
-                  href='/painting-real-people'
-                  className={isMobile ? navStyles.navLink : nav.link}>
-                  Painting Real People
-                </Link> */}
+
                 <Link
                   onClick={() => {
                     setOpenMenu(false);
@@ -186,20 +179,18 @@ export default function Nav() {
                   Contact
                 </div>
               </div>
-              {/* <div className={navStyles.navButtonsWrap}>
-                    <div className={spacingStyles.rightPaddingXs}>
-                      <Link
-                        href='/auth/login'
-                        className={textStyles.linkBlockWhiteOutline}>
-                        Log in
-                      </Link>
-                    </div>
-                    <Link
-                      href='/auth/signup'
-                      className={textStyles.linkBlockChartreuse}>
-                      <div className={navStyles.buttonLabel}>Sign up</div>
-                    </Link>
-                  </div> */}
+              <div className={navStyles.navButtonsWrap}>
+                <div className={spacingStyles.rightPaddingXs}>
+                  <Link
+                    onClick={() => {
+                      setOpenMenu(false);
+                    }}
+                    href='/museum'
+                    className={textStyles.linkBlockChartreuse}>
+                    Rent a Painting
+                  </Link>
+                </div>
+              </div>
 
               {!isMobile && (
                 <div className={navStyles.cartWrap}>
@@ -212,7 +203,13 @@ export default function Nav() {
                     <Image
                       src={bag}
                       alt='cart'
-                      style={!nav.shop ? whiteBagStyle : null}
+                      style={
+                        openMenu
+                          ? whiteBagStyle
+                          : !nav.shop
+                          ? whiteBagStyle
+                          : null
+                      }
                     />
                   </Link>
                 </div>
@@ -231,7 +228,9 @@ export default function Nav() {
               <Image
                 src={bag}
                 alt='cart'
-                style={!nav.shop ? whiteBagStyle : null}
+                style={
+                  openMenu ? whiteBagStyle : !nav.shop ? whiteBagStyle : null
+                }
               />
             </Link>
           </div>

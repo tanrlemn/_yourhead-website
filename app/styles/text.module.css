@@ -394,6 +394,12 @@
   cursor: pointer;
 }
 
+.link {
+  text-decoration: underline;
+  color: var(--green-mid-dark);
+  cursor: pointer;
+}
+
 .label {
   font-weight: 500;
   font-size: 0.8em;
