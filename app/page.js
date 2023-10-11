@@ -1,150 +1,160 @@
 'use client';
 
-// styles
-import styles from './styles/home.module.css';
-import textStyles from './styles/text.module.css';
-import spacingStyles from './styles/spacing.module.css';
-
 // images
-import { BsArrowRight } from 'react-icons/bs';
-// paintingRealPeople
 import whalerider from '@/public/images/paintingRealPeople/whalerider.webp';
 import donut from '@/public/images/paintingRealPeople/donut.webp';
-// findingYourhead
 import owner from '@/public/images/findingYourhead/owner.webp';
 import bliss from '@/public/images/findingYourhead/bliss.webp';
-import textBurst from '@/public/icons/textBurst.svg';
 
 // context
-import { LoadingContext } from './context/loadingContext';
+import { LoadingContext } from '@/app/lib/providers/LoadingProvider';
 
 // hooks
-import { useEffect, useState, useContext } from 'react';
-import { useIsMobile } from './api/hooks/useIsMobile';
+import { useContext, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useIsMobile } from '@/app/lib/hooks/useIsMobile';
 
 // components
-import Image from 'next/image';
-import LoadingDiv from './components/loadingDiv';
-import Link from 'next/link';
+import {
+  Heading,
+  Text,
+  Flex,
+  Image,
+  Link,
+  Stack,
+  Button,
+  Skeleton,
+} from '@chakra-ui/react';
+import { ArrowForwardIcon } from '@chakra-ui/icons';
+
+// local components
+import LoadingDiv from '@/app/_components/loadingDiv';
 
 export default function Home() {
-  const { loading } = useContext(LoadingContext);
-
-  const mobile = useIsMobile();
-  const [imgMax, setImgMax] = useState(!mobile ? '100%' : '35em');
-  const [imgMin, setImgMin] = useState(!mobile ? '100%' : '25em');
+  const { loading, setLoading } = useContext(LoadingContext);
+  const router = useRouter();
 
   useEffect(() => {
-    setImgMax(mobile ? '100%' : '35em');
-    setImgMin(mobile ? '100%' : '25em');
-  }, [mobile]);
+    setLoading(false);
+  }, [setLoading]);
 
-  const squareImage = {
-    maxWidth: imgMax,
-    maxHeight: imgMax,
-    minWidth: imgMin,
-    minHeight: '100%',
-    borderRadius: '10px',
-    margin: '5px',
-    objectFit: 'cover',
-    objectPosition: '50% 20%',
-  };
-
-  const burstPadding = mobile ? '0 0.4em 0.4em 0' : '0 0.3em 0.3em 0';
-
-  const burst = {
-    backgroundImage: `url(${textBurst.src})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'bottom right',
-    padding: burstPadding,
-  };
-
-  const buttonStyle = {
-    minWidth: '50%',
-    maxWidth: '50%',
-  };
+  const mobile = useIsMobile();
 
   return (
-    <main className={styles.main}>
-      <div className={styles.heroWrapper}>
-        <div className={styles.heroContent}>
-          {!loading && <LoadingDiv />}
-          <h1 className={textStyles.headingXl}>
-            <span
-              className={textStyles.textBurst}
-              style={burst}>
-              Painting
-              <br />
-            </span>{' '}
-            real <br />
-            people.
-          </h1>
-          <div className={spacingStyles.bottomTopMarginLg}>
-            <p className={textStyles.paragraphMain}>
-              We could pretend that we don&apos;t know each other, that we
-              aren&apos;t real. But maybe let&apos;s paint portraits just to
-              make sure.
-            </p>
-          </div>
-          <div className={styles.heroButtonsWrap}>
-            <Link
-              href='/shop'
-              className={textStyles.linkBlockChartreuse}
-              style={buttonStyle}>
-              <div className={textStyles.buttonLabel}>View shop</div>
-              <BsArrowRight />
-            </Link>
-            <Link
-              href='/about'
-              className={textStyles.linkBlockWhite}>
-              <div className={textStyles.buttonLabel}>Learn more</div>
-              <BsArrowRight />
-            </Link>
-          </div>
-        </div>
-        <div className={styles.heroImageGrid}>
-          <div className={styles.heroRail}>
-            <div className={styles.imageFrameSquare}>
-              <Image
-                src={donut}
-                height={300}
-                width={300}
-                style={squareImage}
-                alt='Donut painting'
-              />
-            </div>
-            <div className={styles.imageFrameSquare}>
-              <Image
-                src={bliss}
-                height={300}
-                width={300}
-                style={squareImage}
-                alt='Bliss painting'
-              />
-            </div>
-          </div>
-          <div className={styles.heroRail}>
-            <div className={styles.imageFrameSquare}>
-              <Image
-                src={owner}
-                height={300}
-                width={300}
-                style={squareImage}
-                alt='Owner painting'
-              />
-            </div>
-            <div className={styles.imageFrameSquare}>
-              <Image
-                src={whalerider}
-                height={300}
-                width={300}
-                style={squareImage}
-                alt='Whalerider painting'
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
+    <Flex
+      color={'var(--white)'}
+      align={'center'}
+      background={'var(--darkGreen)'}>
+      <Stack
+        maxW={{ base: '100%', md: '500px' }}
+        p={'2rem'}
+        mb={'4rem'}>
+        {!loading && <LoadingDiv />}
+        <Heading
+          size={'4xl'}
+          fontWeight={800}>
+          artist.
+        </Heading>
+        <Text mb={'1rem'}>
+          We could pretend that we don&apos;t know each other, that we
+          aren&apos;t real. But maybe let&apos;s paint portraits just to make
+          sure.
+        </Text>
+        <Flex>
+          <Button
+            _hover={{
+              outline: '1px solid var(--lightOrange, #F8AD4F)',
+              borderRadius: 'var(--mainBorderRadius)',
+            }}
+            onClick={() => router.push('/shop')}
+            mr={'1rem'}
+            rightIcon={<ArrowForwardIcon />}
+            background={'var(--lightGreen)'}>
+            View shop
+          </Button>
+          <Button
+            onClick={() => router.push('/about')}
+            _hover={{
+              outline: '1px solid var(--lightOrange, #F8AD4F)',
+              borderRadius: 'var(--mainBorderRadius)',
+            }}
+            variant={'ghost'}
+            color={'var(--chartreuse-lightest)'}>
+            Learn more
+          </Button>
+        </Flex>
+      </Stack>
+      <Stack
+        m={'1rem'}
+        mr={'-7rem'}
+        background={'var(--greenGray)'}
+        p={'1rem'}
+        borderRadius={'9px'}>
+        <Flex mb={'0.5rem'}>
+          <Skeleton
+            isLoaded={!loading}
+            mr={'1rem'}
+            h={{ base: '100%', md: '17rem' }}
+            w={{ base: '100%', md: '22rem' }}>
+            <HeroImage
+              src={donut.src}
+              alt='Donut painting'
+              mr={'1rem'}
+            />
+          </Skeleton>
+          <Skeleton
+            isLoaded={!loading}
+            h={{ base: '100%', md: '17rem' }}
+            w={{ base: '100%', md: '22rem' }}>
+            <HeroImage
+              src={bliss.src}
+              alt='Bliss painting'
+              mr={'0'}
+            />
+          </Skeleton>
+        </Flex>
+        <Flex>
+          <Skeleton
+            mr={'1rem'}
+            isLoaded={!loading}
+            h={{ base: '100%', md: '17rem' }}
+            w={{ base: '100%', md: '22rem' }}>
+            <HeroImage
+              src={owner.src}
+              alt='Owner painting'
+              mr={'1rem'}
+            />
+          </Skeleton>
+          <Skeleton
+            isLoaded={!loading}
+            h={{ base: '100%', md: '17rem' }}
+            w={{ base: '100%', md: '22rem' }}>
+            <HeroImage
+              src={whalerider.src}
+              alt='Whalerider painting'
+              mr={'0'}
+            />
+          </Skeleton>
+        </Flex>
+      </Stack>
+    </Flex>
+  );
+}
+
+export function HeroImage({ mr, ...props }) {
+  return (
+    <Flex
+      alignItems={'center'}
+      overflow={'hidden'}
+      mr={mr}
+      borderRadius={'9px'}
+      maxH={{ base: '100%', md: '17rem' }}
+      w={{ base: '100%', md: '22rem' }}
+      maxW={{ base: '100%', md: '22rem' }}>
+      <Image
+        {...props}
+        pt={'20%'}
+      />
+    </Flex>
   );
 }

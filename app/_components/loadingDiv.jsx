@@ -1,6 +1,6 @@
 'use client';
 
-export default function Loading() {
+export default function LoadingDiv() {
   return (
     <>
       <div>
