@@ -1,14 +1,7 @@
 'use client';
 
-// styles
-import styles from './shop.module.css';
-import textStyles from '@/app/styles/text.module.css';
-
-// apis
-import { supabase } from '@/app/api/db/getSupabase';
-
 // hooks
-import { useEffect, useState, cache } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 // components
@@ -16,84 +9,63 @@ import ProductCard from '@/app/_components/products/productCard';
 
 export default function Shop() {
   const searchParams = useSearchParams();
-  const [supabaseProducts, setSupabaseProducts] = useState(null);
+  const [products, setProducts] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState(null);
-  const [supabaseProductTypes, setSupabaseProductTypes] = useState(null);
-  const [supabaseCollections, setSupabaseCollections] = useState(null);
+  const [productTypes, setProductTypes] = useState(null);
+  const [collections, setCollections] = useState(null);
 
-  const [currentCategoryText, setCurrentCategoryText] = useState(
-    'The Official YOURHEAD Shop'
-  );
+  const categoryText = {
+    all: 'Shop All YOURHEAD',
+    prints: 'Fine Art Prints',
+    originals: 'Original Paintings by YOURHEAD',
+    sale: 'Sale Items',
+    default: 'The Official YOURHEAD Shop',
+  };
+
   const [currentCategory, setCurrentCategory] = useState(null);
 
   useEffect(() => {
     const category = searchParams.get('category');
-    if (category === null) {
-      setCurrentCategoryText('The Official YOURHEAD Shop');
-    } else {
-      switch (category) {
-        case 'all':
-          setCurrentCategoryText('Shop All YOURHEAD');
-          break;
-        case 'prints':
-          setCurrentCategoryText('Fine Art Prints');
-          break;
-        case 'originals':
-          setCurrentCategoryText('Original Paintings by YOURHEAD');
-          break;
-        case 'apparel':
-          setCurrentCategoryText('YOURHEAD Apparel');
-          break;
-        case 'music':
-          setCurrentCategoryText('YOURHEAD Music');
-          break;
-        case 'sale':
-          setCurrentCategoryText('Sale Items');
-          break;
-        default:
-          setCurrentCategoryText('The Official YOURHEAD Shop');
-          break;
-      }
-    }
     setCurrentCategory(category);
 
-    const getSupabase = async (table) => {
-      const res = await supabase(table);
-
-      if (table === 'products') {
-        setSupabaseProducts(res);
-      }
-      if (table === 'collection_types') {
-        setSupabaseCollections(res);
-      }
-      if (table === 'product_types') {
-        setSupabaseProductTypes(res);
-      }
+    const getProducts = async () => {
+      const res = await fetch('/api/supabase/getProducts');
+      const data = await res.json();
+      setProducts(data.products);
+      console.log('products', data.products);
     };
 
-    if (supabaseProducts === null) {
-      cache(getSupabase('products'));
+    const getCollections = async () => {
+      const res = await fetch('/api/supabase/getCollections');
+      const data = await res.json();
+      setCollections(data[0]);
+    };
+
+    const getProductTypes = async () => {
+      const res = await fetch('/api/supabase/getProductTypes');
+      const data = await res.json();
+      setProductTypes(data[0]);
+    };
+
+    if (products === null) {
+      getProducts();
     }
-    if (supabaseCollections === null) {
-      cache(getSupabase('collection_types'));
+    if (collections === null) {
+      // getCollections();
     }
-    if (supabaseProductTypes === null) {
-      cache(getSupabase('product_types'));
+    if (productTypes === null) {
+      // getProductTypes();
     }
 
-    if (
-      supabaseProducts !== null &&
-      supabaseCollections !== null &&
-      supabaseProductTypes !== null
-    ) {
+    if (products !== null && collections !== null && productTypes !== null) {
       setFilteredProducts(
-        supabaseProducts.filter((product) => {
+        products.filter((product) => {
           if (currentCategory === 'all' || currentCategory === null)
             return true;
           if (currentCategory === 'sale') {
             return product.on_sale;
           }
-          const productType = supabaseProductTypes.find(
+          const productType = productTypes.find(
             (type) => type.product_type === currentCategory
           );
 
@@ -102,29 +74,30 @@ export default function Shop() {
       );
     }
   }, [
-    supabaseProducts,
-    supabaseCollections,
-    supabaseProductTypes,
+    products,
+    filteredProducts,
+    productTypes,
+    collections,
     searchParams,
     currentCategory,
   ]);
 
   return (
-    <div className={styles.shopWrap}>
-      {supabaseProducts !== null &&
-        supabaseCollections !== null &&
-        supabaseProductTypes !== null &&
+    <div>
+      {products !== null &&
+        collections !== null &&
+        productTypes !== null &&
         filteredProducts !== null && (
-          <div className={styles.shopBody}>
-            <div className={styles.shopHeader}>
-              <div className={textStyles.headingSm}>{currentCategoryText}</div>
-              <div className={styles.productCount}>
+          <div>
+            <div>
+              <div>{categoryText[currentCategory]}</div>
+              <div>
                 {filteredProducts.length === 1
                   ? `${filteredProducts.length} product`
                   : `${filteredProducts.length} products`}
               </div>
             </div>
-            <div className={styles.productsWrap}>
+            <div>
               {filteredProducts.map((product, i) => {
                 return (
                   <ProductCard

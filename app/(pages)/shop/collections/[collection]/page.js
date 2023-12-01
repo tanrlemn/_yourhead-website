@@ -1,12 +1,8 @@
 'use client';
 
-// styles
-import styles from '../../shop.module.css';
-import textStyles from '@/app/styles/text.module.css';
-
 // apis
-import { supabase } from '@/app/api/db/getSupabase';
-import { supabaseCollection } from '@/app/api/db/supabaseCollection';
+import { supabase } from '@/app/api/supabase/getSupabase';
+import { supabaseCollection } from '@/app/api/supabase/supabaseCollection';
 
 // hooks
 import { useEffect, useState } from 'react';
@@ -72,18 +68,18 @@ export default function Collection({ params }) {
   }, [filteredProducts, currentCollection, collection]);
 
   return (
-    <div className={styles.shopWrap}>
+    <div>
       {currentCollection !== null && filteredProducts !== null && (
-        <div className={styles.shopBody}>
-          <div className={styles.shopHeader}>
-            <div className={textStyles.headingSm}>{collectionName}</div>
-            <div className={styles.productCount}>
+        <div>
+          <div>
+            <div>{collectionName}</div>
+            <div>
               {filteredProducts.length === 1
                 ? `${filteredProducts.length} product`
                 : `${filteredProducts.length} products`}
             </div>
           </div>
-          <div className={styles.productsWrap}>
+          <div>
             {filteredProducts.map((product, i) => {
               console.log(currentCollection);
               return (

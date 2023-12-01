@@ -8,7 +8,7 @@ import { useState, Suspense } from 'react';
 
 // components
 import Image from 'next/image';
-import LoadingDiv from '../loadingDiv';
+import LoadingDiv from '../../components/loadingDiv';
 
 export default function ProductImages({ product, collection }) {
   const [currentImage, setCurrentImage] = useState(product.main_image);

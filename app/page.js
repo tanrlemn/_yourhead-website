@@ -7,7 +7,7 @@ import owner from '@/public/images/findingYourhead/owner.webp';
 import bliss from '@/public/images/findingYourhead/bliss.webp';
 
 // context
-import { LoadingContext } from '@/app/lib/providers/LoadingProvider';
+import { LoadingContext } from '@/app/lib/context/LoadingProvider';
 
 // hooks
 import { useContext, useEffect } from 'react';
@@ -26,9 +26,6 @@ import {
   Skeleton,
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
-
-// local components
-import LoadingDiv from '@/app/_components/loadingDiv';
 
 export default function Home() {
   const { loading, setLoading } = useContext(LoadingContext);
@@ -49,7 +46,6 @@ export default function Home() {
         maxW={{ base: '100%', md: '500px' }}
         p={'2rem'}
         mb={'4rem'}>
-        {!loading && <LoadingDiv />}
         <Heading
           size={'4xl'}
           fontWeight={800}>

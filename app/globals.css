@@ -15,6 +15,7 @@
   --blackAlt: #161616;
 
   /* Greens */
+  --lightestGreen: #e6f2e8;
   --lighterGreen: #dbf1df;
   --lightGreen: #b6e8be;
   --lightGreen50: #b0eab980;
@@ -44,6 +45,7 @@
   --darkestBlue90: #071a35d3;
 
   /* Purples */
+  --lighterPurpleGray: #efe4f4;
   --lightPurpleGray: #e0c8ea;
   --midPurpleGray: #c5a9d1;
   --purple: #9747ff;
@@ -77,7 +79,7 @@
   --darkerOrange: #9e3a18;
 
   /* Borders */
-  --mainBorderRadius: 0.5625rem 0.5625rem 0.5625rem 0rem;
+  --mainBorderRadius: 0.2rem;
   --topLeftBorderRadius: 0rem 0.5625rem 0.5625rem 0.5625rem;
   /* colors */
   /* green */

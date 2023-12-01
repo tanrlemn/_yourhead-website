@@ -1,15 +1,10 @@
 'use client';
 
-// styles
-import styles from '@/app/styles/(component_styles)/checkoutForm.module.css';
-import textStyles from '@/app/styles/text.module.css';
-import spacingStyles from '@/app/styles/spacing.module.css';
-
 // api
 import { createCheckoutSession } from '@/app/api/checkout/checkoutSession';
 
 // context
-import { CartContext } from '@/app/lib/providers/CartProvider';
+import { CartContext } from '@/app/lib/context/CartProvider';
 import { LoadingContext } from '@/app/context/loadingContext';
 
 // hooks
@@ -89,58 +84,36 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form
-      onSubmit={(e) => handleCheckout(e)}
-      className={styles.checkoutForm}>
-      <div className={spacingStyles.bottomPaddingSm}>
-        <h1 className={textStyles.headingXs}>Order Summary</h1>
+    <form onSubmit={(e) => handleCheckout(e)}>
+      <div>
+        <h1>Order Summary</h1>
       </div>
       {subtotal !== null &&
         tax !== null &&
         shipping !== null &&
         cartTotal !== null && (
-          <section className={styles.summayWrap}>
-            <div className={styles.priceWrap}>
-              <div className={styles.priceLine}>
-                <p className={textStyles.paragraphXxs}>Subtotal</p>
-                <p
-                  className={textStyles.paragraphXxs}
-                  style={alignRight}>
-                  {`$${subtotal.toFixed(2)}`}
-                </p>
+          <section>
+            <div>
+              <div>
+                <p>Subtotal</p>
+                <p style={alignRight}>{`$${subtotal.toFixed(2)}`}</p>
               </div>
-              <div className={styles.priceLine}>
-                <p className={textStyles.paragraphXxs}>Shipping</p>
-                <p
-                  className={textStyles.paragraphXxs}
-                  style={alignRight}>
+              <div>
+                <p>Shipping</p>
+                <p style={alignRight}>
                   {shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}
                 </p>
               </div>
-              <div className={styles.priceLine}>
-                <p className={textStyles.paragraphXxs}>Estimated Tax</p>
-                <p
-                  className={textStyles.paragraphXxs}
-                  style={alignRight}>
-                  {`$${tax.toFixed(2)}`}
-                </p>
+              <div>
+                <p>Estimated Tax</p>
+                <p style={alignRight}>{`$${tax.toFixed(2)}`}</p>
               </div>
-              <div
-                className={styles.priceLine}
-                style={{ fontWeight: 600, color: 'var(--darkest-gray)' }}>
-                <p className={textStyles.paragraphXxs}>Total</p>
-                <p
-                  className={textStyles.paragraphXxs}
-                  style={alignRight}>
-                  {`$${cartTotal.total.toFixed(2)}`}
-                </p>
+              <div style={{ fontWeight: 600, color: 'var(--darkest-gray)' }}>
+                <p>Total</p>
+                <p style={alignRight}>{`$${cartTotal.total.toFixed(2)}`}</p>
               </div>
             </div>
-            <button
-              type='submit'
-              className={textStyles.linkBlockGreen}>
-              Proceed to Checkout
-            </button>
+            <button type='submit'>Proceed to Checkout</button>
           </section>
         )}
     </form>

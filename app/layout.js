@@ -1,32 +1,83 @@
 import '@/app/globals.css';
 
-// providers
-import { ThemeProvider } from './lib/providers/ThemeProvider';
-import { LoadingProvider } from './lib/providers/LoadingProvider';
-import { ScaleProvider } from './lib/providers/ScaleProvider';
-import { ContactProvider } from './lib/providers/ContactProvider';
+import dynamic from 'next/dynamic';
 
-// components
-import Navbar from './_navigation/navbar';
+// providers
+import { ThemeProvider } from './lib/context/ThemeProvider';
+import { LoadingProvider } from './lib/context/LoadingProvider';
+import { ScaleProvider } from './lib/context/ScaleProvider';
+import { ContactProvider } from './lib/context/ContactProvider';
+import { SessionProvider } from './lib/context/SessionProvider';
+
+// local components
 import Footer from './_navigation/footer';
-import Loading from './loading';
 
 // font
 import { Sofia_Sans } from 'next/font/google';
 const sofiaSans = Sofia_Sans({ subsets: ['latin'] });
 
-export default function RootLayout({ children }) {
+const Navbar = dynamic(() => import('./_navigation/navbar'), {
+  ssr: false,
+});
+
+const APP_NAME = 'YOURHEAD';
+const APP_DEFAULT_TITLE = 'YOURHEAD – Oil Painter';
+const APP_TITLE_TEMPLATE = '%s - YOURHEAD';
+const APP_DESCRIPTION =
+  'YOURHEAD is a painter and innovator, offering a unique style and approach to all aspects of life.';
+
+// metadata
+export const metadata = {
+  metadataBase: new URL('https://yourheadisourhead.com/'),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en-US': '/en-US',
+    },
+  },
+  applicationName: APP_NAME,
+  title: {
+    default: APP_DEFAULT_TITLE,
+    template: APP_TITLE_TEMPLATE,
+  },
+  description: APP_DESCRIPTION,
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    siteName: APP_NAME,
+    title: {
+      default: APP_DEFAULT_TITLE,
+      template: APP_TITLE_TEMPLATE,
+    },
+    description: APP_DESCRIPTION,
+    images: '/images/og-image.png',
+  },
+  twitter: {
+    card: 'summary',
+    title: {
+      default: APP_DEFAULT_TITLE,
+      template: APP_TITLE_TEMPLATE,
+    },
+    description: APP_DESCRIPTION,
+  },
+};
+
+export default async function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={sofiaSans.className}>
         <LoadingProvider>
           <ScaleProvider>
             <ThemeProvider>
-              <ContactProvider>
-                <Navbar />
-                {children}
-                <Footer />
-              </ContactProvider>
+              <SessionProvider>
+                <ContactProvider>
+                  <Navbar />
+                  {children}
+                  <Footer />
+                </ContactProvider>
+              </SessionProvider>
             </ThemeProvider>
           </ScaleProvider>
         </LoadingProvider>

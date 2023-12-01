@@ -7,7 +7,7 @@ import spacingStyles from '../styles/spacing.module.css';
 import 'react-slideshow-image/dist/styles.css';
 
 // context
-import { CartContext } from '@/app/lib/providers/CartProvider';
+import { CartContext } from '@/app/lib/context/CartProvider';
 // hooks
 import { useState, useContext, useEffect } from 'react';
 import { useIsMobile } from '../../libs/hooks/useIsMobile';

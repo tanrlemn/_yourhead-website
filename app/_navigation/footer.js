@@ -1,7 +1,7 @@
 'use client';
 
 // context
-import { LoadingContext } from '../lib/providers/LoadingProvider';
+import { LoadingContext } from '../lib/context/LoadingProvider';
 
 // hooks
 import { useContext } from 'react';
@@ -15,12 +15,11 @@ import {
   Stack,
   Input,
   Button,
+  Link,
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 // local components
-import Marquee from '../_components/brandElements/marquee';
-import Link from 'next/link';
 import Logo from '../_components/brandElements/logo';
 
 export default function Footer({ showContactBar, setShowContactBar }) {
@@ -116,15 +115,7 @@ export default function Footer({ showContactBar, setShowContactBar }) {
               </Box>
             </Flex>
           </Flex>
-          <Box
-            p={'2rem'}
-            borderTop={'var(--blue-light-border-2)'}
-            borderBottom={'var(--blue-light-border-2)'}>
-            <Marquee
-              delay={-20}
-              color={'var(--midLightBlue)'}
-            />
-          </Box>
+
           <Box p={'2rem 1rem 1rem 1rem'}>
             <Text fontSize={'0.8rem'}>
               © 2023 YOURHEAD, All Rights reserved

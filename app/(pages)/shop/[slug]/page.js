@@ -1,11 +1,8 @@
 'use client';
 
-// styles
-import styles from '../shop.module.css';
-
 // apis
-import { supabase } from '@/app/api/db/getSupabase';
-import { supabaseProduct } from '@/app/api/db/supabaseProduct';
+import { supabase } from '@/app/api/supabase/getSupabase';
+import { supabaseProduct } from '@/app/api/supabase/supabaseProduct';
 
 // hooks
 import { useEffect, useState } from 'react';
@@ -61,7 +58,7 @@ export default function Product({ params }) {
   }, [currentProduct, slug, supabaseCollection, searchParams]);
 
   return (
-    <div className={styles.productWrap}>
+    <div>
       {currentProduct !== null && supabaseCollection !== null && (
         <ProductInfo
           product={currentProduct}

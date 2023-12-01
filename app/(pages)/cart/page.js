@@ -1,12 +1,7 @@
 'use client';
 
-// styles
-import styles from './cart.module.css';
-import textStyles from '@/app/styles/text.module.css';
-import spacingStyles from '@/app/styles/spacing.module.css';
-
 // context
-import { CartContext } from '@/app/lib/providers/CartProvider';
+import { CartContext } from '@/app/lib/context/CartProvider';
 import { LoadingContext } from '@/app/context/loadingContext';
 
 // hooks
@@ -21,7 +16,7 @@ import CheckoutForm from '@/app/_components/cart/checkoutForm';
 import Link from 'next/link';
 import Loading from '@/app/loading';
 import OrderSuccess from '@/app/_components/cart/orderSuccess';
-import LoadingDiv from '@/app/_components/loadingDiv';
+import LoadingDiv from '@/app/components/loadingDiv';
 
 export default function Cart() {
   const { loading, setLoading } = useContext(LoadingContext);
@@ -85,11 +80,8 @@ export default function Cart() {
     <Suspense fallback={<Loading />}>
       {success && <OrderSuccess />}
       {!success && (
-        <Grid
-          container
-          className={styles.cartWrap}>
+        <Grid container>
           <Grid
-            className={styles.cartProductsWrap}
             item
             laptop={9}
             mobile={12}>
@@ -103,7 +95,6 @@ export default function Cart() {
                 mobile={12}>
                 {numCartItems !== 0 && (
                   <div
-                    className={spacingStyles.bottomPaddingSm}
                     style={
                       isMobile
                         ? mobileBorder
@@ -111,7 +102,7 @@ export default function Cart() {
                         ? null
                         : mobileBorder
                     }>
-                    <h1 className={textStyles.headingSm}>Shopping Bag</h1>
+                    <h1>Shopping Bag</h1>
                   </div>
                 )}
               </Grid>
@@ -122,42 +113,29 @@ export default function Cart() {
                       container
                       direction='row'
                       justifyContent='space-between'
-                      alignItems='center'
-                      className={styles.cartProductHeader}>
+                      alignItems='center'>
                       <Grid
                         item
                         mobile={4}></Grid>
                       <Grid
                         item
                         mobile={3}>
-                        <p className={textStyles.paragraphXxs}>Item</p>
+                        <p>Item</p>
                       </Grid>
                       <Grid
                         item
                         mobile={1.5}>
-                        <p
-                          className={textStyles.paragraphXxs}
-                          style={alignRight}>
-                          Item Price
-                        </p>
+                        <p style={alignRight}>Item Price</p>
                       </Grid>
                       <Grid
                         item
                         mobile={2}>
-                        <p
-                          className={textStyles.paragraphXxs}
-                          style={alignRight}>
-                          Quantity
-                        </p>
+                        <p style={alignRight}>Quantity</p>
                       </Grid>
                       <Grid
                         item
                         mobile={1.5}>
-                        <p
-                          className={textStyles.paragraphXxs}
-                          style={alignRight}>
-                          Total Price
-                        </p>
+                        <p style={alignRight}>Total Price</p>
                       </Grid>
                     </Grid>
                   )}
@@ -177,22 +155,16 @@ export default function Cart() {
                 </>
               )}
               {!loading && numCartItems === 0 && (
-                <div className={styles.noItemsWrap}>
-                  <div className={spacingStyles.topMarginXl}>
+                <div>
+                  <div>
                     <LoadingDiv />
-                    <div className={spacingStyles.bottomMarginLg}>
-                      <h2 className={textStyles.headingLg}>Nothing here...</h2>
+                    <div>
+                      <h2>Nothing here...</h2>
                     </div>
-                    <p className={textStyles.paragraphXs}>
-                      Your shopping bag is empty!
-                    </p>
+                    <p>Your shopping bag is empty!</p>
 
-                    <div className={spacingStyles.topMarginSm}>
-                      <Link
-                        href='/shop'
-                        className={textStyles.linkBlockChartreuse}>
-                        Fill your bag
-                      </Link>
+                    <div>
+                      <Link href='/shop'>Fill your bag</Link>
                     </div>
                   </div>
                 </div>
@@ -204,8 +176,7 @@ export default function Cart() {
               item
               laptop={3}
               tablet={6}
-              mobile={12}
-              className={styles.summaryWrap}>
+              mobile={12}>
               <CheckoutForm />
             </Grid>
           )}

@@ -1,10 +1,6 @@
-// styles
-import styles from '../styles/(component_styles)/product.module.css';
-import textStyles from '../styles/text.module.css';
-import spacingStyles from '../styles/spacing.module.css';
-
 // hooks
-import { useWindowSize, useIsMobile } from '../../libs/hooks/useWindowWidth';
+import { useWindowWidth } from '@/app/lib/hooks/useWindowWidth';
+import { useIsMobile } from '@/app/lib/hooks/useIsMobile';
 import { useState, useRef, useEffect } from 'react';
 
 // components
@@ -42,7 +38,7 @@ export default function ProductCard({ product, collection }) {
       ? `${collection} Collection – Hug & Up`
       : `${collection} Collection`;
 
-  const windowSize = useWindowSize();
+  const windowSize = useWindowWidth();
   const mobile = useIsMobile();
   const imageWidth = !mobile ? windowSize / 3.7 : windowSize / 2.5;
   const imageHeight = imageWidth * 1.25;
@@ -82,7 +78,7 @@ export default function ProductCard({ product, collection }) {
   };
 
   return (
-    <div className={styles.flexCard}>
+    <div>
       <Link
         href={{
           pathname: `/shop/${slug}`,
@@ -95,7 +91,6 @@ export default function ProductCard({ product, collection }) {
           src={hovering ? additionalImages[1] : product.main_image}
           width={imageWidth}
           height={imageHeight}
-          className={styles.flexCardImage}
           style={cardStyles}
           alt={`image for ${product.title}`}
           ref={imageRef}
@@ -108,7 +103,7 @@ export default function ProductCard({ product, collection }) {
         />
       </Link>
 
-      <div className={styles.flexCardText}>
+      <div>
         <Link
           href={{
             pathname: `/shop/${slug}`,
@@ -117,41 +112,33 @@ export default function ProductCard({ product, collection }) {
             },
           }}
           as={`/shop/${slug}`}>
-          <div className={spacingStyles.bottomMarginSm}>
-            <h2 className={textStyles.headingXsAlt}>{product.title}</h2>
+          <div>
+            <h2>{product.title}</h2>
           </div>
-          <div className={spacingStyles.bottomMarginSm}>
-            <p className={textStyles.paragraphXs}>
+          <div>
+            <p>
               <span style={onSale ? saleStyles : null}>
                 ${product.price.toFixed(2)}
               </span>{' '}
-              <span className={textStyles.onSale}>
-                {onSale ? `$${product.sale_price.toFixed(2)}` : ''}
-              </span>
+              <span>{onSale ? `$${product.sale_price.toFixed(2)}` : ''}</span>
             </p>
           </div>
           {limitedEdition && (
-            <div className={spacingStyles.bottomMarginMd}>
-              <p className={textStyles.paragraphXxs}>
+            <div>
+              <p>
                 Limited edition – {numEditions} prints{' '}
                 {`(${numAvailable} remaining)`}
               </p>
             </div>
           )}
           {!limitedEdition && (
-            <div className={spacingStyles.bottomMarginMd}>
-              <p className={textStyles.paragraphXxs}>
-                General release – unlimited prints available
-              </p>
+            <div>
+              <p>General release – unlimited prints available</p>
             </div>
           )}
         </Link>
         <Link href={`shop/collections/${collection.toLowerCase()}`}>
-          <div
-            className={textStyles.productTag}
-            style={tagStyles}>
-            {collectionName}
-          </div>
+          <div style={tagStyles}>{collectionName}</div>
         </Link>
       </div>
     </div>

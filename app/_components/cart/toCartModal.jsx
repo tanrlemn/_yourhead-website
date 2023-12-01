@@ -1,10 +1,5 @@
 'use client';
 
-// styles
-import styles from '@/app/styles/(component_styles)/toCartModal.module.css';
-import textStyles from '@/app/styles/text.module.css';
-import spacingStyles from '@/app/styles/spacing.module.css';
-
 // images
 import { VscClose } from 'react-icons/vsc';
 
@@ -25,34 +20,32 @@ export default function ToCartModal({ product, collection, setAddedToCart }) {
   };
 
   return (
-    <div className={styles.modalWrap}>
+    <div>
       <div
-        className={spacingStyles.clickOut}
         style={clickOutStyles}
         onClick={() => setAddedToCart(false)}></div>
       <div>
-        <div className={styles.modal}>
-          <div className={spacingStyles.absolutelyRight}>
+        <div>
+          <div>
             <VscClose
               style={closeStyles}
-              className={spacingStyles.icon}
               onClick={() => setAddedToCart(false)}
             />
           </div>
-          <div className={styles.modalHeader}>
-            <div className={spacingStyles.bottomMarginMd}>
-              <div className={spacingStyles.centered}>
-                <h2 className={textStyles.headingMd}>
-                  <span className={spacingStyles.blueUnderscoreLg}></span>
+          <div>
+            <div>
+              <div>
+                <h2>
+                  <span></span>
                   Added to bag
                 </h2>
               </div>
             </div>
           </div>
-          <div className={spacingStyles.bottomMarginLg}>
-            <div className={styles.modalBody}>
-              <div className={styles.modalImage}>
-                <div className={spacingStyles.bottomMarginMd}>
+          <div>
+            <div>
+              <div>
+                <div>
                   <Image
                     src={mainImage}
                     alt={product.title}
@@ -61,30 +54,19 @@ export default function ToCartModal({ product, collection, setAddedToCart }) {
                   />
                 </div>
               </div>
-              <div className={spacingStyles.centered}>
-                <p className={textStyles.paragraphXs}>
-                  <span className={textStyles.aBitBolder}>
-                    {product.title} –
-                  </span>{' '}
-                  has been added to your cart.
+              <div>
+                <p>
+                  <span>{product.title} –</span> has been added to your cart.
                 </p>
               </div>
             </div>
           </div>
-          <div className={styles.modalFooter}>
-            <div className={spacingStyles.bottomMarginMd}>
-              <Link
-                href='/cart'
-                className={textStyles.linkBlockChartreuse}>
-                View Cart
-              </Link>
+          <div>
+            <div>
+              <Link href='/cart'>View Cart</Link>
             </div>
-            <div className={spacingStyles.centered}>
-              <div
-                className={textStyles.linkBlockBlack}
-                onClick={() => setAddedToCart(false)}>
-                Continue Shopping
-              </div>
+            <div>
+              <div onClick={() => setAddedToCart(false)}>Continue Shopping</div>
             </div>
           </div>
         </div>
