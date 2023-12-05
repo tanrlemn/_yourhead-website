@@ -200,7 +200,7 @@
 html,
 body {
   max-width: var(--max-width);
-  background: var(--lightGreen);
+  background: var(--white);
 }
 
 html {

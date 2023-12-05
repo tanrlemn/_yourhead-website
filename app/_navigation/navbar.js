@@ -23,14 +23,15 @@ export default function Navbar() {
     pathname.indexOf('/shop') > -1 || pathname.indexOf('/cart') > -1;
 
   return (
-    <Box background={'var(--darkGreen)'}>
+    <Box
+      background={'var(--darkGreen)'}
+      position={'sticky'}
+      top={'0'}>
       <Flex
         zIndex={1000}
         background={'var(--darkGreen)'}
         color={'inherit'}
         backdropFilter={'blur(10px) saturate(100%)'}
-        position={'sticky'}
-        top={'0'}
         w={'100%'}
         p={'1rem'}
         borderBottom={'1px solid var(--greenGray)'}>

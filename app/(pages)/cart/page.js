@@ -2,7 +2,7 @@
 
 // context
 import { CartContext } from '@/app/lib/context/CartProvider';
-import { LoadingContext } from '@/app/context/loadingContext';
+import { LoadingContext } from '@/app/lib/context/LoadingProvider';
 
 // hooks
 import { useState, useEffect, useContext, Suspense } from 'react';
@@ -10,13 +10,12 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useIsMobile } from '@/app/lib/hooks/useIsMobile';
 
 // components
-import { Grid } from '@mui/material';
+import { Grid } from '@chakra-ui/react';
 import CartItem from '@/app/_components/cart/cartItem';
 import CheckoutForm from '@/app/_components/cart/checkoutForm';
 import Link from 'next/link';
 import Loading from '@/app/loading';
 import OrderSuccess from '@/app/_components/cart/orderSuccess';
-import LoadingDiv from '@/app/components/loadingDiv';
 
 export default function Cart() {
   const { loading, setLoading } = useContext(LoadingContext);

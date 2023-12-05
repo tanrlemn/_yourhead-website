@@ -9,7 +9,7 @@ import { useIsMobile } from '@/app/lib/hooks/useIsMobile';
 import { useWindowSize } from '@/app/lib/hooks/useWindowWidth';
 
 // components
-import { Grid } from '@mui/material';
+import { Grid } from '@chakra-ui/react';
 import Image from 'next/image';
 import QtySelect from '../products/qtySelect';
 import Link from 'next/link';

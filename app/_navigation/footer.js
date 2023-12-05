@@ -19,9 +19,6 @@ import {
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 
-// local components
-import Logo from '../_components/brandElements/logo';
-
 export default function Footer({ showContactBar, setShowContactBar }) {
   const { loading } = useContext(LoadingContext);
 
@@ -31,98 +28,87 @@ export default function Footer({ showContactBar, setShowContactBar }) {
   };
   return (
     <>
-      {!loading && (
-        <footer style={{ background: 'var(--lightestBlue)' }}>
-          <Flex p={'7rem 2rem 5rem 2rem'}>
-            <Stack
-              maxW={'25rem'}
-              mr={'7rem'}>
-              <Logo
-                color={'var(--orange)'}
-                shouldLink={false}
-              />
-              <Text>
-                YOURHEAD is a painter, musician, and innovator, offering a
-                unique style and approach to all aspects of life.
-              </Text>
-              <Flex>
-                <Input
-                  border={'1px solid var(--midPurpleGray)'}
-                  mr={'0.5rem'}
-                  type='email'
-                  placeholder='Enter your email'
-                  autoComplete='email'
-                />
-                <Button
-                  _hover={{ outline: '1px solid var(--lightOrange)' }}
-                  background={'var(--lightOrange)'}
-                  type='submit'
-                  rightIcon={<ArrowForwardIcon />}>
-                  Sign up
-                </Button>
-              </Flex>
-            </Stack>
-            <Flex gap={'3rem'}>
-              <Box>
-                <Heading
-                  size={'md'}
-                  mb={'0.5rem'}>
-                  The Artist
-                </Heading>
-                <Stack gap={0}>
-                  <Link href='/about'>About</Link>
-                  <Link href='/commissions'>Commissions</Link>
-                </Stack>
-              </Box>
-              <Box>
-                <Heading
-                  size={'md'}
-                  mb={'0.5rem'}>
-                  Shop
-                </Heading>
-                <Stack gap={0}>
-                  <Link href='/shop?category=prints'>Prints</Link>
-                  <Link href='/shop?category=originals'>Originals</Link>
-                </Stack>
-              </Box>
-              <Box>
-                <Heading
-                  size={'md'}
-                  mb={'0.5rem'}>
-                  Works
-                </Heading>
-                <Stack gap={0}>
-                  <Link href='/recents'>Recents</Link>
-                  <Link href='/music'>Music</Link>
-                </Stack>
-              </Box>
-              <Box>
-                <Heading
-                  size={'md'}
-                  mb={'0.5rem'}>
-                  Support
-                </Heading>
-                <Stack gap={0}>
-                  <Text
-                    cursor={'pointer'}
-                    onClick={() => {
-                      setShowContactBar(true);
-                    }}>
-                    Contact
-                  </Text>
-                  <Link href='/support/faqs'>FAQs</Link>
-                </Stack>
-              </Box>
-            </Flex>
-          </Flex>
-
-          <Box p={'2rem 1rem 1rem 1rem'}>
-            <Text fontSize={'0.8rem'}>
-              © 2023 YOURHEAD, All Rights reserved
+      <footer style={{ background: 'var(--lightestBlue)' }}>
+        <Flex p={'7rem 2rem 5rem 2rem'}>
+          <Stack
+            maxW={'25rem'}
+            mr={'7rem'}>
+            <Heading
+              size={'md'}
+              color={'var(--orange)'}>
+              _YOURHEAD
+            </Heading>
+            <Text>
+              YOURHEAD is an oil painter, focusing on portraiture and the unique
+              perspective of the human experience.
             </Text>
-          </Box>
-        </footer>
-      )}
+            <Flex>
+              <Input
+                border={'1px solid var(--midPurpleGray)'}
+                mr={'0.5rem'}
+                type='email'
+                placeholder='Enter your email'
+                autoComplete='email'
+              />
+              <Button
+                _hover={{ outline: '1px solid var(--lightOrange)' }}
+                background={'var(--lightOrange)'}
+                type='submit'
+                rightIcon={<ArrowForwardIcon />}>
+                Sign up
+              </Button>
+            </Flex>
+          </Stack>
+          <Flex gap={'3rem'}>
+            <Box>
+              <Heading
+                size={'md'}
+                mb={'0.5rem'}>
+                The Artist
+              </Heading>
+              <Stack gap={0}>
+                <Link href='/gallery'>Gallery</Link>
+                <Link href='/about'>About</Link>
+              </Stack>
+            </Box>
+            <Box>
+              <Heading
+                size={'md'}
+                mb={'0.5rem'}>
+                Shop
+              </Heading>
+              <Stack gap={0}>
+                <Link href='/subscriptions'>Subscriptions</Link>
+                <Link href='/commissions'>Commissions</Link>
+                <Link href='/shop?category=prints'>Prints</Link>
+                <Link href='/shop?category=originals'>Originals</Link>
+              </Stack>
+            </Box>
+
+            <Box>
+              <Heading
+                size={'md'}
+                mb={'0.5rem'}>
+                Support
+              </Heading>
+              <Stack gap={0}>
+                <Text
+                  cursor={'pointer'}
+                  onClick={() => {
+                    setShowContactBar(true);
+                  }}>
+                  Contact
+                </Text>
+                <Link href='/support/faqs'>FAQs</Link>
+              </Stack>
+            </Box>
+          </Flex>
+        </Flex>
+
+        <Box p={'2rem 1rem 1rem 1rem'}>
+          <Text fontSize={'0.8rem'}>© 2024 YOURHEAD, All Rights reserved</Text>
+        </Box>
+      </footer>
     </>
   );
 }

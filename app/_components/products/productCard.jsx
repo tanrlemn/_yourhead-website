@@ -10,28 +10,26 @@ import Image from 'next/image';
 export default function ProductCard({ product, collection }) {
   const imageRef = useRef(null);
   const slug = product.slug;
-  const hasAdditionalImages = product.additional_image_urls !== null;
+  const mainImage = product.image_url;
+  const hasAdditionalImages = product.additional_images !== null;
 
   const [hovering, setHovering] = useState(false);
 
   const [additionalImages, setAdditionalImages] = useState(
-    hasAdditionalImages
-      ? [product.main_image, ...product.additional_image_urls]
-      : null
+    hasAdditionalImages ? [mainImage, ...product.additional_images] : null
   );
 
   useEffect(() => {
     if (hasAdditionalImages) {
-      setAdditionalImages([
-        product.main_image,
-        ...product.additional_image_urls,
-      ]);
+      setAdditionalImages([mainImage, ...product.additional_images]);
     }
   }, [product, hasAdditionalImages, hovering]);
 
   collection =
-    collection.collection.charAt(0).toUpperCase() +
-    collection.collection.slice(1);
+    collection !== null
+      ? collection.collection.charAt(0).toUpperCase() +
+        collection.collection.slice(1)
+      : null;
 
   const collectionName =
     collection === 'Exclusive'
@@ -88,7 +86,13 @@ export default function ProductCard({ product, collection }) {
         }}
         as={`/shop/${slug}`}>
         <Image
-          src={hovering ? additionalImages[1] : product.main_image}
+          src={
+            hovering
+              ? hasAdditionalImages
+                ? additionalImages[1]
+                : mainImage
+              : mainImage
+          }
           width={imageWidth}
           height={imageHeight}
           style={cardStyles}
@@ -137,9 +141,11 @@ export default function ProductCard({ product, collection }) {
             </div>
           )}
         </Link>
-        <Link href={`shop/collections/${collection.toLowerCase()}`}>
-          <div style={tagStyles}>{collectionName}</div>
-        </Link>
+        {collection !== null && (
+          <Link href={`shop/collections/${collection.toLowerCase()}`}>
+            <div style={tagStyles}>{collectionName}</div>
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -1,14 +1,12 @@
 'use client'; // Error components must be Client Components
 
 // components
-import LoadingDiv from '@/app/components/loadingDiv';
-import Link from 'next/link';
+import { Link } from '@chakra-ui/react';
 
 export default function OrderSuccess() {
   return (
     <div>
       <div>
-        <LoadingDiv />
         <div>
           <h2>Order Placed!</h2>
         </div>

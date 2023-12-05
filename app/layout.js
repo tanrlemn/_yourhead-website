@@ -54,14 +54,6 @@ export const metadata = {
     description: APP_DESCRIPTION,
     images: '/images/og-image.png',
   },
-  twitter: {
-    card: 'summary',
-    title: {
-      default: APP_DEFAULT_TITLE,
-      template: APP_TITLE_TEMPLATE,
-    },
-    description: APP_DESCRIPTION,
-  },
 };
 
 export default async function RootLayout({ children }) {

@@ -1,8 +1,5 @@
 'use client';
 
-// styles
-import styles from '../styles/(component_styles)/product.module.css';
-import spacingStyles from '../styles/spacing.module.css';
 import 'react-slideshow-image/dist/styles.css';
 
 // images
@@ -60,7 +57,6 @@ export default function QtySelect({
     for (let i = 1; i < 11; i++) {
       options.push(
         <div
-          className={styles.option}
           value={i}
           key={i}
           style={qty === i ? selectedOptionStyles : null}
@@ -79,31 +75,26 @@ export default function QtySelect({
 
   const toggleOptions = () => {
     setIsDropdownOpen(!isDropdownOpen);
-    optionsRef.current.classList.toggle(spacingStyles.open);
-    currentOptionRef.current.classList.toggle(spacingStyles.closed);
-    clickOutRef.current.classList.toggle(spacingStyles.open);
+    optionsRef.current.classList.toggle('open');
+    currentOptionRef.current.classList.toggle('closed');
+    clickOutRef.current.classList.toggle('open');
   };
 
   return (
-    <div className={styles.formSelect}>
+    <div>
       {qty && (
         <div
-          className={styles.optionWrapper}
           ref={optionsWrapperRef}
           style={openDropdownStyles}
           onClick={() => {
             toggleOptions();
           }}>
-          <div
-            className={styles.currentOption}
-            ref={currentOptionRef}>
+          <div ref={currentOptionRef}>
             <div value={qty}>{qty}</div>
             <VscChevronDown />
           </div>
 
-          <div
-            className={styles.optionsDropdown}
-            ref={optionsRef}>
+          <div ref={optionsRef}>
             {getOptions().map((option) => {
               return option;
             })}
@@ -111,7 +102,6 @@ export default function QtySelect({
         </div>
       )}
       <div
-        className={spacingStyles.clickOut}
         ref={clickOutRef}
         onClick={() => {
           toggleOptions();

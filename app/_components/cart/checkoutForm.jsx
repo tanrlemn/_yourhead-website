@@ -5,7 +5,7 @@ import { createCheckoutSession } from '@/app/api/checkout/checkoutSession';
 
 // context
 import { CartContext } from '@/app/lib/context/CartProvider';
-import { LoadingContext } from '@/app/context/loadingContext';
+import { LoadingContext } from '@/app/lib/context/LoadingProvider';
 
 // hooks
 import { useState, useEffect, useContext } from 'react';

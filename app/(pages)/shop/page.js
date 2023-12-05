@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 
 // components
 import ProductCard from '@/app/_components/products/productCard';
+import { Box, Heading, Text } from '@chakra-ui/react';
 
 export default function Shop() {
   const searchParams = useSearchParams();
@@ -22,96 +23,98 @@ export default function Shop() {
     default: 'The Official YOURHEAD Shop',
   };
 
-  const [currentCategory, setCurrentCategory] = useState(null);
+  const category = () => {
+    if (searchParams.has('category')) {
+      return searchParams.get('category');
+    } else {
+      return 'default';
+    }
+  };
 
   useEffect(() => {
-    const category = searchParams.get('category');
-    setCurrentCategory(category);
+    if (
+      products !== null &&
+      collections !== null &&
+      productTypes !== null &&
+      filteredProducts === null
+    ) {
+      setFilteredProducts(
+        products.filter((product) => {
+          if (category() === 'default' || category() === 'all') {
+            return true;
+          } else if (category() === 'sale') {
+            return product.on_sale;
+          } else {
+            return product.product_type === category();
+          }
+        })
+      );
+    }
 
     const getProducts = async () => {
       const res = await fetch('/api/supabase/getProducts');
       const data = await res.json();
       setProducts(data.products);
-      console.log('products', data.products);
+
+      setFilteredProducts(data.products);
     };
 
     const getCollections = async () => {
       const res = await fetch('/api/supabase/getCollections');
       const data = await res.json();
-      setCollections(data[0]);
+      setCollections(data.collections);
     };
 
     const getProductTypes = async () => {
       const res = await fetch('/api/supabase/getProductTypes');
       const data = await res.json();
-      setProductTypes(data[0]);
+      setProductTypes(data.product_types);
     };
 
-    if (products === null) {
+    if (products === null && filteredProducts === null) {
       getProducts();
     }
     if (collections === null) {
-      // getCollections();
+      getCollections();
     }
     if (productTypes === null) {
-      // getProductTypes();
+      getProductTypes();
     }
-
-    if (products !== null && collections !== null && productTypes !== null) {
-      setFilteredProducts(
-        products.filter((product) => {
-          if (currentCategory === 'all' || currentCategory === null)
-            return true;
-          if (currentCategory === 'sale') {
-            return product.on_sale;
-          }
-          const productType = productTypes.find(
-            (type) => type.product_type === currentCategory
-          );
-
-          return product.product_type_id === productType.id;
-        })
-      );
-    }
-  }, [
-    products,
-    filteredProducts,
-    productTypes,
-    collections,
-    searchParams,
-    currentCategory,
-  ]);
+  }, [products, filteredProducts, productTypes, collections, searchParams]);
 
   return (
-    <div>
+    <Box
+      p={{
+        base: '2rem 1rem',
+        md: '3rem 1.5rem',
+        lg: '4rem 2rem',
+      }}>
       {products !== null &&
-        collections !== null &&
-        productTypes !== null &&
+        // collections !== null &&
+        // productTypes !== null &&
         filteredProducts !== null && (
           <div>
-            <div>
-              <div>{categoryText[currentCategory]}</div>
-              <div>
+            <Box mb={'1.5rem'}>
+              <Heading>{categoryText[category()]}</Heading>
+              <Text>
                 {filteredProducts.length === 1
                   ? `${filteredProducts.length} product`
                   : `${filteredProducts.length} products`}
-              </div>
-            </div>
+              </Text>
+            </Box>
             <div>
               {filteredProducts.map((product, i) => {
                 return (
                   <ProductCard
                     key={i}
                     product={product}
-                    collection={supabaseCollections.find(
-                      (collection) => collection.id === product.collection_id
-                    )}
+                    collection={null}
                   />
                 );
               })}
             </div>
           </div>
         )}
-    </div>
+    </Box>
   );
 }

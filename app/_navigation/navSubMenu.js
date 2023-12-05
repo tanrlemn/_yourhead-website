@@ -23,6 +23,7 @@ export default function NavSubMenu() {
 
   return (
     <Flex
+      borderBottom={'1px solid var(--greenGray)'}
       background={'inherit'}
       position={'sticky'}
       w={'100%'}

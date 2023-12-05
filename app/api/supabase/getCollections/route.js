@@ -24,9 +24,11 @@ export async function GET() {
   );
 
   try {
-    const { data: products, error } = await supabase.from('products').select();
+    const { data: collections, error } = await supabase
+      .from('collections')
+      .select();
 
-    return NextResponse.json({ products, error });
+    return NextResponse.json({ collections, error });
   } catch (error) {
     console.error(error);
     return NextResponse.error(error);

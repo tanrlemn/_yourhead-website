@@ -3,9 +3,6 @@
 // hooks
 import { useEffect } from 'react';
 
-// components
-import LoadingDiv from '@/app/components/loadingDiv';
-
 export default function Error({ error, reset }) {
   useEffect(() => {
     // Log the error to an error reporting service
@@ -15,8 +12,6 @@ export default function Error({ error, reset }) {
   return (
     <div>
       <div>
-        <LoadingDiv />
-
         <h2>Oops... </h2>
         <p>Something went wrong</p>
 

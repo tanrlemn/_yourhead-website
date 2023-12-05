@@ -2,7 +2,9 @@ import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(request, { params }) {
+  const slug = params.slug;
+
   const cookieStore = cookies();
 
   const supabase = createServerClient(
@@ -24,9 +26,14 @@ export async function GET() {
   );
 
   try {
-    const { data: products, error } = await supabase.from('products').select();
+    const { data: products, error } = await supabase
+      .from('products')
+      .select('*')
+      .eq('slug', slug);
 
-    return NextResponse.json({ products, error });
+    const product = products[0];
+
+    return NextResponse.json({ product, error });
   } catch (error) {
     console.error(error);
     return NextResponse.error(error);
