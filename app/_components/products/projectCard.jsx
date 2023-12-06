@@ -1,10 +1,5 @@
 'use client';
 
-// styles
-import styles from '../styles/(component_styles)/projectCard.module.css';
-import textStyles from '../styles/text.module.css';
-import spacingStyles from '../styles/spacing.module.css';
-
 // images
 import { BsArrowRight } from 'react-icons/bs';
 
@@ -31,22 +26,18 @@ export default function ProjectCard({ project, backgroundColor }) {
 
   return (
     <div
-      className={styles.projectCard}
       style={background}
       ref={projectCardRef}>
-      <div className={styles.imageRail}>
+      <div>
         {project.images.map((image, index) => {
           if (index < 2)
             return (
-              <div
-                className={styles.imageFrameSquare}
-                key={index}>
+              <div key={index}>
                 <Image
                   src={image}
                   height={300}
                   width={300}
                   alt={`${project.title} image`}
-                  className={styles.projectImage}
                 />
               </div>
             );
@@ -54,15 +45,13 @@ export default function ProjectCard({ project, backgroundColor }) {
       </div>
       <div>
         {project.isCurrent && (
-          <div className={spacingStyles.bottomMarginSm}>
-            <div className={textStyles.greenTag}>Current project</div>
+          <div>
+            <div>Current project</div>
           </div>
         )}
-        <div className={spacingStyles.bottomMarginSm}>
-          <div className={textStyles.outlineTextGrey}>
-            <div
-              className={textStyles.labelTag}
-              style={centerText}>
+        <div>
+          <div>
+            <div style={centerText}>
               ––{'  '}
               {project.subtitle}
               {'  '}––
@@ -70,26 +59,23 @@ export default function ProjectCard({ project, backgroundColor }) {
           </div>
         </div>
 
-        <div className={spacingStyles.bottomMarginSm}>
-          <h2 className={textStyles.headingLg}>{project.title}</h2>
+        <div>
+          <h2>{project.title}</h2>
         </div>
 
-        <div className={spacingStyles.bottomMarginLg}>
-          <p className={textStyles.paragraphXs}>{project.description}</p>
-          <div className={spacingStyles.bottomTopMarginMd}>
-            <p className={textStyles.paragraphXxs}>{project.year}</p>
-            <p className={textStyles.paragraphXxs}>
-              – {project.images.length} images
-            </p>
+        <div>
+          <p>{project.description}</p>
+          <div>
+            <p>{project.year}</p>
+            <p>– {project.images.length} images</p>
           </div>
         </div>
-        <div className={spacingStyles.topMarginMd}>
+        <div>
           <div
             onClick={() => {
               router.push(`${project.slug}?scrollTo=${scrollTo}`);
-            }}
-            className={textStyles.linkBlockBlack}>
-            <div className={textStyles.buttonLabel}>View project</div>
+            }}>
+            <div>View project</div>
             <BsArrowRight />
           </div>
         </div>

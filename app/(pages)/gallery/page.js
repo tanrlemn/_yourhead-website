@@ -4,14 +4,11 @@
 import textBurst from '@/public/icons/textBurst.svg';
 
 // context
-import { LoadingContext } from '@/app/context/loadingContext';
-
-// api
-import { supabase } from '@/app/api/supabase/getSupabase';
+import { LoadingContext } from '@/app/lib/context/LoadingProvider';
 
 // hooks
 import { useEffect, useState, useContext } from 'react';
-import { useIsMobile } from '../../libs/hooks/useIsMobile';
+import { useIsMobile } from '@/app/lib/hooks/useIsMobile';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 
 // components
@@ -31,14 +28,9 @@ export default function Gallery() {
   const [scrollTo, setScrollTo] = useState(null);
 
   useEffect(() => {
-    const getProjects = async () => {
-      const projectsData = await supabase('projects');
-      setProjects(projectsData);
-    };
-
     if (projects === null) {
       setLoading(true);
-      getProjects();
+      // getProjects();
     } else {
       setLoading(true);
 
