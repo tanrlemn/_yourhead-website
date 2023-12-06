@@ -10,17 +10,27 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useIsMobile } from '@/app/lib/hooks/useIsMobile';
 
 // components
-import { Grid } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  Grid,
+  GridItem,
+  Heading,
+  Link,
+  Text,
+} from '@chakra-ui/react';
 import CartItem from '@/app/_components/cart/cartItem';
 import CheckoutForm from '@/app/_components/cart/checkoutForm';
-import Link from 'next/link';
-import Loading from '@/app/loading';
+import LoadingDiv from '@/app/_components/utils/loadingDiv';
 import OrderSuccess from '@/app/_components/cart/orderSuccess';
 
 export default function Cart() {
   const { loading, setLoading } = useContext(LoadingContext);
 
   const { cart, numCartItems, clearCart } = useContext(CartContext);
+  console.log('cart', cart);
+  console.log('numCartItems', numCartItems);
 
   const [cartItems, setCartItems] = useState([]);
   const isMobile = useIsMobile();
@@ -76,24 +86,20 @@ export default function Cart() {
   };
 
   return (
-    <Suspense fallback={<Loading />}>
+    <>
       {success && <OrderSuccess />}
       {!success && (
-        <Grid container>
-          <Grid
-            item
-            laptop={9}
-            mobile={12}>
-            <Grid
-              container
-              direction='row'
-              justifyContent='space-between'
-              alignItems='flex-start'>
-              <Grid
-                item
-                mobile={12}>
+        <Flex
+          w={'100%'}
+          p={'2rem'}>
+          <Box
+            flexGrow={1}
+            mr={'2rem'}>
+            <Box w={'100%'}>
+              <Box w={'100%'}>
                 {numCartItems !== 0 && (
-                  <div
+                  <Box
+                    mb={'1rem'}
                     style={
                       isMobile
                         ? mobileBorder
@@ -101,41 +107,35 @@ export default function Cart() {
                         ? null
                         : mobileBorder
                     }>
-                    <h1>Shopping Bag</h1>
-                  </div>
+                    <Heading>Shopping Bag</Heading>
+                  </Box>
                 )}
-              </Grid>
+              </Box>
               {numCartItems > 0 && (
                 <>
                   {!isMobile && (
                     <Grid
-                      container
+                      borderBottom={'var(--blue-light-border)'}
+                      mb={'1rem'}
+                      templateColumns={'1fr 2fr repeat(3, 1fr)'}
+                      gap={5}
+                      w={'100%'}
                       direction='row'
                       justifyContent='space-between'
                       alignItems='center'>
-                      <Grid
-                        item
-                        mobile={4}></Grid>
-                      <Grid
-                        item
-                        mobile={3}>
-                        <p>Item</p>
-                      </Grid>
-                      <Grid
-                        item
-                        mobile={1.5}>
-                        <p style={alignRight}>Item Price</p>
-                      </Grid>
-                      <Grid
-                        item
-                        mobile={2}>
-                        <p style={alignRight}>Quantity</p>
-                      </Grid>
-                      <Grid
-                        item
-                        mobile={1.5}>
-                        <p style={alignRight}>Total Price</p>
-                      </Grid>
+                      <GridItem w={'100%'}></GridItem>
+                      <GridItem w={'100%'}>
+                        <Text>Item</Text>
+                      </GridItem>
+                      <GridItem w={'100%'}>
+                        <Text style={alignRight}>Item Price</Text>
+                      </GridItem>
+                      <GridItem w={'100%'}>
+                        <Text style={alignRight}>Quantity</Text>
+                      </GridItem>
+                      <GridItem w={'100%'}>
+                        <Text style={alignRight}>Total Price</Text>
+                      </GridItem>
                     </Grid>
                   )}
                   {cart &&
@@ -143,44 +143,38 @@ export default function Cart() {
                     cart.items.length > 0 &&
                     cartItems.map((item) => {
                       return (
-                        <Grid
-                          item
+                        <GridItem
                           key={item.product.id}
                           mobile={12}>
                           <CartItem item={item} />
-                        </Grid>
+                        </GridItem>
                       );
                     })}
                 </>
               )}
-              {!loading && numCartItems === 0 && (
-                <div>
-                  <div>
-                    <LoadingDiv />
-                    <div>
-                      <h2>Nothing here...</h2>
-                    </div>
-                    <p>Your shopping bag is empty!</p>
+              {numCartItems === 0 && (
+                <Box m={'2rem'}>
+                  <LoadingDiv />
+                  <Heading mt={'1rem'}>Nothing here...</Heading>
+                  <Text>Your shopping bag is empty!</Text>
 
-                    <div>
-                      <Link href='/shop'>Fill your bag</Link>
-                    </div>
-                  </div>
-                </div>
+                  <Button
+                    mt={'1rem'}
+                    colorScheme={'blue'}
+                    onClick={() => router.push('/shop')}>
+                    Fill your bag
+                  </Button>
+                </Box>
               )}
-            </Grid>
-          </Grid>
+            </Box>
+          </Box>
           {numCartItems > 0 && (
-            <Grid
-              item
-              laptop={3}
-              tablet={6}
-              mobile={12}>
+            <Box minW={'15rem'}>
               <CheckoutForm />
-            </Grid>
+            </Box>
           )}
-        </Grid>
+        </Flex>
       )}
-    </Suspense>
+    </>
   );
 }

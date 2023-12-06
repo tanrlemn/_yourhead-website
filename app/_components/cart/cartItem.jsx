@@ -6,13 +6,23 @@ import { CartContext } from '@/app/lib/context/CartProvider';
 // hooks
 import { useState, useContext, useEffect } from 'react';
 import { useIsMobile } from '@/app/lib/hooks/useIsMobile';
-import { useWindowSize } from '@/app/lib/hooks/useWindowWidth';
+import { useWindowWidth } from '@/app/lib/hooks/useWindowWidth';
 
 // components
-import { Grid } from '@chakra-ui/react';
-import Image from 'next/image';
-import QtySelect from '../products/qtySelect';
-import Link from 'next/link';
+import {
+  Grid,
+  GridItem,
+  Image,
+  Link,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  Text,
+  Heading,
+  Divider,
+} from '@chakra-ui/react';
 
 export default function CartItem({ item }) {
   const { updateCart, removeFromCart } = useContext(CartContext);
@@ -30,7 +40,7 @@ export default function CartItem({ item }) {
     setTotalPrice(currentProductConfig.qty * product.price);
   }, [currentProductConfig.qty, product.price]);
 
-  const handleUpdateCart = async (qty) => {
+  const handleUpdateCart = (qty) => {
     if (product) {
       updateCart({ productName: product.title, qty: qty });
     }
@@ -38,9 +48,9 @@ export default function CartItem({ item }) {
   };
 
   const isMobile = useIsMobile();
-  const windowSize = useWindowSize();
-  const imageWidth = isMobile ? windowSize / 4 : 190;
-  const imageHeight = imageWidth * 1.22;
+  const windowWidth = useWindowWidth();
+  const imageWidth = isMobile ? windowWidth / 4 : 190;
+  const imageHeight = 'auto';
 
   const onSale = product.on_sale;
 
@@ -64,77 +74,87 @@ export default function CartItem({ item }) {
   };
 
   return (
-    <Grid container>
-      <Grid
-        item
-        laptop={4}
-        mobile={4}>
+    <Grid
+      templateColumns={'1fr 2fr repeat(3, 1fr)'}
+      gap={5}
+      w={'100%'}>
+      <GridItem>
         <Link href={`/shop/${item.product.slug}`}>
           <Image
-            src={product.main_image}
+            src={product.small_thumbnail}
             alt={product.title}
             width={imageWidth}
             height={imageHeight}
           />
         </Link>
-      </Grid>
-      <Grid
-        item
-        laptop={3}
-        mobile={5}>
-        <div>
-          <p>{product.title}</p>
-        </div>
-        <p>
-          <strong>Collection</strong> {item.collection}
-        </p>
-        <p>
-          <strong>Color</strong> {item.color}
-        </p>
-        <p>
-          <strong>Size</strong> {item.size}
-        </p>
-        {isMobile && (
-          <div>
-            <QtySelect
-              qty={currentProductConfig.qty}
-              currentProductConfig={currentProductConfig}
-              setCurrentProductConfig={setCurrentProductConfig}
-              handleUpdateCart={handleUpdateCart}
-            />
-          </div>
+      </GridItem>
+      <GridItem>
+        <Link href={`/shop/${product.slug}`}>
+          <Heading size={'md'}>{product.title}</Heading>
+        </Link>
+        <Divider
+          w={'50%'}
+          m={'0.3rem 0'}
+        />
+        {item.collection && (
+          <Text>
+            <strong>Collection:</strong> {item.collection}
+          </Text>
         )}
-      </Grid>
+        <Text>
+          <strong>Color:</strong> {item.color}
+        </Text>
+        <Text>
+          <strong>Size:</strong> {item.size}
+        </Text>
+        {isMobile && (
+          <NumberInput
+            maxW={'fit-content'}
+            defaultValue={currentProductConfig.qty}
+            min={1}
+            max={20}>
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+        )}
+      </GridItem>
       {!isMobile && (
         <>
-          <Grid
-            item
-            mobile={1.5}>
-            <p style={alignRight}>
+          <GridItem mobile={1.5}>
+            <Text style={alignRight}>
               <span>{onSale ? `$${product.sale_price.toFixed(2)}` : ''}</span>
               <span style={onSale ? saleStyles : null}>
                 ${product.price.toFixed(2)}
               </span>
-            </p>
-          </Grid>
-          <Grid
-            item
-            mobile={2}>
-            <QtySelect
-              qty={currentProductConfig.qty}
-              currentProductConfig={currentProductConfig}
-              setCurrentProductConfig={setCurrentProductConfig}
-              handleUpdateCart={handleUpdateCart}
-            />
-          </Grid>
+            </Text>
+          </GridItem>
+          <GridItem mobile={2}>
+            <NumberInput
+              onChange={(valueString) => {
+                handleUpdateCart(Number(valueString));
+              }}
+              maxW={'8rem'}
+              mb={'2rem'}
+              defaultValue={currentProductConfig.qty}
+              min={1}
+              max={20}>
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+          </GridItem>
         </>
       )}
 
-      <Grid
-        item
+      <GridItem
         laptop={1.5}
         mobile={3}>
-        <p style={alignRight}>
+        <Text style={alignRight}>
           <span>
             {onSale
               ? `$${(product.sale_price * currentProductConfig.qty).toFixed(2)}`
@@ -143,27 +163,23 @@ export default function CartItem({ item }) {
           <span style={onSale ? saleStyles : null}>
             {`$${totalPrice.toFixed(2)}`}
           </span>
-        </p>
+        </Text>
         {!isMobile && (
-          <p
+          <Text
             style={removeItemStyle}
             onClick={() => removeFromCart({ productId: product.id })}>
             Remove
-          </p>
+          </Text>
         )}
-      </Grid>
+      </GridItem>
       {isMobile && (
-        <Grid
-          item
-          mobile={12}>
-          <div>
-            <p
-              style={removeItemStyle}
-              onClick={() => removeFromCart({ productId: product.id })}>
-              Remove
-            </p>
-          </div>
-        </Grid>
+        <GridItem>
+          <Text
+            style={removeItemStyle}
+            onClick={() => removeFromCart({ productId: product.id })}>
+            Remove
+          </Text>
+        </GridItem>
       )}
     </Grid>
   );

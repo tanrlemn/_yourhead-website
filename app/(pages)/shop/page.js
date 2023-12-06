@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 
 // components
 import ProductCard from '@/app/_components/products/productCard';
-import { Box, Heading, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 
 export default function Shop() {
   const searchParams = useSearchParams();
@@ -93,7 +93,7 @@ export default function Shop() {
         // collections !== null &&
         // productTypes !== null &&
         filteredProducts !== null && (
-          <div>
+          <Box>
             <Box mb={'1.5rem'}>
               <Heading>{categoryText[category()]}</Heading>
               <Text>
@@ -102,7 +102,9 @@ export default function Shop() {
                   : `${filteredProducts.length} products`}
               </Text>
             </Box>
-            <div>
+            <Flex
+              gap={'2rem'}
+              flexWrap={'wrap'}>
               {filteredProducts.map((product, i) => {
                 return (
                   <ProductCard
@@ -112,8 +114,8 @@ export default function Shop() {
                   />
                 );
               })}
-            </div>
-          </div>
+            </Flex>
+          </Box>
         )}
     </Box>
   );

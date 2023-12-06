@@ -24,6 +24,7 @@ export default function Navbar() {
 
   return (
     <Box
+      zIndex={1000}
       background={'var(--darkGreen)'}
       position={'sticky'}
       top={'0'}>

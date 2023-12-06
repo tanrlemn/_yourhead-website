@@ -1,16 +1,18 @@
+'use client';
+
 // hooks
 import { useWindowWidth } from '@/app/lib/hooks/useWindowWidth';
 import { useIsMobile } from '@/app/lib/hooks/useIsMobile';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useAnimate } from 'framer-motion';
 
 // components
-import Link from 'next/link';
-import Image from 'next/image';
+import { Box, Link, Image, Heading, Text } from '@chakra-ui/react';
 
 export default function ProductCard({ product, collection }) {
-  const imageRef = useRef(null);
+  const [scope, animate] = useAnimate();
   const slug = product.slug;
-  const mainImage = product.image_url;
+  const mainImage = product.small_thumbnail;
   const hasAdditionalImages = product.additional_images !== null;
 
   const [hovering, setHovering] = useState(false);
@@ -20,9 +22,38 @@ export default function ProductCard({ product, collection }) {
   );
 
   useEffect(() => {
+    const hoveringAnimation = animate(
+      scope.current,
+      {
+        opacity: hovering ? 1 : 0,
+      },
+      { ease: 'easeInOut' }
+    );
+
+    const handleHover = () => {
+      setHovering(true);
+    };
+
+    const handleLeave = () => {
+      setHovering(false);
+    };
+
+    if (scope.current) {
+      scope.current.addEventListener('mouseenter', handleHover);
+      scope.current.addEventListener('mouseleave', handleLeave);
+    }
+
     if (hasAdditionalImages) {
       setAdditionalImages([mainImage, ...product.additional_images]);
     }
+
+    return () => {
+      hoveringAnimation.stop();
+      if (scope.current) {
+        scope.current.removeEventListener('mouseenter', handleHover);
+        scope.current.removeEventListener('mouseleave', handleLeave);
+      }
+    };
   }, [product, hasAdditionalImages, hovering]);
 
   collection =
@@ -56,6 +87,13 @@ export default function ProductCard({ product, collection }) {
         : 'var(--collection-border)',
   };
 
+  const imageStyles = {
+    opacity: 0,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  };
+
   const tagStyles = {
     backgroundColor:
       collection === 'Exclusive'
@@ -76,77 +114,76 @@ export default function ProductCard({ product, collection }) {
   };
 
   return (
-    <div>
+    <Box
+      flexGrow={1}
+      maxW={'fit-content'}>
       <Link
-        href={{
-          pathname: `/shop/${slug}`,
-          query: {
-            product: JSON.stringify(product),
-          },
-        }}
-        as={`/shop/${slug}`}>
+        href={`/shop/${slug}`}
+        position={'relative'}>
         <Image
-          src={
-            hovering
-              ? hasAdditionalImages
-                ? additionalImages[1]
-                : mainImage
-              : mainImage
-          }
+          zIndex={1}
+          src={mainImage}
           width={imageWidth}
           height={imageHeight}
           style={cardStyles}
           alt={`image for ${product.title}`}
-          ref={imageRef}
-          onMouseOver={() => {
-            setHovering(true);
-          }}
-          onMouseOut={() => {
-            setHovering(false);
-          }}
+        />
+        <Image
+          src={additionalImages[1]}
+          width={imageWidth}
+          height={imageHeight}
+          style={imageStyles}
+          alt={`image for ${product.title}`}
+          ref={scope}
         />
       </Link>
 
-      <div>
-        <Link
-          href={{
-            pathname: `/shop/${slug}`,
-            query: {
-              product: JSON.stringify(product),
-            },
-          }}
-          as={`/shop/${slug}`}>
-          <div>
-            <h2>{product.title}</h2>
-          </div>
-          <div>
-            <p>
-              <span style={onSale ? saleStyles : null}>
-                ${product.price.toFixed(2)}
-              </span>{' '}
-              <span>{onSale ? `$${product.sale_price.toFixed(2)}` : ''}</span>
-            </p>
-          </div>
-          {limitedEdition && (
-            <div>
-              <p>
-                Limited edition – {numEditions} prints{' '}
-                {`(${numAvailable} remaining)`}
-              </p>
-            </div>
-          )}
-          {!limitedEdition && (
-            <div>
-              <p>General release – unlimited prints available</p>
-            </div>
-          )}
+      <Box mt={'1rem'}>
+        <Link href={`/shop/${slug}`}>
+          <Heading
+            mb={'0.1rem'}
+            size={'md'}>
+            {product.title}
+          </Heading>
+          <Text mb={'0.5rem'}>
+            <span style={onSale ? saleStyles : null}>
+              ${product.price.toFixed(2)}
+            </span>{' '}
+            <span>{onSale ? `$${product.sale_price.toFixed(2)}` : ''}</span>
+          </Text>
         </Link>
+        <Box
+          fontSize={'0.8rem'}
+          textTransform={'uppercase'}>
+          {limitedEdition ? (
+            <Box>
+              <Text
+                color={'var(--purple)'}
+                fontSize={'1.1em'}
+                fontWeight={500}>
+                Limited edition
+              </Text>
+              <Text>
+                – {numEditions} prints {`(${numAvailable} remaining)`}
+              </Text>
+            </Box>
+          ) : (
+            <Box>
+              <Text
+                fontSize={'1.1em'}
+                fontWeight={500}>
+                General release
+              </Text>
+              <Text>– unlimited prints available</Text>
+            </Box>
+          )}
+        </Box>
         {collection !== null && (
           <Link href={`shop/collections/${collection.toLowerCase()}`}>
-            <div style={tagStyles}>{collectionName}</div>
+            <Text style={tagStyles}>{collectionName}</Text>
           </Link>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

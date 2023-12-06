@@ -8,6 +8,7 @@ import { LoadingProvider } from './lib/context/LoadingProvider';
 import { ScaleProvider } from './lib/context/ScaleProvider';
 import { ContactProvider } from './lib/context/ContactProvider';
 import { SessionProvider } from './lib/context/SessionProvider';
+import { CartProvider } from './lib/context/CartProvider';
 
 // local components
 import Footer from './_navigation/footer';
@@ -63,13 +64,15 @@ export default async function RootLayout({ children }) {
         <LoadingProvider>
           <ScaleProvider>
             <ThemeProvider>
-              <SessionProvider>
-                <ContactProvider>
-                  <Navbar />
-                  {children}
-                  <Footer />
-                </ContactProvider>
-              </SessionProvider>
+              <CartProvider>
+                <SessionProvider>
+                  <ContactProvider>
+                    <Navbar />
+                    {children}
+                    <Footer />
+                  </ContactProvider>
+                </SessionProvider>
+              </CartProvider>
             </ThemeProvider>
           </ScaleProvider>
         </LoadingProvider>

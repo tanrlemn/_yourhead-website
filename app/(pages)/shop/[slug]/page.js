@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 
 // components
 import ProductInfo from '@/app/_components/products/productInfo';
+import { Box } from '@chakra-ui/react';
 
 export default function Product({ params }) {
   const [currentProduct, setCurrentProduct] = useState(null);
@@ -37,13 +38,18 @@ export default function Product({ params }) {
   }, [currentProduct, slug, searchParams]);
 
   return (
-    <div>
+    <Box
+      p={{
+        base: '2rem 1rem',
+        md: '3rem 1.5rem',
+        lg: '4rem 2rem',
+      }}>
       {currentProduct !== null && (
         <ProductInfo
           product={currentProduct}
           collection={null}
         />
       )}
-    </div>
+    </Box>
   );
 }

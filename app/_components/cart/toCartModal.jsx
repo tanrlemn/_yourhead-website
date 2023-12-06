@@ -1,76 +1,104 @@
 'use client';
 
-// images
-import { VscClose } from 'react-icons/vsc';
+// hooks
+import { useRouter } from 'next/navigation';
 
 // components
-import Link from 'next/link';
-import Image from 'next/image';
+import {
+  Button,
+  Image,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
+  Flex,
+  Heading,
+  Highlight,
+  Stat,
+  Box,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  Divider,
+  VStack,
+} from '@chakra-ui/react';
 
-export default function ToCartModal({ product, collection, setAddedToCart }) {
-  const mainImage = product.main_image;
-
-  const clickOutStyles = {
-    display: 'block',
-  };
-
-  const closeStyles = {
-    margin: '1em',
-    zIndex: '100',
-  };
+export default function ToCartModal({
+  product,
+  collection,
+  setAddedToCart,
+  isOpen,
+  onClose,
+  numCartItems,
+}) {
+  const router = useRouter();
+  const mainImage = product.small_thumbnail;
 
   return (
-    <div>
-      <div
-        style={clickOutStyles}
-        onClick={() => setAddedToCart(false)}></div>
-      <div>
-        <div>
-          <div>
-            <VscClose
-              style={closeStyles}
-              onClick={() => setAddedToCart(false)}
+    <Modal
+      size={'xl'}
+      motionPreset='slideInBottom'
+      isOpen={isOpen}
+      onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Added to bag</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <Flex gap={'2rem'}>
+            <VStack
+              align={'flex-start'}
+              justify={'space-between'}
+              minH={'100%'}>
+              <Box
+                w={'100%'}
+                pt={'2rem'}>
+                <Heading size={'lg'}>
+                  <Highlight
+                    query={product.title}
+                    styles={{
+                      color: 'var(--darkBlue)',
+                    }}>
+                    {product.title}
+                  </Highlight>{' '}
+                  has been added to your bag.
+                </Heading>
+                <Divider m={'1rem 0'} />
+              </Box>
+
+              <Stat flex={0}>
+                <StatNumber fontSize={'1rem'}>{`${numCartItems} item${
+                  numCartItems !== 1 ? 's' : ''
+                } in your bag`}</StatNumber>
+              </Stat>
+            </VStack>
+            <Image
+              m={'1rem 0'}
+              src={mainImage}
+              alt={product.title}
+              width={150}
+              height={150 * 1.25}
             />
-          </div>
-          <div>
-            <div>
-              <div>
-                <h2>
-                  <span></span>
-                  Added to bag
-                </h2>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div>
-              <div>
-                <div>
-                  <Image
-                    src={mainImage}
-                    alt={product.title}
-                    width={200}
-                    height={200 * 1.25}
-                  />
-                </div>
-              </div>
-              <div>
-                <p>
-                  <span>{product.title} –</span> has been added to your cart.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div>
-              <Link href='/cart'>View Cart</Link>
-            </div>
-            <div>
-              <div onClick={() => setAddedToCart(false)}>Continue Shopping</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Flex>
+        </ModalBody>
+
+        <ModalFooter>
+          <Button
+            colorScheme='blue'
+            mr={3}
+            onClick={() => router.push('/cart')}>
+            View Bag
+          </Button>
+          <Button
+            variant='ghost'
+            onClick={onClose}>
+            Continue Shopping
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 }

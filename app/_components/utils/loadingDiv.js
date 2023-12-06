@@ -1,7 +1,7 @@
 'use client';
 
 // context
-import { LoadingContext } from '@/app/lib/providers/LoadingProvider';
+import { LoadingContext } from '@/app/lib/context/LoadingProvider';
 
 // hooks
 import { useEffect, useState, useContext } from 'react';
@@ -27,28 +27,22 @@ export default function LoadingDiv() {
   }, [loadingInPlace]);
 
   return (
-    <>
-      {extraLoading && (
-        <Flex
-          align={'center'}
-          justify={'center'}
-          w={'100%'}
-          position={'relative'}
-          p={'1rem'}
-          zIndex={10}
-          backdropFilter={'blur(10px) saturate(100%)'}
-          left={0}
-          top={0}>
-          <Box
-            className='loading'
-            maxW={'fit-content'}>
-            <Logo
-              animate={true}
-              shouldLink={false}
-            />
-          </Box>
-        </Flex>
-      )}
-    </>
+    <Flex
+      position={'relative'}
+      zIndex={10}
+      backdropFilter={'blur(10px) saturate(100%)'}
+      left={0}
+      top={0}>
+      <Box
+        className='loading'
+        maxW={'fit-content'}>
+        <Logo
+          animate={true}
+          shouldLink={false}
+          color={'var(--blue)'}
+          text={''}
+        />
+      </Box>
+    </Flex>
   );
 }

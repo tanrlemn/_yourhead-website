@@ -10,37 +10,55 @@ import { useIsMobile } from '@/app/lib/hooks/useIsMobile';
 import { useWindowWidth } from '@/app/lib/hooks/useWindowWidth';
 
 // components
-import Link from 'next/link';
-import Image from 'next/image';
 import { Slide } from 'react-slideshow-image';
-import QtySelect from './qtySelect';
 import ToCartModal from '../cart/toCartModal';
+import {
+  Box,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Image,
+  Link,
+  VStack,
+  Button,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  Stat,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  useDisclosure,
+} from '@chakra-ui/react';
 
 export default function ProductInfo({ product, collection }) {
   product = product.product;
-
-  // context
-  const { addToCart, setNumCartItems, setNumItems } = useContext(CartContext);
-
+  const { addToCart, setNumCartItems, setNumItems, numCartItems } =
+    useContext(CartContext);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const isMobile = useIsMobile();
 
   const mainImage = product.image_url;
-
   const [currentImage, setCurrentImage] = useState(mainImage);
-
   const [addedToCart, setAddedToCart] = useState(false);
-
   const [currentProductConfig, setCurrentProductConfig] = useState({
     qty: 1,
     size: '8 x 12',
     color: 'Multi',
     collection: collection,
   });
-
-  const hasAdditionalImages = product.additional_images !== null;
-  console.log(product);
-
   const [additionalImages, setAdditionalImages] = useState(null);
+  const hasAdditionalImages = product.additional_images !== null;
+
+  let artworkDate = new Date(product.artwork_date);
+  artworkDate = artworkDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
   useEffect(() => {
     if (hasAdditionalImages) {
@@ -107,7 +125,8 @@ export default function ProductInfo({ product, collection }) {
   };
 
   const currentImageStyles = {
-    border: 'var(--blue-mid-light-border)',
+    outline: 'var(--blue-mid-light-border)',
+    outlineOffset: '0.5rem',
   };
 
   const saleStyles = {
@@ -134,20 +153,28 @@ export default function ProductInfo({ product, collection }) {
       collection: collection,
     });
     setNumCartItems(setNumItems);
-    setAddedToCart(true);
+    onOpen();
+
+    console.log('res', res);
     return res;
   };
 
   return (
     <>
       {product !== null && (
-        <>
+        <Flex
+          justify={'flex-start'}
+          minW={'100%'}
+          gap={'3rem'}>
           {!isMobile && (
-            <div>
+            <Flex
+              gap={'2rem'}
+              h={'fit-content'}
+              position={'relative'}>
               {hasAdditionalImages && additionalImages !== null && (
-                <div>
+                <VStack gap={'1rem'}>
                   {additionalImages.map((imageUrl, index) => (
-                    <div
+                    <Box
                       key={index}
                       onClick={() => setCurrentImage(imageUrl)}
                       style={
@@ -159,31 +186,46 @@ export default function ProductInfo({ product, collection }) {
                         height={180}
                         alt={`image for ${product.title}`}
                       />
-                    </div>
+                    </Box>
                   ))}
-                </div>
+                </VStack>
               )}
               {currentImage !== null && (
-                <div>
+                <Box>
                   <Image
+                    position={'sticky'}
+                    top={'9rem'}
                     src={currentImage}
                     width={imageWidth}
                     height={imageHeight}
                     style={cardStyles}
                     alt={`image for ${product.title}`}
                   />
-                </div>
+                </Box>
               )}
-            </div>
+            </Flex>
           )}
-          <div>
-            <div>
-              <div>
-                <div>
-                  <h1>{product.title}</h1>
-                </div>
-                <div>{product.production_year}</div>
-              </div>
+          <Box>
+            <VStack
+              position={'sticky'}
+              top={'9rem'}
+              flexGrow={1}
+              align={'flex-start'}>
+              <Heading>{product.title}</Heading>
+              <Stat
+                maxH={'fit-content'}
+                flex={0}>
+                <StatLabel>{artworkDate}</StatLabel>
+                <StatNumber>
+                  <span style={onSale ? saleStyles : null}>
+                    ${product.price.toFixed(2)}
+                  </span>{' '}
+                  <span>
+                    {onSale ? `$${product.sale_price.toFixed(2)}` : ''}
+                  </span>
+                </StatNumber>
+                <StatHelpText></StatHelpText>
+              </Stat>
               {!isMobile && collection !== null && (
                 <div>
                   <Link href={`/shop/collections/${collection.toLowerCase()}`}>
@@ -226,58 +268,65 @@ export default function ProductInfo({ product, collection }) {
                   See all of the {collection} Collection
                 </Link>
               )}
-              <p>
-                <span style={onSale ? saleStyles : null}>
-                  ${product.price.toFixed(2)}
-                </span>{' '}
-                <span>{onSale ? `$${product.sale_price.toFixed(2)}` : ''}</span>
-              </p>
-              <div>
-                <form>
-                  <label htmlFor='size'>Size*</label>
-                  <div>
-                    {currentProductConfig.size && (
-                      <div>
-                        <div style={selectedOptionStyles}>
-                          {currentProductConfig.size}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor='qty'>Qty*</label>
-                  </div>
-                  {currentProductConfig.qty && (
-                    <QtySelect
-                      qty={currentProductConfig.qty}
-                      currentProductConfig={currentProductConfig}
-                      setCurrentProductConfig={setCurrentProductConfig}
-                    />
-                  )}
-                  <button
-                    onClick={(e) => {
-                      handleAddToCart(e);
-                    }}>
-                    Add to bag
-                  </button>
-                  {collection !== null && (
-                    <Link
-                      href={`/shop/collections/${collection.toLowerCase()}`}>
-                      <div>Shop related items</div>
-                    </Link>
-                  )}
-                </form>
-              </div>
-            </div>
-            {addedToCart && (
+              <Heading size={'md'}></Heading>
+              <FormControl>
+                <FormLabel htmlFor='size'>Size*</FormLabel>
+                <Box
+                  mb={'1rem'}
+                  maxW={'fit-content'}
+                  borderRadius='sm'
+                  outline={'1px solid var(--lightGreen)'}
+                  outlineOffset={'0.2rem'}
+                  background={'var(--lightGreen50)'}
+                  px={5}
+                  py={3}>
+                  {currentProductConfig.size}
+                </Box>
+                <FormLabel htmlFor='qty'>Qty*</FormLabel>
+                {currentProductConfig.qty && (
+                  <NumberInput
+                    onChange={(valueString) => {
+                      setCurrentProductConfig({
+                        ...currentProductConfig,
+                        qty: Number(valueString),
+                      });
+                    }}
+                    maxW={'8rem'}
+                    mb={'2rem'}
+                    defaultValue={currentProductConfig.qty}
+                    min={1}
+                    max={20}>
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                )}
+                <Button
+                  colorScheme={'blue'}
+                  size={'lg'}
+                  onClick={(e) => {
+                    handleAddToCart(e);
+                  }}>
+                  Add to bag
+                </Button>
+                {collection !== null && (
+                  <Link href={`/shop/collections/${collection.toLowerCase()}`}>
+                    <div>Shop related items</div>
+                  </Link>
+                )}
+              </FormControl>
               <ToCartModal
                 product={product}
                 collection={collection}
-                setAddedToCart={setAddedToCart}
+                isOpen={isOpen}
+                onClose={onClose}
+                numCartItems={numCartItems}
               />
-            )}
-          </div>
-        </>
+            </VStack>
+          </Box>
+        </Flex>
       )}
     </>
   );

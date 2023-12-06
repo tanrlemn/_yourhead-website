@@ -11,6 +11,7 @@ export default function Logo({
   shouldLink = true,
   animate = false,
   isDesktop = false,
+  text = 'YOURHEAD',
 }) {
   return (
     <>
@@ -21,19 +22,23 @@ export default function Logo({
           href='/'
           _hover={{ textDecoration: 'none' }}
           textDecoration={'none'}>
-          <LogoContent color={color} />
+          <LogoContent
+            color={color}
+            text={text}
+          />
         </Link>
       ) : (
         <LogoContent
           color={color}
           animate={animate}
+          text={text}
         />
       )}
     </>
   );
 }
 
-export const LogoContent = ({ color, animate }) => {
+export const LogoContent = ({ color, animate, text }) => {
   return (
     <Flex
       maxW={'fit-content'}
@@ -55,7 +60,7 @@ export const LogoContent = ({ color, animate }) => {
         lineHeight={'1.56288rem'}
         letterSpacing={'-0.02688rem'}
         size={'md'}>
-        YOURHEAD
+        {text}
       </Heading>
       <Box
         pb={'0.3rem'}

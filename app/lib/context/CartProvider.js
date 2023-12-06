@@ -168,6 +168,7 @@ export const CartProvider = ({ children }) => {
       setCartTotal(setTotal);
     }
     setCart(JSON.parse(window.localStorage.getItem('cart')));
+    return JSON.parse(window.localStorage.getItem('cart'));
   };
 
   const updateCart = ({ productName, qty }) => {
@@ -234,7 +235,6 @@ export const CartProvider = ({ children }) => {
       }
 
       const updatedCart = JSON.parse(window.localStorage.getItem('cart'));
-      console.log(updatedCart);
       setCart(updatedCart);
       setNumCartItems(setNumItems);
       setCartTotal(setTotal);
