@@ -1,6 +1,10 @@
 'use client';
 
+// context
+import { LoadingContext } from '@/app/lib/context/LoadingProvider';
+
 // hooks
+import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
 
 // components
@@ -19,21 +23,18 @@ import {
   Highlight,
   Stat,
   Box,
-  StatLabel,
   StatNumber,
-  StatHelpText,
   Divider,
   VStack,
 } from '@chakra-ui/react';
 
 export default function ToCartModal({
   product,
-  collection,
-  setAddedToCart,
   isOpen,
   onClose,
   numCartItems,
 }) {
+  const { setLoading } = useContext(LoadingContext);
   const router = useRouter();
   const mainImage = product.small_thumbnail;
 
@@ -89,7 +90,10 @@ export default function ToCartModal({
           <Button
             colorScheme='blue'
             mr={3}
-            onClick={() => router.push('/cart')}>
+            onClick={() => {
+              setLoading(true);
+              router.push('/cart');
+            }}>
             View Bag
           </Button>
           <Button

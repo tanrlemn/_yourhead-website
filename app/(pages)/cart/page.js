@@ -5,11 +5,11 @@ import { CartContext } from '@/app/lib/context/CartProvider';
 import { LoadingContext } from '@/app/lib/context/LoadingProvider';
 
 // hooks
-import { useState, useEffect, useContext, Suspense } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useIsMobile } from '@/app/lib/hooks/useIsMobile';
 
-// components
+// chakra-ui
 import {
   Box,
   Button,
@@ -17,9 +17,10 @@ import {
   Grid,
   GridItem,
   Heading,
-  Link,
   Text,
 } from '@chakra-ui/react';
+
+// local components
 import CartItem from '@/app/_components/cart/cartItem';
 import CheckoutForm from '@/app/_components/cart/checkoutForm';
 import LoadingDiv from '@/app/_components/utils/loadingDiv';
@@ -27,13 +28,12 @@ import OrderSuccess from '@/app/_components/cart/orderSuccess';
 
 export default function Cart() {
   const { loading, setLoading } = useContext(LoadingContext);
+  const isMobile = useIsMobile();
 
   const { cart, numCartItems, clearCart } = useContext(CartContext);
-  console.log('cart', cart);
-  console.log('numCartItems', numCartItems);
 
   const [cartItems, setCartItems] = useState([]);
-  const isMobile = useIsMobile();
+  const [checkoutSession, setCheckoutSession] = useState(null);
 
   const [success, setSuccess] = useState(false);
 
@@ -60,10 +60,12 @@ export default function Cart() {
 
     if (cart.items && cart.items.length > 0) {
       setCartItems(cart.items);
+      checkoutSession !== null && setLoading(false);
     }
 
     if (cartItems.length !== numCartItems) {
       setCartItems(cart.items);
+      checkoutSession !== null && setLoading(false);
     }
   }, [
     searchParams,
@@ -170,7 +172,10 @@ export default function Cart() {
           </Box>
           {numCartItems > 0 && (
             <Box minW={'15rem'}>
-              <CheckoutForm />
+              <CheckoutForm
+                checkoutSession={checkoutSession}
+                setCheckoutSession={setCheckoutSession}
+              />
             </Box>
           )}
         </Flex>

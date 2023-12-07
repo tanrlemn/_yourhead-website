@@ -17,7 +17,7 @@ export default function BouncingBall() {
           cy='5'
           rx='4'
           ry='4'
-          fill={'var(--purpleGray)'}
+          fill={'var(--orange)'}
         />
       </svg>
     </Box>

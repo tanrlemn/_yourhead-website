@@ -9,7 +9,7 @@ export default function RingResize() {
       <svg
         width='24'
         height='24'
-        stroke='var(--purpleGray)'
+        stroke='var(--lightOrange)'
         viewBox='0 0 24 24'
         xmlns='http://www.w3.org/2000/svg'>
         <g className='spinner_V8m1'>

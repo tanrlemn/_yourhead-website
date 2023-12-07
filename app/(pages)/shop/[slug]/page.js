@@ -1,7 +1,10 @@
 'use client';
 
+// context
+import { LoadingContext } from '@/app/lib/context/LoadingProvider';
+
 // hooks
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 // components
@@ -9,6 +12,7 @@ import ProductInfo from '@/app/_components/products/productInfo';
 import { Box } from '@chakra-ui/react';
 
 export default function Product({ params }) {
+  const { setLoading } = useContext(LoadingContext);
   const [currentProduct, setCurrentProduct] = useState(null);
 
   const slug = params.slug;
@@ -20,6 +24,7 @@ export default function Product({ params }) {
       const data = await res.json();
       console.log(data);
       setCurrentProduct(data);
+      setLoading(false);
     };
 
     if (currentProduct === null) {

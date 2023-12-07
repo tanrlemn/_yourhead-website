@@ -12,7 +12,6 @@ import { LoadingContext } from '@/app/lib/context/LoadingProvider';
 // hooks
 import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useIsMobile } from '@/app/lib/hooks/useIsMobile';
 
 // components
 import {
@@ -20,7 +19,6 @@ import {
   Text,
   Flex,
   Image,
-  Link,
   Stack,
   Button,
   Skeleton,
@@ -34,8 +32,6 @@ export default function Home() {
   useEffect(() => {
     setLoading(false);
   }, [setLoading]);
-
-  const mobile = useIsMobile();
 
   return (
     <Flex

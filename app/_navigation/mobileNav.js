@@ -34,9 +34,7 @@ export default function MobileNavbar() {
     setOpenMenu(false);
 
     const randomTime = Math.random() * (1700 - 500) + 500;
-    setTimeout(() => {
-      setLoading(false);
-    }, randomTime);
+    setTimeout(() => {}, randomTime);
   }, [pathname, searchParams, isShop, numCartItems, cart, setLoading]);
 
   return (

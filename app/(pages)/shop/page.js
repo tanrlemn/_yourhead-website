@@ -1,7 +1,10 @@
 'use client';
 
+// context
+import { LoadingContext } from '@/app/lib/context/LoadingProvider';
+
 // hooks
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 // components
@@ -9,6 +12,8 @@ import ProductCard from '@/app/_components/products/productCard';
 import { Box, Flex, Heading, Text } from '@chakra-ui/react';
 
 export default function Shop() {
+  const { setLoading } = useContext(LoadingContext);
+
   const searchParams = useSearchParams();
   const [products, setProducts] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState(null);
@@ -49,6 +54,7 @@ export default function Shop() {
           }
         })
       );
+      setLoading(false);
     }
 
     const getProducts = async () => {
@@ -57,6 +63,7 @@ export default function Shop() {
       setProducts(data.products);
 
       setFilteredProducts(data.products);
+      setLoading(false);
     };
 
     const getCollections = async () => {

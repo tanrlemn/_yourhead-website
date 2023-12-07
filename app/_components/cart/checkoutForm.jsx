@@ -22,15 +22,13 @@ import {
   VStack,
 } from '@chakra-ui/react';
 
-export default function CheckoutForm() {
+export default function CheckoutForm({ checkoutSession, setCheckoutSession }) {
   const { setLoading } = useContext(LoadingContext);
 
   const { cart, numCartItems, cartTotal } = useContext(CartContext);
   const [subtotal, setSubtotal] = useState(null);
   const [shipping, setShipping] = useState(null);
   const [tax, setTax] = useState(null);
-
-  const [checkoutSession, setCheckoutSession] = useState(null);
 
   const origin = useOrigin();
   const router = useRouter();
@@ -69,7 +67,6 @@ export default function CheckoutForm() {
   ]);
 
   const handleCheckout = async () => {
-    setLoading(true);
     const getCheckoutSession = async () => {
       const res = await fetch('/api/checkout/checkoutSession', {
         method: 'POST',
