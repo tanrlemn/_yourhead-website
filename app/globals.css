@@ -229,7 +229,10 @@ button {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media only screen and (max-width: 1279px) {
+  .PricingTable.has-threeItems .PricingTable-grid {
+    max-width: 100% !important;
+  }
 }
 
 .loading {
