@@ -42,8 +42,7 @@ export default function ProductInfo({ product, collection }) {
   const isMobile = useIsMobile();
 
   const mainImage = product.image_url;
-  const [currentImage, setCurrentImage] = useState(mainImage);
-  const [addedToCart, setAddedToCart] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
   const [currentProductConfig, setCurrentProductConfig] = useState({
     qty: 1,
     size: '8 x 12',
@@ -51,6 +50,7 @@ export default function ProductInfo({ product, collection }) {
     collection: collection,
   });
   const [additionalImages, setAdditionalImages] = useState(null);
+  const [imageElements, setImageElements] = useState(null);
   const hasAdditionalImages = product.additional_images !== null;
 
   let artworkDate = new Date(product.artwork_date);
@@ -63,8 +63,27 @@ export default function ProductInfo({ product, collection }) {
   useEffect(() => {
     if (hasAdditionalImages) {
       setAdditionalImages([mainImage, ...product.additional_images]);
+    } else {
+      setAdditionalImages([mainImage]);
     }
-  }, [product, hasAdditionalImages]);
+
+    if (additionalImages !== null) {
+      setImageElements(
+        additionalImages.map((image) => {
+          return (
+            <Image
+              position={'sticky'}
+              top={'9rem'}
+              src={image}
+              width={imageWidth}
+              height={imageHeight}
+              alt={`image for ${product.title}`}
+            />
+          );
+        })
+      );
+    }
+  }, [product, hasAdditionalImages, currentImage]);
 
   const sliderImages = () => {
     const images = [];
@@ -111,19 +130,6 @@ export default function ProductInfo({ product, collection }) {
   const imageWidth = isMobile ? windowWidth - 40 : windowWidth / 3.7;
   const imageHeight = imageWidth * 1.25;
 
-  const selectedOptionStyles = {
-    backgroundColor: 'var(--blue-lightest)',
-  };
-
-  const cardStyles = {
-    borderBottom:
-      collection === 'Exclusive'
-        ? 'var(--exclusive-border)'
-        : collection == 'General'
-        ? 'none'
-        : 'var(--collection-border)',
-  };
-
   const currentImageStyles = {
     outline: 'var(--blue-mid-light-border)',
     outlineOffset: '0.5rem',
@@ -155,7 +161,6 @@ export default function ProductInfo({ product, collection }) {
     setNumCartItems(setNumItems);
     onOpen();
 
-    console.log('res', res);
     return res;
   };
 
@@ -176,9 +181,9 @@ export default function ProductInfo({ product, collection }) {
                   {additionalImages.map((imageUrl, index) => (
                     <Box
                       key={index}
-                      onClick={() => setCurrentImage(imageUrl)}
+                      onClick={() => setCurrentImage(index)}
                       style={
-                        imageUrl === currentImage ? currentImageStyles : null
+                        index === currentImage ? currentImageStyles : null
                       }>
                       <Image
                         src={imageUrl}
@@ -190,18 +195,8 @@ export default function ProductInfo({ product, collection }) {
                   ))}
                 </VStack>
               )}
-              {currentImage !== null && (
-                <Box>
-                  <Image
-                    position={'sticky'}
-                    top={'9rem'}
-                    src={currentImage}
-                    width={imageWidth}
-                    height={imageHeight}
-                    style={cardStyles}
-                    alt={`image for ${product.title}`}
-                  />
-                </Box>
+              {currentImage !== null && imageElements !== null && (
+                <>{imageElements[currentImage]}</>
               )}
             </Flex>
           )}

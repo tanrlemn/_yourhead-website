@@ -53,7 +53,6 @@ export default function CheckoutForm({ checkoutSession, setCheckoutSession }) {
         setTax(cartTotal.tax);
       }
     }
-    console.log('checkoutSession', checkoutSession);
   }, [
     cart,
     numCartItems,
@@ -77,7 +76,6 @@ export default function CheckoutForm({ checkoutSession, setCheckoutSession }) {
       });
 
       const sessionUrl = await res.json();
-      console.log('sessionUrl', sessionUrl);
 
       setCheckoutSession(sessionUrl);
     };

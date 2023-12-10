@@ -61,11 +61,6 @@ export default function NavSubMenu() {
           Apparel
         </SubNavLink>
         <SubNavLink
-          href='/shop?category=music'
-          style={isMobile ? mobileLinkStyles : null}>
-          Music
-        </SubNavLink>
-        <SubNavLink
           href='/shop?category=sale'
           style={isMobile ? mobileLinkStyles : null}>
           Sale

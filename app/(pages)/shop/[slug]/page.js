@@ -5,7 +5,6 @@ import { LoadingContext } from '@/app/lib/context/LoadingProvider';
 
 // hooks
 import { useEffect, useState, useContext } from 'react';
-import { useSearchParams } from 'next/navigation';
 
 // components
 import ProductInfo from '@/app/_components/products/productInfo';
@@ -16,7 +15,6 @@ export default function Product({ params }) {
   const [currentProduct, setCurrentProduct] = useState(null);
 
   const slug = params.slug;
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     const getProduct = async () => {
@@ -30,17 +28,7 @@ export default function Product({ params }) {
     if (currentProduct === null) {
       getProduct();
     }
-
-    if (searchParams.get('success')) {
-      console.log('Order placed! You will receive an email confirmation.');
-    }
-
-    if (searchParams.get('canceled')) {
-      console.log(
-        'Order canceled -- continue to shop around and checkout when you’re ready.'
-      );
-    }
-  }, [currentProduct, slug, searchParams]);
+  }, [currentProduct, slug]);
 
   return (
     <Box

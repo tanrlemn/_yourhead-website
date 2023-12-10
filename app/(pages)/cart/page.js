@@ -60,12 +60,12 @@ export default function Cart() {
 
     if (cart.items && cart.items.length > 0) {
       setCartItems(cart.items);
-      checkoutSession !== null && setLoading(false);
+      setLoading(false);
     }
 
     if (cartItems.length !== numCartItems) {
       setCartItems(cart.items);
-      checkoutSession !== null && setLoading(false);
+      setLoading(false);
     }
   }, [
     searchParams,
@@ -146,6 +146,9 @@ export default function Cart() {
                     cartItems.map((item) => {
                       return (
                         <GridItem
+                          borderBottom={'var(--blue-light-border)'}
+                          pb={'1rem'}
+                          mb={'1rem'}
                           key={item.product.id}
                           mobile={12}>
                           <CartItem item={item} />
@@ -163,7 +166,10 @@ export default function Cart() {
                   <Button
                     mt={'1rem'}
                     colorScheme={'blue'}
-                    onClick={() => router.push('/shop')}>
+                    onClick={() => {
+                      setLoading(true);
+                      router.push('/shop');
+                    }}>
                     Fill your bag
                   </Button>
                 </Box>

@@ -13,7 +13,7 @@ import { LoadingContext } from '@/app/lib/context/LoadingProvider';
 import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-// components
+// chakra-ui
 import {
   Heading,
   Text,
@@ -24,6 +24,9 @@ import {
   Skeleton,
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
+
+// local components
+import HeroImage from './_components/sections/hero/heroImage';
 
 export default function Home() {
   const { loading, setLoading } = useContext(LoadingContext);
@@ -129,24 +132,6 @@ export default function Home() {
           </Skeleton>
         </Flex>
       </Stack>
-    </Flex>
-  );
-}
-
-export function HeroImage({ mr, ...props }) {
-  return (
-    <Flex
-      alignItems={'center'}
-      overflow={'hidden'}
-      mr={mr}
-      borderRadius={'9px'}
-      maxH={{ base: '100%', md: '17rem' }}
-      w={{ base: '100%', md: '22rem' }}
-      maxW={{ base: '100%', md: '22rem' }}>
-      <Image
-        {...props}
-        pt={'20%'}
-      />
     </Flex>
   );
 }

@@ -6,6 +6,7 @@ import { LoadingContext } from '@/app/lib/context/LoadingProvider';
 // hooks
 import { useEffect, useState, useContext, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useQueryState } from 'next-usequerystate';
 
 // components
 import ProductCard from '@/app/_components/products/productCard';
@@ -19,33 +20,17 @@ export default function Shop() {
   const [filteredProducts, setFilteredProducts] = useState(null);
   const [productTypes, setProductTypes] = useState(null);
   const [collections, setCollections] = useState(null);
+  const [category, setCategory] = useQueryState('category');
 
   const categoryText = {
     all: 'Shop All YOURHEAD',
     prints: 'Fine Art Prints',
     originals: 'Original Paintings by YOURHEAD',
+    apparel: 'YOURHEAD Apparel',
     sale: 'Sale Items',
     default: 'The Official YOURHEAD Shop',
+    null: 'The Official YOURHEAD Shop',
   };
-
-  const category = useCallback(() => {
-    if (searchParams.has('category')) {
-      products !== null &&
-        setFilteredProducts(
-          products.filter((product) => {
-            if (category() === 'sale') {
-              return product.on_sale;
-            } else {
-              return product.product_type === category();
-            }
-          })
-        );
-      return searchParams.get('category');
-    } else {
-      products !== null && setFilteredProducts(products);
-      return 'default';
-    }
-  }, [searchParams]);
 
   useEffect(() => {
     if (
@@ -56,12 +41,12 @@ export default function Shop() {
     ) {
       setFilteredProducts(
         products.filter((product) => {
-          if (category() === 'default' || category() === 'all') {
+          if (category === 'default' || category === 'all') {
             return true;
-          } else if (category() === 'sale') {
+          } else if (category === 'sale') {
             return product.on_sale;
           } else {
-            return product.product_type === category();
+            return product.product_type === category;
           }
         })
       );
@@ -73,7 +58,7 @@ export default function Shop() {
       const data = await res.json();
       setProducts(data.products);
 
-      setFilteredProducts(data.products);
+      category === null && setFilteredProducts(data.products);
       setLoading(false);
     };
 
@@ -108,12 +93,12 @@ export default function Shop() {
         lg: '4rem 2rem',
       }}>
       {products !== null &&
-        // collections !== null &&
-        // productTypes !== null &&
+        collections !== null &&
+        productTypes !== null &&
         filteredProducts !== null && (
           <Box>
             <Box mb={'1.5rem'}>
-              <Heading>{categoryText[category()]}</Heading>
+              <Heading>{categoryText[category]}</Heading>
               <Text>
                 {filteredProducts.length === 1
                   ? `${filteredProducts.length} product`

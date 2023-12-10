@@ -66,6 +66,9 @@
   /* Reds */
   --red: #ff4b00;
   --redAlt: #f94c4c;
+  --redLight: #f7c5c5;
+  --redMid: #fa4d4d;
+  --darkRed: #863131;
 
   /* Yellows */
   --yellow: #ffed28;
@@ -115,9 +118,6 @@
   --orange-mid: #ff8528;
 
   /* red */
-  --red-light: #f7c5c5;
-  --red-mid: #fa4d4d;
-  --red-dark: #b30606;
 
   /* pink */
   --pink-light: #f2ceec;
