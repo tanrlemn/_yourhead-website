@@ -10,7 +10,7 @@ import { CartContext } from '../lib/context/CartProvider';
 import { useContext } from 'react';
 
 // chakra-ui
-import { Link, Box, Flex } from '@chakra-ui/react';
+import { Link, Box, Flex, Text } from '@chakra-ui/react';
 
 // local components
 import { routes } from '../lib/utils/routes';
@@ -39,8 +39,28 @@ export default function DesktopNavbar() {
         <NavLink
           href='/cart'
           ml={'1rem'}>
-          {numCartItems > 0 && <Box>{numCartItems}</Box>}
-          <Bag color={'var(--white, #fff)'} />
+          <Flex>
+            <Bag color={'var(--white, #fff)'} />
+            {numCartItems > 0 && (
+              <Flex
+                top={0}
+                left={'0.4rem'}
+                w={'1rem'}
+                h={'1rem'}
+                align={'center'}
+                justify={'center'}
+                background={'var(--chartreuse)'}
+                borderRadius={'100px'}>
+                <Text
+                  color={'var(--darkGreen)'}
+                  lineHeight={1}
+                  fontSize={'0.75rem'}
+                  fontWeight={600}>
+                  {numCartItems}
+                </Text>
+              </Flex>
+            )}
+          </Flex>
         </NavLink>
       </Flex>
     </>
@@ -50,6 +70,7 @@ export default function DesktopNavbar() {
 const NavLink = ({ children, ...props }) => {
   return (
     <Link
+      position={'relative'}
       fontSize={'1rem'}
       fontWeight={500}
       color={'var(--white)'}

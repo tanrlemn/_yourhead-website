@@ -1,8 +1,7 @@
 'use client';
 
 // hooks
-import { useContext, useRef } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useIsMobile } from '@/app/lib/hooks/useIsMobile';
 
 // chakra-ui

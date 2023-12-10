@@ -4,7 +4,7 @@
 import { LoadingContext } from '@/app/lib/context/LoadingProvider';
 
 // hooks
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 // components
@@ -28,13 +28,24 @@ export default function Shop() {
     default: 'The Official YOURHEAD Shop',
   };
 
-  const category = () => {
+  const category = useCallback(() => {
     if (searchParams.has('category')) {
+      products !== null &&
+        setFilteredProducts(
+          products.filter((product) => {
+            if (category() === 'sale') {
+              return product.on_sale;
+            } else {
+              return product.product_type === category();
+            }
+          })
+        );
       return searchParams.get('category');
     } else {
+      products !== null && setFilteredProducts(products);
       return 'default';
     }
-  };
+  }, [searchParams]);
 
   useEffect(() => {
     if (

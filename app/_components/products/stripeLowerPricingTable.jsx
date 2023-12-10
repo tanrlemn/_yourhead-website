@@ -1,6 +1,6 @@
 import Script from 'next/script';
 
-export default function StripePricingTable() {
+export default function StripeLowerPricingTable() {
   return (
     <>
       <Script

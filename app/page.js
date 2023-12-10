@@ -1,10 +1,10 @@
 'use client';
 
 // images
-import whalerider from '@/public/images/paintingRealPeople/whalerider.webp';
-import donut from '@/public/images/paintingRealPeople/donut.webp';
-import owner from '@/public/images/findingYourhead/owner.webp';
-import bliss from '@/public/images/findingYourhead/bliss.webp';
+import whalerider from '@/public/images/paintings/whalerider.webp';
+import donut from '@/public/images/paintings/donut.webp';
+import owner from '@/public/images/paintings/owner.webp';
+import bliss from '@/public/images/paintings/bliss.webp';
 
 // context
 import { LoadingContext } from '@/app/lib/context/LoadingProvider';

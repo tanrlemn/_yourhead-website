@@ -5,8 +5,6 @@ import textBurst from '@/public/icons/textBurst.svg';
 import whalerider from '@/public/images/paintingRealPeople/whalerider.webp';
 import donut from '@/public/images/paintingRealPeople/donut.webp';
 
-import profileImg from '@/public/images/profile-img.png';
-
 // components
 import Image from 'next/image';
 
@@ -48,12 +46,6 @@ export default function About() {
     <main>
       <div>
         <div>
-          <Image
-            src={profileImg}
-            alt='profile image'
-            width={400}
-            height={400}
-          />
           <div>
             <div>
               <div></div>
